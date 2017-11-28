@@ -116,31 +116,142 @@
                     <div class="modal-footer"></div>
                 </div>
             </div>
-            
-              <div id="infoModal" tabindex="-1" role="dialog" class="modal fade in" >
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" data-dismiss="modal" aria-hidden="true" class="close"><span class="mdi mdi-close"></span></button>
-                    </div>
-                    <form id="deleteForm">
-                      
-                        <div class="modal-body">
-                            <div class="text-center">
-                                <div class="text-primary">
-                                    <span class="modal-main-icon mdi mdi-info-outline"></span></div>
-                                <h3>Information!</h3>
-                                <p>No data found in your selection</p>
-                                <div class="xs-mt-50"> 
-                                    <button type="button" data-dismiss="modal" class="btn btn-space btn-default">OK</button>
+
+            <div id="infoModal" tabindex="-1" role="dialog" class="modal fade in" >
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" data-dismiss="modal" aria-hidden="true" class="close"><span class="mdi mdi-close"></span></button>
+                        </div>
+                        <form id="deleteForm">
+
+                            <div class="modal-body">
+                                <div class="text-center">
+                                    <div class="text-primary">
+                                        <span class="modal-main-icon mdi mdi-info-outline"></span></div>
+                                    <h3>Information!</h3>
+                                    <p>No data found in your selection</p>
+                                    <div class="xs-mt-50"> 
+                                        <button type="button" data-dismiss="modal" class="btn btn-space btn-default">OK</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
-                    <div class="modal-footer"></div>
+                        </form>
+                        <div class="modal-footer"></div>
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <div id="cainfoModal" tabindex="-1" role="dialog" class="modal fade in" >
+
+                <div class="modal-dialog custom-width">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" data-dismiss="modal" aria-hidden="true" class="close md-close"><span class="mdi mdi-close"></span></button>
+                            <h3 class="modal-title">Car Details</h3>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="be-booking-promo">
+                                <div class="be-booking-desc">
+                                    <h4 class="be-booking-desc-title">Days Since Entry into country
+                                    </h4>
+                  <!--                    <span class="be-booking-desc-details">Lorem ipsum dolor sit amet, Pellen tesque sit amet odio Integer.</span>-->
+                                </div>
+                                <div class="be-booking-promo-price">
+                                    <div class="be-booking-promo-amount"><span class="price">56</span></div>
+                                    <a href="#" class="btn btn-primary be-booking-btn-price">Days</a>
+                                </div>
+                            </div>
+
+                            <div class="user-info-list panel panel-default">
+                                <table class="no-border no-strip skills">
+                                    <tbody class="no-border-x no-border-y">
+                                        <tr>
+                                            <td class="icon"><span class="mdi mdi-account"></span></td>
+                                            <td class="item">Owner<span class="icon s7-portfolio"></span></td>
+                                            <td>Elliot Kitsipui</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><span class="mdi mdi-calendar"></span></td>
+                                            <td class="item">Entry Date<span class="icon s7-portfolio"></span></td>
+                                            <td>20th July 2017</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><span class="mdi mdi-calendar"></span></td>
+                                            <td class="item">Due Date<span class="icon s7-gift"></span></td>
+                                            <td>15 Sep 2017</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><span class="mdi mdi-collection-bookmark"></span></td>
+                                            <td class="item">Country<span class="icon s7-phone"></span></td>
+                                            <td>Nigeria</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><span class="mdi mdi-globe-alt"></span></td>
+                                            <td class="item">Chassis Number<span class="icon s7-map-marker"></span></td>
+                                            <td>GX 6887 12</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                <div class="panel-heading panel-heading-divider">Car Property Details
+<!--                                    <span class="panel-subtitle">I am a web developer and designer based in Montreal - Canada, I like read books, good music and nature.</span>-->
+
+                                </div>
+                                <div class="panel-body">
+                                    <table class="no-border no-strip skills">
+                                        <tbody class="no-border-x no-border-y">
+                                            <tr>
+                                                <td class="icon"><span class="mdi mdi-case"></span></td>
+                                                <td class="item">Vehicle Type<span class="icon s7-portfolio"></span></td>
+                                                <td>Toyota</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="icon"><span class="mdi mdi-cake"></span></td>
+                                                <td class="item">Fuel Type<span class="icon s7-gift"></span></td>
+                                                <td>1.8 litres</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="icon"><span class="mdi mdi-smartphone-android"></span></td>
+                                                <td class="item">Mileage<span class="icon s7-phone"></span></td>
+                                                <td>30,8080 km</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="icon"><span class="mdi mdi-globe-alt"></span></td>
+                                                <td class="item">Transmission<span class="icon s7-map-marker"></span></td>
+                                                <td>Automatic</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="panel-heading panel-heading-divider">Custom Details
+<!--                                    <span class="panel-subtitle">I am a web developer and designer based in Montreal - Canada, I like read books, good music and nature.</span>-->
+
+                                </div>
+                                <div class="panel-body">
+                                    No custom details
+                                </div>
+
+                                <div class="panel-heading panel-heading-divider">DVLA Details
+<!--                                    <span class="panel-subtitle">I am a web developer and designer based in Montreal - Canada, I like read books, good music and nature.</span>-->
+
+                                </div>
+                                <div class="panel-body">
+                                    No dvla details
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" data-dismiss="modal" class="btn btn-default md-close">Cancel</button>
+                            <button type="button" data-dismiss="modal" class="btn btn-primary md-close">Print</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
         </div>
@@ -193,50 +304,13 @@
 
                                         //Runs prettify
                                         prettyPrint();
-                                        testconnection();
-                                        checkTokenStatus();
+
                                     });
 
                                     function SignOut() {
                                         window.location = "<?php echo e(url('logout')); ?>";
                                     }
 
-                                    function testconnection() {
-
-                                        $.ajax({
-                                            url: "<?php echo e(url('testconnection')); ?>",
-                                            type: "GET",
-                                            success: function (data) {
-                                                console.log('connection status :' + data);
-                                                if (data == "false") {
-
-                                                    $('#internetModal').modal({backdrop: 'static'}, 'show');
-                                                }
-
-
-                                            }
-                                        });
-
-                                    }
-
-
-                                    function checkTokenStatus() {
-
-                                        $.ajax({
-                                            url: "<?php echo e(url('validatetoken')); ?>",
-                                            type: "GET",
-                                            success: function (data) {
-                                                console.log('token status :' + data);
-                                                if (data == "401") {
-
-                                                    $('#sessionModal').modal({backdrop: 'static'}, 'show');
-                                                }
-
-
-                                            }
-                                        });
-
-                                    }
 
 
         </script>   

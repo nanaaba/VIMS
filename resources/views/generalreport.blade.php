@@ -23,7 +23,7 @@
 
                                 {{ csrf_field() }}
 
-    <div class="row">
+                                <div class="row">
 
                                     <div class="col-sm-4">
                                         <div class="form-group">
@@ -44,9 +44,12 @@
                                         <div class="form-group">
                                             <label class=" control-label">Car Types</label>
 
-                                            <select class="select2 select2-hidden-accessible" name="reportlevel" id="reportlevel" tabindex="-1" aria-hidden="true" required>
+                                            <select class="select2 select2-hidden-accessible" name="car_type" id="cartype" tabindex="-1" aria-hidden="true" required>
 
                                                 <option value="">Select ---</option>
+                                                <option value="Van">Van</option>
+                                                <option value="Sports Car">Sports Car</option>
+
 
                                             </select>
 
@@ -56,11 +59,11 @@
                                         <div class="form-group">
                                             <label class=" control-label">Car Brand</label>
 
-                                            <select class="select2 select2-hidden-accessible" name="reportlevel" id="reportlevel" tabindex="-1" aria-hidden="true" required>
+                                            <select class="select2 select2-hidden-accessible" name="car_brand" id="reportlevel" tabindex="-1" aria-hidden="true" required>
 
                                                 <option value="">Select ---</option>
-                                                <option value="Over Stayed Cars">Over Stayed Cars</option> 
-                                                <option value="New Entry">New Entry</option>
+                                                <option value="Nissan">Nissan</option> 
+                                                <option value="Toyota">Toyota</option>
 
                                             </select>
 
@@ -68,17 +71,18 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label class=" control-label">Country</label>
+                                            <label class=" control-label">Country of Origin</label>
 
-                                            <select class="select2 select2-hidden-accessible" name="reportlevel" id="reportlevel" tabindex="-1" aria-hidden="true" required>
+                                            <select class="select2 select2-hidden-accessible" name="country_of_origin" id="reportlevel" tabindex="-1" aria-hidden="true" required>
 
                                                 <option value="">Select ---</option>
-
+                                                <option value="Togo">Togo</option> 
+                                                <option value="Cote Dvoire">Cote Dvoire</option>
                                             </select>
 
                                         </div>
                                     </div>
-  
+
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class=" control-label">Date Range</label>
@@ -125,35 +129,28 @@
 
 
 
-                    <div class="panel-body">
-                        <table id="transactionTbl" class=" table-responsive table table-striped table-hover table-fw-widget">
+                    <div class="panel-body table-responsive">
+                        <table id="transactionTbl" class="  table table-striped table-hover table-fw-widget">
                             <thead>
+
                                 <tr>
+                                    <th>Owner</th>
+                                    <th>Gender</th>
                                     <th>Chassis Number</th>
-                                    <th>Entry Days</th>
-                                    <th>Entry Date</th>
-                                    <th>Due Date</th>
-                                    <th>Country</th>
-                                    <th colspan="4" style="font-size: 14px">Car Property Details</th>
-                                    <th>Custom Details</th>
-                                    <th>Dvla Details </th>
-                                   
-                                </tr>
-                                 <tr>
-                                    <th>Chassis Number</th>
-                                    <th>Entry Days</th>
+                                    <th>OverStayed Days</th>
                                     <th>Entry Date</th>
                                     <th>Due Date</th>
                                     <th>Country</th>
                                     <th>Vehicle Type</th>
                                     <th>Fuel Capacity</th>
                                     <th>Mileage </th>
-                                    <th>Trains </th>
-                                    <th> </th>
-                                    <th> </th>
+                                    <th>TransMission </th>
+                                    <th>Custom Details</th>
+                                    <th>Dvla Details </th>
+
                                 </tr>
                             </thead>
-                            <tbody id="transactionbody">
+                            <tbody >
 
                             </tbody>
 
@@ -201,19 +198,13 @@
         e.preventDefault();
         var formData = $(this).serialize();
         $.ajax({
-            url: "{{url('reports/searchresult')}}",
+            url: "{{url('reports/generalreport')}}",
             type: "POST",
             data: formData,
             dataType: 'json',
             success: function (data) {
 
-                if (data == "401") {
-                    $('#sessionModal').modal({backdrop: 'static'}, 'show');
-                }
 
-                if (data == "500") {
-                    $('#errorModal').modal('show');
-                }
                 $('.loader').removeClass('be-loading-active');
                 console.log('server data :' + data.data);
                 var dataSet = data.data;
@@ -233,14 +224,20 @@
                         var j = -1;
                         var r = new Array();
                         // represent columns as array
-                        r[++j] = '<td>' + value.transactionid + '</td>';
-                        r[++j] = '<td class="subject"> ' + value.category_name + '</td>';
-                        r[++j] = '<td class="subject">' + value.amount + '</td>';
-                        r[++j] = '<td class="subject">' + value.cashier_name + '</td>';
-                        r[++j] = '<td class="subject">' + value.shift + '</td>';
-                        r[++j] = '<td class="subject">' + value.region_name + '</td>';
-                        r[++j] = '<td class="subject">' + value.area + '</td>';
-                        r[++j] = '<td class="subject">' + value.transactiondate + '</td>';
+                        r[++j] = '<td>' + value.ownerName + '</td>';
+                        r[++j] = '<td>' + value.gender + '</td>';
+
+                        r[++j] = '<td>' + value.chassisNumber + '</td>';
+                        r[++j] = '<td class="subject">' + value.overstayeddays + ' days </td>';
+                        r[++j] = '<td class="subject"> ' + value.entryDate + '</td>';
+                        r[++j] = '<td class="subject">' + value.dueDate + '</td>';
+                        r[++j] = '<td class="subject">' + value.country + '</td>';
+                        r[++j] = '<td class="subject">' + value.vehicleType + '</td>';
+                        r[++j] = '<td class="subject">' + value.fuelCapacity + ' litres</td>';
+                        r[++j] = '<td class="subject">' + value.mileage + '</td>';
+                        r[++j] = '<td class="subject">' + value.transmission + '</td>';
+                        r[++j] = '<td class="subject"></td>';
+                        r[++j] = '<td class="subject"> </td>';
                         rowNode = datatable.row.add(r);
                     });
                     rowNode.draw().node();
@@ -255,6 +252,6 @@
 
         });
     });
- 
+
 </script>
 @endsection

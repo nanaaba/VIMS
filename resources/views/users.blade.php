@@ -111,13 +111,7 @@
                         </select>
                     </div>
 
-                    <div class="form-group" style="display: none" id="regiondiv">
-                        <label>Region</label>
-                        <select class="form-control select2" name="region" id="regions" >
-                            <option value="">Select ---</option>
 
-                        </select>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn btn-default md-close">Cancel</button>
@@ -182,7 +176,7 @@
 @section('customjs')
 
 <script type="text/javascript">
-   
+
 
     $('#roles').change(function () {
 
@@ -197,11 +191,11 @@
     });
 
 
-  
+
     var datatable = $('#usersTbl').DataTable();
 
 
-   
+
     function resetPassword(id) {
         $('#itemid').val(id);
         $('#resetModal').modal('show');
@@ -222,13 +216,7 @@
             dataType: 'json',
             success: function (data) {
 
-                if (data == "401") {
-                    $('#sessionModal').modal({backdrop: 'static'}, 'show');
-                }
 
-                if (data == "500") {
-                    $('#errorModal').modal('show');
-                }
                 $('.loader').removeClass('be-loading-active');
                 console.log('server data :' + data);
                 var status = data.status;
@@ -269,13 +257,7 @@
             dataType: 'json',
             success: function (data) {
 
-                if (data == "401") {
-                    $('#sessionModal').modal({backdrop: 'static'}, 'show');
-                }
-
-                if (data == "500") {
-                    $('#errorModal').modal('show');
-                }
+              
                 $('.loader').removeClass('be-loading-active');
                 console.log('server data :' + data);
                 var status = data.status;
@@ -284,7 +266,7 @@
                     $('#edituser').modal('hide');
 
 
-                    document.getElementById("userForm").reset();
+                    document.getElementById("updateuserForm").reset();
 
                     $('.feedback').html(data.message);
                     $('#successdiv').show();
@@ -317,13 +299,7 @@
             dataType: 'json',
             success: function (data) {
 
-                if (data == "401") {
-                    $('#sessionModal').modal({backdrop: 'static'}, 'show');
-                }
-
-                if (data == "500") {
-                    $('#errorModal').modal('show');
-                }
+            
 
                 $('.loader').removeClass('be-loading-active');
                 console.log('server data :' + data);
@@ -389,8 +365,90 @@
         });
     });
 
+    getUsers();
+
+    function getUsers() {
+        $.ajax({
+            url: "{{url('users/all')}}",
+            type: "GET",
+            dataType: 'json',
+            success: function (data) {
+
+               
+                console.log('server data :' + data.data);
+                var dataSet = data.data;
+                console.log(dataSet);
+                datatable.clear().draw();
+                console.log('size' + dataSet.length);
+                if (dataSet.length == 0) {
+                    console.log("NO DATA!");
+                } else {
+                    $.each(dataSet, function (key, value) {
 
 
+                        var j = -1;
+                        var r = new Array();
+                        // represent columns as array
+                        r[++j] = '<td class="subject"> ' + value.name + '</td>';
+                        r[++j] = '<td class="subject">' + value.email + '</td>';
+                        r[++j] = '<td class="subject">' + value.contact + '</td>';
+                        r[++j] = '<td class="subject">' + value.role + '</td>';
+
+                        r[++j] = '<td class="subject">' + value.datecreated + '</td>';
+                        r[++j] = '<td class="actions">' +
+                                '<a  href="#"  onclick="editUser(' + value.id + ')"  type="button" class="icon btn btn-outline-info btn-sm  col-sm-6 btn-edit editBtn" ><i title="View" class="mdi mdi-eye""></i><span class="hidden-md hidden-sm hidden-xs"> </span></a>' +
+                                '<a  href="#" onclick="deleteUser(' + value.id + ')" type="button" class="icon btn btn-outline-info btn-sm  col-sm-6 btn-edit editBtn" ><i title ="Delete" class="mdi mdi-delete""></i><span class="hidden-md hidden-sm hidden-xs"> </span></a>' +
+                                '<a  href="#" onclick="resetPassword(' + value.id + ')" type="button" class="icon btn btn-outline-info btn-sm  col-sm-6 btn-edit editBtn" ><i title ="Reset" class="mdi mdi-refresh""></i><span class="hidden-md hidden-sm hidden-xs"> </span></a>' +
+                                '</td>';
+                        rowNode = datatable.row.add(r);
+                    });
+                    rowNode.draw().node();
+                }
+
+                $('.loader').removeClass('be-loading-active');
+            }
+
+        });
+    }
+
+    function editUser(id) {
+
+        $.ajax({
+            url: "users/" + id,
+            type: "GET",
+            dataType: 'json',
+            success: function (data) {
+                $('#editregiondiv').hide();
+                if (data == "401") {
+                    $('#sessionModal').modal({backdrop: 'static'}, 'show');
+                }
+
+                if (data == "500") {
+                    $('#errorModal').modal('show');
+                }
+                $('.loader').removeClass('be-loading-active');
+                console.log('server data :' + data);
+                var dataArray = data.data;
+
+                $('#username').val(dataArray[0].name);
+                $('#email').val(dataArray[0].email);
+                $('#contact').val(dataArray[0].contact);
+                $('#editrole').val(dataArray[0].role);
+                $('#userid').val(dataArray[0].id);
+
+                $('#editrole').change();
+
+                $('#edituser').modal('show');
+            }
+
+        });
+    }
+
+
+    function deleteUser(id) {
+        $('#itemid').val(id);
+        $('#deleteModal').modal('show');
+    }
 
 </script>
 @endsection

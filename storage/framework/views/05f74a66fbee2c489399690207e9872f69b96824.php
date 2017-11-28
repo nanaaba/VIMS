@@ -28,53 +28,16 @@
                                         <div class="form-group">
                                             <label class=" control-label">Agents</label>
 
-                                            <select class="select2 select2-hidden-accessible" name="reportlevel" id="reportlevel" tabindex="-1" aria-hidden="true" required>
+                                            <select class="select2 select2-hidden-accessible" name="agents" id="agents" tabindex="-1" aria-hidden="true" required>
 
                                                 <option value="">Select ---</option>
+                                                <option value="Ama">Ama</option>
 
                                             </select>
 
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label class=" control-label">Car Types</label>
-
-                                            <select class="select2 select2-hidden-accessible" name="reportlevel" id="reportlevel" tabindex="-1" aria-hidden="true" required>
-
-                                                <option value="">Select ---</option>
-
-                                            </select>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label class=" control-label">Car Brand</label>
-
-                                            <select class="select2 select2-hidden-accessible" name="reportlevel" id="reportlevel" tabindex="-1" aria-hidden="true" required>
-
-                                                <option value="">Select ---</option>
-                                                <option value="Over Stayed Cars">Over Stayed Cars</option> 
-                                                <option value="New Entry">New Entry</option>
-
-                                            </select>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label class=" control-label">Country</label>
-
-                                            <select class="select2 select2-hidden-accessible" name="reportlevel" id="reportlevel" tabindex="-1" aria-hidden="true" required>
-
-                                                <option value="">Select ---</option>
-
-                                            </select>
-
-                                        </div>
-                                    </div>
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
@@ -122,35 +85,22 @@
 
 
 
-                    <div class="panel-body">
-                            <table id="transactionTbl" class=" table-responsive table table-striped table-hover table-fw-widget">
+                    <div class="panel-body table-responsive">
+                        <table id="agentsCasesTbl" class="  table table-striped table-hover table-fw-widget">
                             <thead>
+
                                 <tr>
+                                    <th>Owner</th>
+                                    <th>Gender</th>
                                     <th>Chassis Number</th>
-                                    <th>Entry Days</th>
-                                    <th>Entry Date</th>
-                                    <th>Due Date</th>
-                                    <th>Country</th>
-                                    <th colspan="4" style="font-size: 14px">Car Property Details</th>
-                                    <th>Custom Details</th>
-                                    <th>Dvla Details </th>
-                                   
-                                </tr>
-                                 <tr>
-                                    <th>Chassis Number</th>
-                                    <th>Entry Days</th>
-                                    <th>Entry Date</th>
-                                    <th>Due Date</th>
-                                    <th>Country</th>
                                     <th>Vehicle Type</th>
-                                    <th>Fuel Capacity</th>
-                                    <th>Mileage </th>
-                                    <th>Trains </th>
-                                    <th> </th>
-                                    <th> </th>
+                                    <th>Entry Date</th>
+                                    <th>Country</th>
+                                    <th> Action</th>
+
                                 </tr>
                             </thead>
-                            <tbody id="transactionbody">
+                            <tbody >
 
                             </tbody>
 
@@ -179,7 +129,7 @@
 //        datatable.buttons().container()
 //                .appendTo($('.col-sm-6:eq(0)', datatable.table().container()));
 
-    var datatable = $('#transactionTbl').DataTable({
+    var datatable = $('#agentsCasesTbl').DataTable({
         lengthChange: false,
         buttons: [
             {extend: 'copyHtml5', footer: true},
@@ -192,25 +142,19 @@
 
 
     datatable.buttons().container()
-            .appendTo('#transactionTbl_wrapper .col-sm-6:eq(0)');
-    $('#reportForm').on('submit', function (e) {
+            .appendTo('#agentsCasesTbl_wrapper .col-sm-6:eq(0)');
+    $('#agentCasesForm').on('submit', function (e) {
         $('.loader').addClass('be-loading-active');
         e.preventDefault();
         var formData = $(this).serialize();
         $.ajax({
-            url: "<?php echo e(url('reports/searchresult')); ?>",
+            url: "<?php echo e(url('reports/agentcases')); ?>",
             type: "POST",
             data: formData,
             dataType: 'json',
             success: function (data) {
 
-                if (data == "401") {
-                    $('#sessionModal').modal({backdrop: 'static'}, 'show');
-                }
 
-                if (data == "500") {
-                    $('#errorModal').modal('show');
-                }
                 $('.loader').removeClass('be-loading-active');
                 console.log('server data :' + data.data);
                 var dataSet = data.data;
@@ -230,14 +174,15 @@
                         var j = -1;
                         var r = new Array();
                         // represent columns as array
-                        r[++j] = '<td>' + value.transactionid + '</td>';
-                        r[++j] = '<td class="subject"> ' + value.category_name + '</td>';
-                        r[++j] = '<td class="subject">' + value.amount + '</td>';
-                        r[++j] = '<td class="subject">' + value.cashier_name + '</td>';
-                        r[++j] = '<td class="subject">' + value.shift + '</td>';
-                        r[++j] = '<td class="subject">' + value.region_name + '</td>';
-                        r[++j] = '<td class="subject">' + value.area + '</td>';
-                        r[++j] = '<td class="subject">' + value.transactiondate + '</td>';
+                        r[++j] = '<td>' + value.ownerName + '</td>';
+                        r[++j] = '<td>' + value.gender + '</td>';
+                        r[++j] = '<td>' + value.chassisNumber + '</td>';
+                        r[++j] = '<td class="subject">' + value.vehicleType + '</td>';
+                        r[++j] = '<td class="subject"> ' + value.entryDate + '</td>';
+                        r[++j] = '<td class="subject">' + value.country + '</td>';
+                        r[++j] = '<td class="actions">' +
+                                '<a  href="#"  onclick="viewCarDetail(' + value.id + ')"  type="button" class="icon btn btn-outline-info btn-sm  col-sm-6 btn-edit editBtn" ><i title="View" class="mdi mdi-eye""></i><span class="hidden-md hidden-sm hidden-xs"> </span></a>' +
+                                '</td>';
                         rowNode = datatable.row.add(r);
                     });
                     rowNode.draw().node();
@@ -252,6 +197,12 @@
 
         });
     });
+
+    function viewCarDetail(id) {
+
+
+        $('#cainfoModal').modal('show');
+    }
 
 </script>
 <?php $__env->stopSection(); ?>

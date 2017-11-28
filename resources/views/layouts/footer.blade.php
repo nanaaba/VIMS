@@ -51,6 +51,7 @@ $(document).ready(function () {
     App.formElements();
     App.dataTables();
     App.loaders();
+      	App.ChartJs();
 
     //Runs prettify
     prettyPrint();

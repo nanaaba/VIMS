@@ -55,3 +55,12 @@ Route::get('/agentcases', function () {
 });
 
 //agentcases
+//apis
+Route::post('authenticateuser', 'LoginController@authenticateuser');
+Route::post('users/save', 'UserController@saveUser');
+Route::get('users/all', 'UserController@getUsers');
+Route::get('users/{userid}', 'UserController@userDetail');
+Route::put('users/update', 'UserController@updateUser');
+Route::delete('users/{userid}', 'UserController@deleteUser');
+Route::post('reports/generalreport', 'ReportController@spoolGeneralReport');
+Route::post('reports/agentcases', 'ReportController@agentReport');
