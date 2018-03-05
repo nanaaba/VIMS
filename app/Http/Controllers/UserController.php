@@ -10,7 +10,6 @@ namespace App\Http\Controllers;
 
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
-use App\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Redirect;

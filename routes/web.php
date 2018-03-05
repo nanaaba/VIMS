@@ -54,8 +54,18 @@ Route::get('/agentcases', function () {
     return view('agentcases');
 });
 
+Route::get('drivers/new', 'DriverController@showdrivers');
+Route::get('drivers/all', 'DriverController@showalldrivers');
+
+Route::get('vehicles/new', 'VehicleController@showvehicle');
+Route::get('vehicles/all', 'VehicleController@showallvehicles');
+
 //agentcases
+//
 //apis
+
+Route::get('vehicles/getall', 'VehicleController@getVehicles');
+Route::get('vehicles/information/{vehicleid}', 'VehicleController@getVehicleInformation');
 Route::post('authenticateuser', 'LoginController@authenticateuser');
 Route::post('users/save', 'UserController@saveUser');
 Route::get('users/all', 'UserController@getUsers');

@@ -8,5 +8,5 @@
 
 return [
 	
-	//'TEST_URL' => 'http://localhost/toll/public/api'
+      'TEST_URL' => 'http://18.216.240.149/vims/'
 ];

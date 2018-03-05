@@ -90,7 +90,7 @@
             </div>
         </div>
 
-        
+
         <div id="infoModal" tabindex="-1" role="dialog" class="modal fade in" >
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -98,7 +98,7 @@
                         <button type="button" data-dismiss="modal" aria-hidden="true" class="close"><span class="mdi mdi-close"></span></button>
                     </div>
                     <form id="deleteForm">
-                      
+
                         <div class="modal-body">
                             <div class="text-center">
                                 <div class="text-primary">
@@ -161,7 +161,7 @@
             </div>
         </div>
 
-     <div id="internetModal" tabindex="-1" role="dialog" class="modal fade in" >
+        <div id="internetModal" tabindex="-1" role="dialog" class="modal fade in" >
             <div class="modal-content">
 
                 <div class="modal-body">
@@ -169,9 +169,9 @@
                         <div class="text-danger"><span class="modal-main-icon mdi mdi-info"></span></div>
                         <h3> No Internet Connection!!!</h3>
                         <p>Kindly check your internet connection</p>
-<!--                        <div class="xs-mt-50">
-                            <button type="button" onclick="SignOut()"  class="btn btn-primary btn-space ">Sign Out</button>
-                        </div>-->
+                        <!--                        <div class="xs-mt-50">
+                                                    <button type="button" onclick="SignOut()"  class="btn btn-primary btn-space ">Sign Out</button>
+                                                </div>-->
                     </div>
                 </div>
                 <div class="modal-footer"></div>

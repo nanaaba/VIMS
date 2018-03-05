@@ -5,32 +5,50 @@
 
 <div class="be-content">
     <div class="page-head">
-        <h2 class="page-head-title">Audit Logs</h2>
+        <h2 class="page-head-title">Users</h2>
         <ol class="breadcrumb page-head-nav">
             <li><a href="#">Home</a></li>
 
-            <li class="active">Audit Logs</li>
+            <li class="active">Users</li>
         </ol>
     </div>
     <div class="main-content container-fluid">
 
+        <div id="errormsg">
+            <div role="alert" id="successdiv" class="alert alert-success alert-icon alert-dismissible"  style="display: none">
+                <div class="icon"><span class="mdi mdi-check"></span></div>
+                <div class="message">
+                    <button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true" class="mdi mdi-close"></span></button>
+                    <span class="feedback"></span>
+                </div>
+            </div> 
+            <div id="errordiv" role="alert" class="alert alert-danger alert-icon alert-dismissible"  style="display: none">
+                <div class="icon"><span class="mdi mdi-close"></span></div>
+                <div class="message">
+                    <button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true" class="mdi mdi-close"></span></button>
+                    <span class="feedback"></span>
+                </div>
+            </div>
+        </div>
+
+
       
-
-
         <div class="row">
             <div class="col-sm-12">
                 <div class="panel panel-default table-responsive">
 
                     <div class="panel-body">
-                        <table id="usersTbl" class="table table-condensed table-hover table-bordered table-striped">
+                        <table id="driverTbl" class="table table-condensed table-hover table-bordered table-striped">
                             <thead>
                                 <tr>
 
-                                    <th>User</th>  
-                                    <th>Activity</th>  
-                                    
+                                    <th>Name</th>  
+                                    <th>Email</th>  
+                                    <th>Contact</th>  
+                                    <th>Role</th>  
                                     <th>Date Created</th>
-                                   
+                                    <th>Action</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -47,14 +65,13 @@
     </div>
 </div>
 
-<!--Form Modals-->
 
 @endsection
 
 @section('customjs')
 
 <script type="text/javascript">
-   
+
 
     $('#roles').change(function () {
 
@@ -69,11 +86,11 @@
     });
 
 
-  
+
     var datatable = $('#usersTbl').DataTable();
 
 
-   
+
     function resetPassword(id) {
         $('#itemid').val(id);
         $('#resetModal').modal('show');
@@ -94,13 +111,7 @@
             dataType: 'json',
             success: function (data) {
 
-                if (data == "401") {
-                    $('#sessionModal').modal({backdrop: 'static'}, 'show');
-                }
 
-                if (data == "500") {
-                    $('#errorModal').modal('show');
-                }
                 $('.loader').removeClass('be-loading-active');
                 console.log('server data :' + data);
                 var status = data.status;
@@ -141,13 +152,7 @@
             dataType: 'json',
             success: function (data) {
 
-                if (data == "401") {
-                    $('#sessionModal').modal({backdrop: 'static'}, 'show');
-                }
-
-                if (data == "500") {
-                    $('#errorModal').modal('show');
-                }
+              
                 $('.loader').removeClass('be-loading-active');
                 console.log('server data :' + data);
                 var status = data.status;
@@ -156,7 +161,7 @@
                     $('#edituser').modal('hide');
 
 
-                    document.getElementById("userForm").reset();
+                    document.getElementById("updateuserForm").reset();
 
                     $('.feedback').html(data.message);
                     $('#successdiv').show();
@@ -189,13 +194,7 @@
             dataType: 'json',
             success: function (data) {
 
-                if (data == "401") {
-                    $('#sessionModal').modal({backdrop: 'static'}, 'show');
-                }
-
-                if (data == "500") {
-                    $('#errorModal').modal('show');
-                }
+            
 
                 $('.loader').removeClass('be-loading-active');
                 console.log('server data :' + data);
@@ -261,8 +260,90 @@
         });
     });
 
+    getUsers();
+
+    function getUsers() {
+        $.ajax({
+            url: "{{url('users/all')}}",
+            type: "GET",
+            dataType: 'json',
+            success: function (data) {
+
+               
+                console.log('server data :' + data.data);
+                var dataSet = data.data;
+                console.log(dataSet);
+                datatable.clear().draw();
+                console.log('size' + dataSet.length);
+                if (dataSet.length == 0) {
+                    console.log("NO DATA!");
+                } else {
+                    $.each(dataSet, function (key, value) {
 
 
+                        var j = -1;
+                        var r = new Array();
+                        // represent columns as array
+                        r[++j] = '<td class="subject"> ' + value.name + '</td>';
+                        r[++j] = '<td class="subject">' + value.email + '</td>';
+                        r[++j] = '<td class="subject">' + value.contact + '</td>';
+                        r[++j] = '<td class="subject">' + value.role + '</td>';
+
+                        r[++j] = '<td class="subject">' + value.datecreated + '</td>';
+                        r[++j] = '<td class="actions">' +
+                                '<a  href="#"  onclick="editUser(' + value.id + ')"  type="button" class="icon btn btn-outline-info btn-sm  col-sm-6 btn-edit editBtn" ><i title="View" class="mdi mdi-eye""></i><span class="hidden-md hidden-sm hidden-xs"> </span></a>' +
+                                '<a  href="#" onclick="deleteUser(' + value.id + ')" type="button" class="icon btn btn-outline-info btn-sm  col-sm-6 btn-edit editBtn" ><i title ="Delete" class="mdi mdi-delete""></i><span class="hidden-md hidden-sm hidden-xs"> </span></a>' +
+                                '<a  href="#" onclick="resetPassword(' + value.id + ')" type="button" class="icon btn btn-outline-info btn-sm  col-sm-6 btn-edit editBtn" ><i title ="Reset" class="mdi mdi-refresh""></i><span class="hidden-md hidden-sm hidden-xs"> </span></a>' +
+                                '</td>';
+                        rowNode = datatable.row.add(r);
+                    });
+                    rowNode.draw().node();
+                }
+
+                $('.loader').removeClass('be-loading-active');
+            }
+
+        });
+    }
+
+    function editUser(id) {
+
+        $.ajax({
+            url: "users/" + id,
+            type: "GET",
+            dataType: 'json',
+            success: function (data) {
+                $('#editregiondiv').hide();
+                if (data == "401") {
+                    $('#sessionModal').modal({backdrop: 'static'}, 'show');
+                }
+
+                if (data == "500") {
+                    $('#errorModal').modal('show');
+                }
+                $('.loader').removeClass('be-loading-active');
+                console.log('server data :' + data);
+                var dataArray = data.data;
+
+                $('#username').val(dataArray[0].name);
+                $('#email').val(dataArray[0].email);
+                $('#contact').val(dataArray[0].contact);
+                $('#editrole').val(dataArray[0].role);
+                $('#userid').val(dataArray[0].id);
+
+                $('#editrole').change();
+
+                $('#edituser').modal('show');
+            }
+
+        });
+    }
+
+
+    function deleteUser(id) {
+        $('#itemid').val(id);
+        $('#deleteModal').modal('show');
+    }
 
 </script>
 @endsection

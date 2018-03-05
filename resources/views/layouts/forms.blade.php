@@ -8,6 +8,7 @@
         <meta name="author" content="">
         <link rel="shortcut icon" href="{{ asset('assets/img/logo-fav.png')}}">
         <title>VIMS</title>
+
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/lib/perfect-scrollbar/css/perfect-scrollbar.min.css')}}"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/lib/material-design-icons/css/material-design-iconic-font.min.css')}}"/><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js')}}"></script>
@@ -19,7 +20,31 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/lib/bootstrap-slider/css/bootstrap-slider.css')}}"/>
         <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/lib/datatables/css/dataTables.bootstrap.min.css')}}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap-datepicker.min.css')}}"/>
 
+        <style type="text/css">
+            textarea {
+                resize: none;
+            }
+            fieldset {
+                font-family: sans-serif;
+                border: 5px solid #1F497D;
+                background: #ddd;
+                border-radius: 5px;
+                padding: 15px;
+            }
+
+            fieldset legend {
+                background: #1F497D;
+                color: #fff;
+                padding: 5px 10px ;
+                font-size: 24px;
+                border-radius: 5px;
+                box-shadow: 0 0 0 5px #ddd;
+                margin-left: 20px;
+            }
+
+        </style>
     </head>
     <body>
         <div class="be-wrapper be-fixed-sidebar">
@@ -267,6 +292,7 @@
         <script src="{{ asset('assets/lib/select2/js/select2.min.js')}}" type="text/javascript"></script>
         <script src="{{ asset('assets/lib/select2/js/select2.full.min.js')}}" type="text/javascript"></script>
         <script src="{{ asset('assets/lib/bootstrap-slider/js/bootstrap-slider.js')}}" type="text/javascript"></script>
+        <script src="{{ asset('assets/js/bootstrap-datepicker.js')}}" type="text/javascript"></script>
 
         <script src="{{ asset('assets/lib/datatables/js/jquery.dataTables.min.js')}}" type="text/javascript"></script>
         <script src="{{ asset('assets/lib/datatables/js/dataTables.bootstrap.min.js')}}" type="text/javascript"></script>
@@ -295,6 +321,11 @@
         @yield('customjs')
 
         <script type="text/javascript">
+
+                                    $('.datepicker').datepicker({
+                                        format: 'yyyy-mm-dd'
+                                    });
+
                                     $(document).ready(function () {
                                         //initialize the javascript
                                         App.init();
