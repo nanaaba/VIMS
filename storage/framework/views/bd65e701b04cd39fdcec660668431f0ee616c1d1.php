@@ -26,7 +26,7 @@
             textarea {
                 resize: none;
             }
-            fieldset {
+/*            fieldset {
                 font-family: sans-serif;
                 border: 5px solid #1F497D;
                 background: #ddd;
@@ -42,7 +42,7 @@
                 border-radius: 5px;
                 box-shadow: 0 0 0 5px #ddd;
                 margin-left: 20px;
-            }
+            }*/
 
         </style>
     </head>
