@@ -1,4 +1,4 @@
-@extends('layouts.forms')
+@extends('layouts.master')
 
 @section('content')
 

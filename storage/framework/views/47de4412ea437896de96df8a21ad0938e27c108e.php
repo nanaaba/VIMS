@@ -30,23 +30,13 @@
         </div>
 
 
-        <div class="row"  >
-            <div class="col-lg-12">
-                <div class="pull-right">
-                    <button data-toggle="modal" data-target="#newuser" type="button" class="btn btn-space btn-primary">New User</button>
-                    <!--                    <a  class="btn btn-primary" href="bulk-beneficiary-upload" >New Category</a>-->
-
-                </div>
-
-            </div>
-
-        </div>
+      
         <div class="row">
             <div class="col-sm-12">
                 <div class="panel panel-default table-responsive">
 
                     <div class="panel-body">
-                        <table id="usersTbl" class="table table-condensed table-hover table-bordered table-striped">
+                        <table id="driverTbl" class="table table-condensed table-hover table-bordered table-striped">
                             <thead>
                                 <tr>
 
@@ -73,103 +63,6 @@
     </div>
 </div>
 
-<!--Form Modals-->
-<div id="newuser" tabindex="-1" role="dialog" class="modal fade colored-header colored-header-primary">
-    <div class="modal-dialog custom-width">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" data-dismiss="modal" aria-hidden="true" class="close md-close"><span class="mdi mdi-close"></span></button>
-                <h3 class="modal-title">New User</h3>
-            </div>
-            <form id="userForm">
-                <div class="modal-body">
-                    <?php echo e(csrf_field()); ?>
-
-                    <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" name="name" class="form-control " required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" name="email" class="form-control" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Contact</label>
-                        <input type="text" name="contact" class="form-control" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Role</label>
-                        <select class="select2" name="role" id="roles" required>
-                            <option value="">Select ---</option>
-                            <option value="Administrator">Administrator</option>
-                            <option value="Supervisor">Supervisor</option>
-
-                        </select>
-                    </div>
-
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-default md-close">Cancel</button>
-                    <button type="submit" class="btn btn-info ">Proceed</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-<div id="edituser" tabindex="-1" role="dialog" class="modal fade colored-header colored-header-primary">
-    <div class="modal-dialog custom-width">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" data-dismiss="modal" aria-hidden="true" class="close md-close"><span class="mdi mdi-close"></span></button>
-                <h3 class="modal-title">Update User</h3>
-            </div>
-            <form id="updateuserForm">
-                <div class="modal-body">
-                    <?php echo e(csrf_field()); ?>
-
-
-                    <input type="hidden" id="userid" name="userid"/>
-                    <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" name="name"id="username" class="form-control" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" name="email" id="email" class="form-control" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Contact</label>
-                        <input type="text" name="contact" id="contact" class="form-control" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Role</label>
-                        <select class="form-control select2" name="role" id="editrole" required>
-                            <option value="">Select ---</option>
-                            <option value="Administrator">Administrator</option>
-                            <option value="Supervisor">Supervisor</option>
-
-                        </select>
-                    </div>
-
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-default md-close">Cancel</button>
-                    <button type="submit" class="btn btn-info ">Proceed</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 <?php $__env->stopSection(); ?>
 
