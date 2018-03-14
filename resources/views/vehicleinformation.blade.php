@@ -1,307 +1,284 @@
-@extends('layouts.forms')
+@extends('layouts.master')
 
 @section('content')
 
-<div class="be-content">
+<div id="content">
     <div class="page-head">
         <h2 class="page-head-title"> Vehicle Information</h2>
         <ol class="breadcrumb page-head-nav">
             <li><a href="#">Home</a></li>
-            <li><a href="#">Vehicle</a></li>
-            <li class="active">Information</li>
+            <li><a href="#">Vehicles</a></li>
+            <li class="active">New Vehicle</li>
         </ol>
     </div>
     <div class="main-content container-fluid">
-        <!--Basic forms-->
-        <?php
-        $informaion = json_decode($information, true);
-        $details = $informaion['data'];
-        ?>
         <div class="row">
-            <div class="col-sm-12">
-                <div class="panel panel-default panel-border-color panel-border-color-primary">
-                    <div class="panel-heading panel-heading-divider">
-                        <div class="panel-body">
-                            <form id="reportForm" >
+            <?php
+            $informaion = json_decode($information, true);
+            $details = $informaion['data'];
+            ?>
+            <div class="well well-sm well-light">
+                <h3> {{$details['chasisNo']}} Information
+                    <br>
+<!--                    <<small>Simple Tabs</small>
+                    -->
+                </h3>
 
-                                {{ csrf_field() }}
+                <div id="tabs">
+                    <ul>
+                        <li>
+                            <a href="#tabs-a">Vehicle Data</a>
+                        </li>
+                        <li>
+                            <a href="#tabs-b">Registration Data</a>
+                        </li>
+                        <li>
+                            <a href="#tabs-c">Permit Data</a>
+                        </li>
+                        <li>
+                            <a href="#tabs-d">Ecowas Data</a>
+                        </li>
+                        <li>
+                            <a href="#tabs-e">Trips</a>
+                        </li>
+                    </ul>
+                    <div id="tabs-a" class="panel-body">
+                        
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Vehicle Type</label>
 
-                                <div class="row">
+                                <select class="select2 select2-hidden-accessible" name="sex"  tabindex="-1" aria-hidden="true" required>
 
-                                    <fieldset>
-                                        <legend>{{$details['chasisNo']}} Vehicle Data</legend>
+                                    <option value="">Select ---</option>
 
+                                </select>
 
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Hs Code</label>
 
+                                <input type="text" name="hscode" value="{{$details['hsCode']}}" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Status Code</label>
 
+                                <input type="text" name="statusCode" value="{{$details['statusCode']}}" class="form-control datepicker">
+                            </div>
+                        </div>
 
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">CPC Code</label>
 
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label class=" control-label">Vehicle Type</label>
+                                <input type="text" name="cpcCode" value="{{$details['cpcCode']}}" class="form-control">
+                            </div>
+                        </div>
 
-                                                <select class="select2 select2-hidden-accessible" name="sex"  tabindex="-1" aria-hidden="true" required>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Country</label>
 
-                                                    <option value="">Select ---</option>
+                                <input type="text" name="country" value="{{$details['country']}}" class="form-control">
+                            </div>
+                        </div>
 
-                                                </select>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Origin Make</label>
 
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label class=" control-label">Hs Code</label>
+                                <input type="text" name="make" value="{{$details['make']}}" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Model</label>
 
-                                                <input type="text" name="hscode" value="{{$details['hsCode']}}" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label class=" control-label">Status Code</label>
+                                <select class="select2 select2-hidden-accessible" name="model"  tabindex="-1" aria-hidden="true" required>
 
-                                                <input type="text" name="statusCode" value="{{$details['statusCode']}}" class="form-control datepicker">
-                                            </div>
-                                        </div>
+                                    <option value="{{$details['model']}}">{{$details['model']}}</option>
 
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label class=" control-label">CPC Code</label>
+                                </select>
 
-                                                <input type="text" name="cpcCode" value="{{$details['cpcCode']}}" class="form-control">
-                                            </div>
-                                        </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Color</label>
 
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label class=" control-label">Country</label>
+                                <select class="select2 select2-hidden-accessible" name="color"  tabindex="-1" aria-hidden="true" required>
 
-                                                <input type="text" name="country" value="{{$details['country']}}" class="form-control">
-                                            </div>
-                                        </div>
+                                    <option value="{{$details['colour']}}">{{$details['colour']}}</option>
 
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label class=" control-label">Origin Make</label>
+                                </select>
 
-                                                <input type="text" name="make" value="{{$details['make']}}" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label class=" control-label">Model</label>
-
-                                                <select class="select2 select2-hidden-accessible" name="model"  tabindex="-1" aria-hidden="true" required>
-
-                                                    <option value="{{$details['model']}}">{{$details['model']}}</option>
-
-                                                </select>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label class=" control-label">Color</label>
-
-                                                <select class="select2 select2-hidden-accessible" name="color"  tabindex="-1" aria-hidden="true" required>
-
-                                                    <option value="{{$details['colour']}}">{{$details['colour']}}</option>
-
-                                                </select>
-
-                                            </div>
-                                        </div>
+                            </div>
+                        </div>
 
 
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label class=" control-label">Chassis Number</label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Chassis Number</label>
 
-                                                <input type="text" name="chassisno" value="{{$details['chasisNo']}}" class="form-control">
-                                            </div>
-                                        </div>
+                                <input type="text" name="chassisno" value="{{$details['chasisNo']}}" class="form-control">
+                            </div>
+                        </div>
 
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label class=" control-label">Engine Number</label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Engine Number</label>
 
-                                                <input type="text" name="engineNo" value="{{$details['engineNo']}}" class="form-control">
-                                            </div>
-                                        </div>
+                                <input type="text" name="engineNo" value="{{$details['engineNo']}}" class="form-control">
+                            </div>
+                        </div>
 
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label class=" control-label">Front Plate Number</label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Front Plate Number</label>
 
-                                                <input type="text" name="plateno" value="{{$details['frontPlateNo']}}" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label class=" control-label">Back Plate Number</label>
+                                <input type="text" name="plateno" value="{{$details['frontPlateNo']}}" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Back Plate Number</label>
 
-                                                <input type="text" name="plateno" value="{{$details['backPlateNo']}}" class="form-control">
-                                            </div>
-                                        </div>
+                                <input type="text" name="plateno" value="{{$details['backPlateNo']}}" class="form-control">
+                            </div>
+                        </div>
 
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label class=" control-label">Description</label>
-                                                <textarea name="description" rows="8" class="form-control">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class=" control-label">Description</label>
+                                <textarea name="description" rows="8" class="form-control">
                                                     {{trim($details['description'])}}
-                                                </textarea>
+                                </textarea>
 
-                                            </div>
-                                        </div>
+                            </div>
+                        </div>
 
+                    </div>
+                    <div id="tabs-b" class="panel-body">
 
-                                    </fieldset>
-                                </div>
-                                <br>
-                                <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Registered By</label>
 
-                                    <fieldset>
-                                        <legend>Registration Data:</legend>
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label class=" control-label">Registered By</label>
+                                <input type="text" name="registeredBy" value="{{$details['registeredBy']['Surname']}}" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Name</label>
 
-                                                <input type="text" name="registeredBy" value="{{$details['registeredBy']['Surname']}}" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label class=" control-label">Name</label>
-
-                                                <input type="text" name="otherNames" value="{{$details['registeredBy']['Othernames']}}" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label class=" control-label">Address</label>
-                                                <textarea name="registeredByAddress" class="form-control">
+                                <input type="text" name="otherNames" value="{{$details['registeredBy']['Othernames']}}" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Address</label>
+                                <textarea name="registeredByAddress" class="form-control">
                                                     {{$details['registeredBy']['Address']}}
-                                                </textarea>
+                                </textarea>
 
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label class=" control-label">Issue Date</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class=" control-label">Issue Date</label>
 
-                                                <input type="text" name="regIssueDate"  value="{{$details['regIssueDate']}}" class="form-control datepicker">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label class=" control-label">Expiry Date</label>
-                                                <input type="text" name="email" value="{{$details['regExpiryDate']}}" class="form-control datepicker">
+                                <input type="text" name="regIssueDate"  value="{{$details['regIssueDate']}}" class="form-control datepicker">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class=" control-label">Expiry Date</label>
+                                <input type="text" name="email" value="{{$details['regExpiryDate']}}" class="form-control datepicker">
 
-                                            </div>
-                                        </div>
-                                    </fieldset>
-                                </div>
-
-
-                                <br>
-                                <div class="row">
-
-                                    <fieldset>
-                                        <legend>International Permit Data:</legend>
-                                        <div class="col-sm-12">
-                                            <div class="form-group">
-                                                <label class=" control-label">Permit No </label>
-
-                                                <input type="text" name="permitNo" value="{{$details['permitNo']}}" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label class=" control-label">Issue Date</label>
-
-                                                <input type="text" name="permitIssueDate" value="{{$details['permitIssueDate']}}" class="form-control datepicker">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label class=" control-label">Expiry Date</label>
-                                                <input type="text" name="permitExpiryDate" value="{{$details['permitExpiryDate']}}" class="form-control datepicker">
-
-                                            </div>
-                                        </div>
-                                    </fieldset>
-
-                                    <fieldset>
-                                        <legend>Ecowas Data:</legend>
-                                        <div class="col-sm-12">
-                                            <div class="form-group">
-                                                <label class=" control-label">Ecowas No </label>
-
-                                                <input type="text" name="ecowasn" value="{{$details['regExpiryDate']}}" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label class=" control-label">Issue Date</label>
-
-                                                <input type="text" name="ecowasIssueDate" value="{{$details['ecowasIssueDate']}}" class="form-control datepicker">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label class=" control-label">Expiry Date</label>
-                                                <input type="text" name="ecowasExpiryDate" value="{{$details['ecowasExpiryDate']}}" class="form-control datepicker">
-
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <div class="form-group">
-                                                <label class=" control-label">Remarks</label>
-                                                <textarea name="remarks" rows="8" class="form-control">
-                                                    {{$details['remarks']}}
-
-                                                </textarea>
-
-                                            </div>
-                                        </div>
-                                    </fieldset>
-
-                                </div>
-
-
-
-
-
-                                <div class="row xs-pt-15">
-                                    <div class="col-xs-6">
-
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <p class="text-right">
-                                            <button type="submit" class="btn btn-space btn-primary">Save </button>
-
-                                        </p>
-                                    </div>
-                                </div>
-                            </form>
-
-
-
-
-
+                            </div>
                         </div>
                     </div>
+                    <div id="tabs-c" class="panel-body">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class=" control-label">Permit No </label>
+
+                                <input type="text" name="permitNo" value="{{$details['permitNo']}}" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class=" control-label">Issue Date</label>
+
+                                <input type="text" name="permitIssueDate" value="{{$details['permitIssueDate']}}" class="form-control datepicker">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class=" control-label">Expiry Date</label>
+                                <input type="text" name="permitExpiryDate" value="{{$details['permitExpiryDate']}}" class="form-control datepicker">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tabs-d" class="panel-body">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class=" control-label">Ecowas No </label>
+
+                                <input type="text" name="ecowasn" value="{{$details['regExpiryDate']}}" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class=" control-label">Issue Date</label>
+
+                                <input type="text" name="ecowasIssueDate" value="{{$details['ecowasIssueDate']}}" class="form-control datepicker">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class=" control-label">Expiry Date</label>
+                                <input type="text" name="ecowasExpiryDate" value="{{$details['ecowasExpiryDate']}}" class="form-control datepicker">
+
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="form-group">
+                                <label class=" control-label">Remarks</label>
+                                <textarea name="remarks" rows="8" class="form-control">
+                                                    {{$details['remarks']}}
+
+                                </textarea>
+
+                            </div>
+                        </div>
+                    </div>          
+
+
                 </div>
+
 
             </div>
 
+
         </div>
 
+
     </div>
+
 </div>
 
 
 @endsection
 
 @section('customjs')
-
+<script type="text/javascript">
+    $('#tabs').tabs();
+</script>
 @endsection

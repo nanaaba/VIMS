@@ -260,21 +260,21 @@
 
                                     <fieldset>
                                         <legend>International Permit Data:</legend>
-                                        <div class="col-sm-12">
+                                        <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label class=" control-label">Permit No </label>
 
                                                 <input type="text" name="email" class="form-control">
                                             </div>
                                         </div>
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label class=" control-label">Issue Date</label>
 
                                                 <input type="text" name="email" class="form-control datepicker">
                                             </div>
                                         </div>
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label class=" control-label">Expiry Date</label>
                                                 <input type="text" name="email" class="form-control datepicker">
@@ -339,21 +339,21 @@
 
 
                                 <div class="row">
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <label class=" control-label">Ecowas No </label>
 
                                             <input type="text" name="email" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <label class=" control-label">Issue Date</label>
 
                                             <input type="text" name="email" class="form-control datepicker">
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <label class=" control-label">Expiry Date</label>
                                             <input type="text" name="email" class="form-control datepicker">
@@ -396,7 +396,7 @@
 </form>
 
 </div>
-</div>
+
 
 
 @endsection
