@@ -1,9 +1,9 @@
-@extends('layouts.forms')
+@extends('layouts.master')
 
 @section('content')
 
 
-<div class="be-content">
+<div id="content">
     <div class="page-head">
         <h2 class="page-head-title">Users</h2>
         <ol class="breadcrumb page-head-nav">
@@ -43,6 +43,7 @@
             </div>
 
         </div>
+        <br>
         <div class="row">
             <div class="col-sm-12">
                 <div class="panel panel-default table-responsive">

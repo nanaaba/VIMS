@@ -1,8 +1,8 @@
-@extends('layouts.forms')
+@extends('layouts.master')
 
 @section('content')
 
-<div class="be-content">
+<div id="content">
     <div class="page-head">
         <h2 class="page-head-title">General Report</h2>
         <ol class="breadcrumb page-head-nav">

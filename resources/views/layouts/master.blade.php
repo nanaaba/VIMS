@@ -46,7 +46,7 @@
 	</head>
 	
 	
-	<body class="">
+	<body class="smart-style-4">
 
 		 @include('layouts.header')
 

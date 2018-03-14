@@ -46,7 +46,7 @@
 	</head>
 	
 	
-	<body class="">
+	<body class="smart-style-4">
 
 		 <?php echo $__env->make('layouts.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 

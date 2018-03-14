@@ -203,21 +203,21 @@
                         </div>
                     </div>
                     <div id="tabs-c" class="panel-body">
-                        <div class="col-sm-12">
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <label class=" control-label">Permit No </label>
 
                                 <input type="text" name="permitNo" value="<?php echo e($details['permitNo']); ?>" class="form-control">
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <label class=" control-label">Issue Date</label>
 
                                 <input type="text" name="permitIssueDate" value="<?php echo e($details['permitIssueDate']); ?>" class="form-control datepicker">
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <label class=" control-label">Expiry Date</label>
                                 <input type="text" name="permitExpiryDate" value="<?php echo e($details['permitExpiryDate']); ?>" class="form-control datepicker">
@@ -227,21 +227,21 @@
                     </div>
 
                     <div id="tabs-d" class="panel-body">
-                        <div class="col-sm-12">
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <label class=" control-label">Ecowas No </label>
 
                                 <input type="text" name="ecowasn" value="<?php echo e($details['regExpiryDate']); ?>" class="form-control">
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <label class=" control-label">Issue Date</label>
 
                                 <input type="text" name="ecowasIssueDate" value="<?php echo e($details['ecowasIssueDate']); ?>" class="form-control datepicker">
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <label class=" control-label">Expiry Date</label>
                                 <input type="text" name="ecowasExpiryDate" value="<?php echo e($details['ecowasExpiryDate']); ?>" class="form-control datepicker">

@@ -1,66 +1,93 @@
 <?php $__env->startSection('content'); ?>
 
 
-<div class="be-content">
+<div id="content">
     <div class="page-head">
-        <h2 class="page-head-title">Users</h2>
+        <h2 class="page-head-title"> Drivers</h2>
         <ol class="breadcrumb page-head-nav">
             <li><a href="#">Home</a></li>
-
-            <li class="active">Users</li>
+            <li><a href="#">Drivers</a></li>
+            <li class="active">All Drivers</li>
         </ol>
     </div>
     <div class="main-content container-fluid">
-
-        <div id="errormsg">
-            <div role="alert" id="successdiv" class="alert alert-success alert-icon alert-dismissible"  style="display: none">
-                <div class="icon"><span class="mdi mdi-check"></span></div>
-                <div class="message">
-                    <button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true" class="mdi mdi-close"></span></button>
-                    <span class="feedback"></span>
-                </div>
-            </div> 
-            <div id="errordiv" role="alert" class="alert alert-danger alert-icon alert-dismissible"  style="display: none">
-                <div class="icon"><span class="mdi mdi-close"></span></div>
-                <div class="message">
-                    <button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true" class="mdi mdi-close"></span></button>
-                    <span class="feedback"></span>
-                </div>
-            </div>
-        </div>
+        <section id="widget-grid" class="">
 
 
-      
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="panel panel-default table-responsive">
+            <!-- START ROW -->
 
-                    <div class="panel-body">
-                        <table id="driverTbl" class="table table-condensed table-hover table-bordered table-striped">
-                            <thead>
-                                <tr>
+            <div class="row">
 
-                                    <th>Name</th>  
-                                    <th>Email</th>  
-                                    <th>Contact</th>  
-                                    <th>Role</th>  
-                                    <th>Date Created</th>
-                                    <th>Action</th>
+                <!-- NEW COL START -->
+                <article class="col-sm-12 col-md-12 col-lg-12 ">
 
-                                </tr>
-                            </thead>
-                            <tbody>
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget jarviswidget-sortable" id="wid-id-1" data-widget-editbutton="false" data-widget-custombutton="false" role="widget">
+
+                        <header role="heading" class="ui-sortable-handle">
+                            <div class="jarviswidget-ctrls" role="menu">   
+                                <a href="javascript:void(0);" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Collapse"><i class="fa fa-minus "></i></a>
+                                <a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Fullscreen">
+                                    <i class="fa fa-expand "></i></a>
+                            </div>
+
+                            <span class="widget-icon"> 
+                                <i class="fa fa-edit"></i> </span>
+                            <h2>Drivers </h2>				
+
+                            <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span></header>
+
+                        <!-- widget div-->
+                        <div role="content">
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+
+                            <!-- widget content -->
+                            <div class="widget-body">
+
+                                <table id="vehicleTbl" class="table table-condensed table-hover table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+
+                                            <th>Chasis No</th>  
+                                            <th>Make</th>  
+                                            <th>Model</th>  
+                                            <th>Color</th>  
+                                            <th>Action</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
 
-                            </tbody>
-                        </table>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
                     </div>
-                </div>
+
+                </article>
+
+
+
             </div>
-        </div>
 
 
+            <!-- END ROW -->
+
+        </section>
     </div>
+</form>
+
 </div>
 
 
@@ -71,203 +98,26 @@
 <script type="text/javascript">
 
 
-    $('#roles').change(function () {
-
-        var value = $(this).val();
-        if (value == "Supervisor") {
-            $('#regiondiv').show();
-        } else {
-            $('#regiondiv').hide();
-        }
-        console.log('value :' + value);
-
-    });
 
 
 
-    var datatable = $('#usersTbl').DataTable();
+    var datatable = $('#vehicleTbl').DataTable();
 
 
 
-    function resetPassword(id) {
-        $('#itemid').val(id);
-        $('#resetModal').modal('show');
-    }
 
+    getDrivers();
 
-    $('#userForm').on('submit', function (e) {
-
-        e.preventDefault();
-        var formData = $(this).serialize();
-        console.log(formData);
-
+    function getDrivers() {
         $('.loader').addClass('be-loading-active');
+
         $.ajax({
-            url: "<?php echo e(url('users/save')); ?>",
-            type: "POST",
-            data: formData,
-            dataType: 'json',
-            success: function (data) {
-
-
-                $('.loader').removeClass('be-loading-active');
-                console.log('server data :' + data);
-                var status = data.status;
-                if (status == 0) {
-                    $('#newuser').modal('hide');
-                    document.getElementById("userForm").reset();
-
-                    $('.feedback').html(data.message);
-                    $('#successdiv').show();
-                    $('#errordiv').hide();
-                    getUsers();
-
-                }
-                if (status == 1) {
-                    $('.feedback').html(data.message);
-                    $('#errordiv').show();
-                    $('#successdiv').hide();
-                }
-
-            }
-
-        });
-    });
-
-
-
-    $('#updateuserForm').on('submit', function (e) {
-
-        e.preventDefault();
-        var formData = $(this).serialize();
-        console.log(formData);
-
-        $('.loader').addClass('be-loading-active');
-        $.ajax({
-            url: "<?php echo e(url('users/update')); ?>",
-            type: "PUT",
-            data: formData,
-            dataType: 'json',
-            success: function (data) {
-
-              
-                $('.loader').removeClass('be-loading-active');
-                console.log('server data :' + data);
-                var status = data.status;
-                if (status == 0) {
-
-                    $('#edituser').modal('hide');
-
-
-                    document.getElementById("updateuserForm").reset();
-
-                    $('.feedback').html(data.message);
-                    $('#successdiv').show();
-                    $('#errordiv').hide();
-                    getUsers();
-
-                }
-                if (status == 1) {
-                    $('.feedback').html(data.message);
-                    $('#errordiv').show();
-                    $('#successdiv').hide();
-                }
-
-            }
-
-        });
-    });
-
-    $('#deleteForm').on('submit', function (e) {
-
-        e.preventDefault();
-        var itemid = $('#itemid').val();
-        var token = $('#token').val();
-        $('#deleteModal').modal('hide');
-        $('.loader').addClass('be-loading-active');
-        $.ajax({
-            url: "users/" + itemid,
-            type: "DELETE",
-            data: {_token: token},
-            dataType: 'json',
-            success: function (data) {
-
-            
-
-                $('.loader').removeClass('be-loading-active');
-                console.log('server data :' + data);
-                var status = data.status;
-                if (status == 0) {
-                    getUsers();
-                    document.getElementById("deleteForm").reset();
-                    $('.feedback').html(data.message);
-                    $('#successdiv').show();
-                    $('#errordiv').hide();
-                }
-                if (status == 1) {
-                    $('.feedback').html(data.message);
-                    $('#errordiv').show();
-                    $('#successdiv').hide();
-                }
-
-            }
-
-        });
-    });
-
-
-    $('#resetForm').on('submit', function (e) {
-
-        e.preventDefault();
-        var itemid = $('#itemid').val();
-        //var token = $('#token').val();
-        $('#resetModal').modal('hide');
-        $('.loader').addClass('be-loading-active');
-        $.ajax({
-            url: "users/reset/" + itemid,
+            url: "<?php echo e(url('vehicles/getall')); ?>",
             type: "GET",
             dataType: 'json',
             success: function (data) {
 
-                if (data == "401") {
-                    $('#sessionModal').modal({backdrop: 'static'}, 'show');
-                }
 
-                if (data == "500") {
-                    $('#errorModal').modal('show');
-                }
-
-                $('.loader').removeClass('be-loading-active');
-                console.log('server data :' + data);
-                var status = data.status;
-                if (status == 0) {
-                    getUsers();
-                    document.getElementById("deleteForm").reset();
-                    $('.feedback').html(data.message);
-                    $('#successdiv').show();
-                    $('#errordiv').hide();
-                }
-                if (status == 1) {
-                    $('.feedback').html(data.message);
-                    $('#errordiv').show();
-                    $('#successdiv').hide();
-                }
-
-            }
-
-        });
-    });
-
-    getUsers();
-
-    function getUsers() {
-        $.ajax({
-            url: "<?php echo e(url('users/all')); ?>",
-            type: "GET",
-            dataType: 'json',
-            success: function (data) {
-
-               
                 console.log('server data :' + data.data);
                 var dataSet = data.data;
                 console.log(dataSet);
@@ -282,16 +132,14 @@
                         var j = -1;
                         var r = new Array();
                         // represent columns as array
-                        r[++j] = '<td class="subject"> ' + value.name + '</td>';
-                        r[++j] = '<td class="subject">' + value.email + '</td>';
-                        r[++j] = '<td class="subject">' + value.contact + '</td>';
-                        r[++j] = '<td class="subject">' + value.role + '</td>';
+                        r[++j] = '<td class="subject"> ' + value.chasisNo + '</td>';
+                        r[++j] = '<td class="subject">' + value.make + '</td>';
+                        r[++j] = '<td class="subject">' + value.model + '</td>';
+                        r[++j] = '<td class="subject">' + value.colour + '</td>';
 
-                        r[++j] = '<td class="subject">' + value.datecreated + '</td>';
                         r[++j] = '<td class="actions">' +
-                                '<a  href="#"  onclick="editUser(' + value.id + ')"  type="button" class="icon btn btn-outline-info btn-sm  col-sm-6 btn-edit editBtn" ><i title="View" class="mdi mdi-eye""></i><span class="hidden-md hidden-sm hidden-xs"> </span></a>' +
-                                '<a  href="#" onclick="deleteUser(' + value.id + ')" type="button" class="icon btn btn-outline-info btn-sm  col-sm-6 btn-edit editBtn" ><i title ="Delete" class="mdi mdi-delete""></i><span class="hidden-md hidden-sm hidden-xs"> </span></a>' +
-                                '<a  href="#" onclick="resetPassword(' + value.id + ')" type="button" class="icon btn btn-outline-info btn-sm  col-sm-6 btn-edit editBtn" ><i title ="Reset" class="mdi mdi-refresh""></i><span class="hidden-md hidden-sm hidden-xs"> </span></a>' +
+                                '<a  href="information/' + value.vehicleNo + '"   type="button" class=" btn btn-labeled btn-primary btn-sm  col-sm-6" ><i class="glyphicon glyphicon-eye-open"></i> </a> ' +
+                                '<a  href="#"   type="button" class=" btn btn-labeled btn-danger btn-sm  col-sm-6" ><i class="glyphicon glyphicon-trash"></i></a> ' +
                                 '</td>';
                         rowNode = datatable.row.add(r);
                     });

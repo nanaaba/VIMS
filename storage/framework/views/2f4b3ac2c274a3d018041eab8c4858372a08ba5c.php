@@ -1,7 +1,7 @@
 <?php $__env->startSection('content'); ?>
 
 
-<div class="be-content">
+<div id="content">
     <div class="page-head">
         <h2 class="page-head-title">Users</h2>
         <ol class="breadcrumb page-head-nav">
@@ -41,6 +41,7 @@
             </div>
 
         </div>
+        <br>
         <div class="row">
             <div class="col-sm-12">
                 <div class="panel panel-default table-responsive">
@@ -455,4 +456,4 @@
 
 
 
-<?php echo $__env->make('layouts.forms', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

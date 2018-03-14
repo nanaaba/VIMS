@@ -1,7 +1,7 @@
 <?php $__env->startSection('content'); ?>
 
 
-<div class="be-content">
+<div id="content">
     <div class="page-head">
         <h2 class="page-head-title">Audit Logs</h2>
         <ol class="breadcrumb page-head-nav">
@@ -267,4 +267,4 @@
 
 
 
-<?php echo $__env->make('layouts.forms', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
