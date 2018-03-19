@@ -6,7 +6,7 @@
         <h2 class="page-head-title">New Vehicle</h2>
         <ol class="breadcrumb page-head-nav">
             <li><a href="#">Home</a></li>
-            <li><a href="#">Vehicles</a></li>
+            <li><a href="{{ url('vehicles/all') }}">Vehicles</a></li>
             <li class="active">New Vehicle</li>
         </ol>
     </div>

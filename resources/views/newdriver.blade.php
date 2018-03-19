@@ -9,7 +9,7 @@
         <h2 class="page-head-title">New Driver</h2>
         <ol class="breadcrumb page-head-nav">
             <li><a href="#">Home</a></li>
-            <li><a href="#">Drivers</a></li>
+            <li><a href="{{ url('drivers/all') }}">Drivers</a></li>
             <li class="active">New Driver</li>
         </ol>
     </div>

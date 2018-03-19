@@ -1,20 +1,20 @@
 <?php $__env->startSection('content'); ?>
-
+<?php
+$informaion = json_decode($information, true);
+$details = $informaion['data'];
+?>
 <div id="content">
     <div class="page-head">
-        <h2 class="page-head-title"> Vehicle Information</h2>
+        <h2 class="page-head-title"> <?php echo e($details['chasisNo']); ?> Information</h2>
         <ol class="breadcrumb page-head-nav">
             <li><a href="#">Home</a></li>
             <li><a href="#">Vehicles</a></li>
-            <li class="active">New Vehicle</li>
+            <li class="active"> <?php echo e($details['chasisNo']); ?> Information</li>
         </ol>
     </div>
     <div class="main-content container-fluid">
         <div class="row">
-            <?php
-            $informaion = json_decode($information, true);
-            $details = $informaion['data'];
-            ?>
+
             <div class="well well-sm well-light">
                 <h3> <?php echo e($details['chasisNo']); ?> Information
                     <br>
@@ -41,7 +41,7 @@
                         </li>
                     </ul>
                     <div id="tabs-a" class="panel-body">
-                        
+
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label class=" control-label">Vehicle Type</label>
@@ -207,7 +207,7 @@
                             <div class="form-group">
                                 <label class=" control-label">Ecowas No </label>
 
-                                <input type="text" name="ecowasn" value="<?php echo e($details['regExpiryDate']); ?>" class="form-control">
+                                <input type="text" name="ecowasn" value="<?php echo e($details['ecowasNo']); ?>" class="form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">

@@ -6,7 +6,7 @@
         <h2 class="page-head-title"> Assign Vehicles</h2>
         <ol class="breadcrumb page-head-nav">
             <li><a href="#">Home</a></li>
-            <li><a href="#">Drivers</a></li>
+            <li><a href="<?php echo e(url('drivers/all')); ?>">Drivers</a></li>
             <li class="active">Vehicles Assignment</li>
         </ol>
     </div>
