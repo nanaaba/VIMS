@@ -54,10 +54,10 @@
                                     <thead>
                                         <tr>
 
-                                            <th>Chasis No</th>  
-                                            <th>Make</th>  
-                                            <th>Model</th>  
-                                            <th>Color</th>  
+                                            <th>Name</th>  
+                                            <th>Email</th>  
+                                            <th>Country</th>  
+                                            <th>License No</th>  
                                             <th>Action</th>
 
                                         </tr>
@@ -109,10 +109,10 @@
     getDrivers();
 
     function getDrivers() {
-        $('.loader').addClass('be-loading-active');
+    $('#loaderModal').modal('show');
 
         $.ajax({
-            url: "<?php echo e(url('vehicles/getall')); ?>",
+            url: "<?php echo e(url('drivers/getall')); ?>",
             type: "GET",
             dataType: 'json',
             success: function (data) {
@@ -132,13 +132,13 @@
                         var j = -1;
                         var r = new Array();
                         // represent columns as array
-                        r[++j] = '<td class="subject"> ' + value.chasisNo + '</td>';
-                        r[++j] = '<td class="subject">' + value.make + '</td>';
-                        r[++j] = '<td class="subject">' + value.model + '</td>';
-                        r[++j] = '<td class="subject">' + value.colour + '</td>';
+                        r[++j] = '<td class="subject"> ' + value.othernames +' '+ value.surname+ '</td>';
+                        r[++j] = '<td class="subject">' + value.email + '</td>';
+                        r[++j] = '<td class="subject">' + value.Country + '</td>';
+                        r[++j] = '<td class="subject">' + value.licenceNo + '</td>';
 
                         r[++j] = '<td class="actions">' +
-                                '<a  href="information/' + value.vehicleNo + '"   type="button" class=" btn btn-labeled btn-primary btn-sm  col-sm-6" ><i class="glyphicon glyphicon-eye-open"></i> </a> ' +
+                                '<a  href="information/' + value.driverRegNo + '"   type="button" class=" btn btn-labeled btn-primary btn-sm  col-sm-6" ><i class="glyphicon glyphicon-eye-open"></i> </a> ' +
                                 '<a  href="#"   type="button" class=" btn btn-labeled btn-danger btn-sm  col-sm-6" ><i class="glyphicon glyphicon-trash"></i></a> ' +
                                 '</td>';
                         rowNode = datatable.row.add(r);
@@ -146,7 +146,7 @@
                     rowNode.draw().node();
                 }
 
-                $('.loader').removeClass('be-loading-active');
+    $('#loaderModal').modal('hide');
             }
 
         });

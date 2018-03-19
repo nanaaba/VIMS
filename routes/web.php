@@ -56,14 +56,22 @@ Route::get('/agentcases', function () {
 
 Route::get('drivers/new', 'DriverController@showdrivers');
 Route::get('drivers/all', 'DriverController@showalldrivers');
+Route::get('drivers/assign', 'DriverController@showassignvehicles');
 
 Route::get('vehicles/new', 'VehicleController@showvehicle');
 Route::get('vehicles/all', 'VehicleController@showallvehicles');
 
 //agentcases
-//
+//vehicle/new  
 //apis
+Route::get('settings/all', 'ConfigurationController@getSettings');
+Route::get('drivers/getall', 'DriverController@getDrivers');
+Route::get('drivers/information/{driverid}', 'DriverController@getDriverInformation');
+Route::post('driver/new', 'DriverController@saveDriver');
+Route::get('drivers/vehicles', 'DriverController@getDriversVehicles');
+Route::post('driver/assign', 'DriverController@assignVehicles');
 
+Route::post('vehicle/new', 'VehicleController@saveVehicle');
 Route::get('vehicles/getall', 'VehicleController@getVehicles');
 Route::get('vehicles/information/{vehicleid}', 'VehicleController@getVehicleInformation');
 Route::post('authenticateuser', 'LoginController@authenticateuser');

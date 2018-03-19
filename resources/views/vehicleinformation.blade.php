@@ -164,29 +164,6 @@
                     </div>
                     <div id="tabs-b" class="panel-body">
 
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class=" control-label">Registered By</label>
-
-                                <input type="text" name="registeredBy" value="{{$details['registeredBy']['Surname']}}" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class=" control-label">Name</label>
-
-                                <input type="text" name="otherNames" value="{{$details['registeredBy']['Othernames']}}" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class=" control-label">Address</label>
-                                <textarea name="registeredByAddress" class="form-control">
-                                                    {{$details['registeredBy']['Address']}}
-                                </textarea>
-
-                            </div>
-                        </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class=" control-label">Issue Date</label>

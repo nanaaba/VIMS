@@ -4,11 +4,11 @@
     <!-- User info -->
     <div class="login-info">
         <span> <!-- User image size is adjusted inside CSS, it should stay as it --> 
-<!--            <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">-->
+            <!--            <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">-->
 
             <a href="#">
                 <span>
-                   Welcome, john.doe 
+                    Welcome, john.doe 
                 </span>
             </a> 
 
@@ -46,7 +46,10 @@
                         <a href="<?php echo e(url('drivers/all')); ?>"  class="menu-item">
                             All Drivers</a>
                     </li>
-
+                    <li class="<?php echo e(Request::is('drivers/assign') ? 'active' : ''); ?>">
+                        <a href="<?php echo e(url('drivers/assign')); ?>"  class="menu-item">
+                            Assign Vehicles</a>
+                    </li>
 
                 </ul>
             </li>
@@ -83,15 +86,15 @@
 
             <li class="<?php echo e(Request::is('users*') ? 'active' : ''); ?>">
                 <a href="<?php echo e(url('users')); ?>">
-                   
-                <i class="fa fa-lg fa-fw fa-inbox"></i>
+
+                    <i class="fa fa-lg fa-fw fa-inbox"></i>
                     <span class="menu-item-parent">User Management</span> 
 
                 </a>
             </li>
             <li class="<?php echo e(Request::is('reports*') ? 'active' : ''); ?>">
                 <a href="<?php echo e(url('reports')); ?>">
-                <i class="fa fa-lg fa-fw fa-inbox"></i>
+                    <i class="fa fa-lg fa-fw fa-inbox"></i>
                     <span class="menu-item-parent"> Report</span> 
                 </a>
             </li>

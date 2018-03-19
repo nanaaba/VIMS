@@ -93,5 +93,48 @@ class VehicleController extends Controller {
             return 'Internal Server Error:' . $e->getMessage();
         }
     }
+    
+    public function saveVehicle(Request $request) {
+        
+        $data = $request->all();
+        
+        
+        
+         $url = config('constants.TEST_URL');
+
+        $baseurl = $url . 'vehicles';
+
+
+
+        $client = new Client([
+            'headers' => [
+                'Accept' => 'application/json',
+                'token' => session('token')
+            ],
+            'http_errors' => false
+        ]);
+
+
+        try {
+
+            $response = $client->request('POST', $baseurl, ['json' => $data, 'verify' => false]);
+
+            $body = $response->getBody();
+            // $bodyObj = json_decode($body);
+
+
+            if ($response->getStatusCode() == 200) {
+
+                return $body;
+            }
+            return $response->getStatusCode();
+        } catch (RequestException $e) {
+            return 'Http Exception : ' . $e->getMessage();
+        } catch (Exception $e) {
+            return 'Internal Server Error:' . $e->getMessage();
+        }
+    }
+    
+   
 
 }

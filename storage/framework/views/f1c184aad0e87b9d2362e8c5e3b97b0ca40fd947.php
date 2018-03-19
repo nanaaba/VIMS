@@ -109,7 +109,7 @@
     getVehicles();
 
     function getVehicles() {
-        $('.loader').addClass('be-loading-active');
+        $('#loaderModal').modal('show');
 
         $.ajax({
             url: "<?php echo e(url('vehicles/getall')); ?>",
@@ -146,7 +146,7 @@
                     rowNode.draw().node();
                 }
 
-                $('.loader').removeClass('be-loading-active');
+                $('#loaderModal').modal('hide');
             }
 
         });

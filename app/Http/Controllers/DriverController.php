@@ -21,9 +21,209 @@ class DriverController extends Controller {
         return view('newdriver');
     }
 
+    public function showassignvehicles() {
+        return view('assignvehicles');
+    }
+
     public function showalldrivers() {
 
         return view('alldrivers');
+    }
+
+    public function getDrivers() {
+        $url = config('constants.TEST_URL');
+
+        $baseurl = $url . 'drivers';
+
+        $client = new Client([
+            'headers' => [
+                'Accept' => 'application/json'
+            ],
+            'http_errors' => false
+        ]);
+        try {
+
+            $response = $client->request('GET', $baseurl);
+
+            $body = $response->getBody();
+            //$bodyObj = json_decode($body);
+
+            if ($response->getStatusCode() == 200) {
+
+                return $body;
+            }
+            return $response->getStatusCode();
+        } catch (RequestException $e) {
+            return 'Http Exception : ' . $e->getMessage();
+        } catch (Exception $e) {
+            return 'Internal Server Error:' . $e->getMessage();
+        }
+    }
+
+    public function getDriverInformation($driverid) {
+
+        $information = $this->getDriverDetail($driverid);
+
+        return view('driverinformation')->with('information', $information);
+    }
+
+    public function getDriverDetail($driverid) {
+
+        $url = config('constants.TEST_URL');
+
+        $baseurl = $url . 'drivers/' . $driverid;
+
+        $client = new Client([
+            'headers' => [
+                'Accept' => 'application/json'
+            ],
+            'http_errors' => false
+        ]);
+        try {
+
+            $response = $client->request('GET', $baseurl);
+
+            $body = $response->getBody();
+            //$bodyObj = json_decode($body);
+
+            if ($response->getStatusCode() == 200) {
+
+                return $body;
+            }
+            return $response->getStatusCode();
+        } catch (RequestException $e) {
+            return 'Http Exception : ' . $e->getMessage();
+        } catch (Exception $e) {
+            return 'Internal Server Error:' . $e->getMessage();
+        }
+    }
+
+    public function saveDriver(Request $request) {
+
+        $data = $request->all();
+
+
+
+
+        $url = config('constants.TEST_URL');
+
+        $baseurl = $url . 'drivers';
+
+
+
+        $client = new Client([
+            'headers' => [
+                'Accept' => 'application/json',
+                'token' => session('token')
+            ],
+            'http_errors' => false
+        ]);
+
+
+
+
+        try {
+
+            $response = $client->request('POST', $baseurl, ['json' => $data, 'verify' => false]);
+
+            $body = $response->getBody();
+            // $bodyObj = json_decode($body);
+
+
+            if ($response->getStatusCode() == 200) {
+
+                return $body;
+            }
+            return $response->getStatusCode();
+        } catch (RequestException $e) {
+            return 'Http Exception : ' . $e->getMessage();
+        } catch (Exception $e) {
+            return 'Internal Server Error:' . $e->getMessage();
+        }
+    }
+
+    public function getDriversVehicles() {
+        $url = config('constants.TEST_URL');
+
+        $baseurl = $url . 'drivers/assignments';
+
+        $client = new Client([
+            'headers' => [
+                'Accept' => 'application/json'
+            ],
+            'http_errors' => false
+        ]);
+        try {
+
+            $response = $client->request('GET', $baseurl);
+
+            $body = $response->getBody();
+            //$bodyObj = json_decode($body);
+
+            if ($response->getStatusCode() == 200) {
+
+                return $body;
+            }
+            return $response->getStatusCode();
+        } catch (RequestException $e) {
+            return 'Http Exception : ' . $e->getMessage();
+        } catch (Exception $e) {
+            return 'Internal Server Error:' . $e->getMessage();
+        }
+    }
+
+    public function assignVehicles(Request $request) {
+
+        $data = $request->all();
+
+        $driver = $data['driver'];
+        $vehicles = $data['vehicles'];
+        $dataarray = array();
+        $response = array();
+        foreach ($vehicles as $value) {
+
+            $dataarray['driverRegNo'] = $driver;
+            $dataarray['vehicleRegNo'] = $value;
+            $dataarray['remarks'] = "test remarks";
+
+
+            array_push($response, $dataarray);
+        }
+
+
+        $dataArray = array(
+            'assignments' => $response
+        );
+
+
+        $url = config('constants.TEST_URL');
+
+        $baseurl = $url . 'drivers/assignments';
+
+
+
+        $client = new Client([
+            'headers' => [
+                'Accept' => 'application/json'
+            ],
+            'http_errors' => false
+        ]);
+
+
+
+
+        try {
+
+            $response = $client->request('POST', $baseurl, ['json' => $dataArray, 'verify' => false]);
+
+            $body = $response->getBody();
+
+            return $body;
+        } catch (RequestException $e) {
+            return 'Http Exception : ' . $e->getMessage();
+        } catch (Exception $e) {
+            return 'Internal Server Error:' . $e->getMessage();
+        }
     }
 
 }
