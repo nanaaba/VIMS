@@ -81,7 +81,7 @@ $details = $informaion['data'];
 
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class=" control-label">DOB</label>
+                                    <label class=" control-label">Date Of Birth</label>
 
                                     <input type="text" name="dob" value="{{$details['dob']}}"  class="form-control datepicker" data-dateformat="yy-mm-dd">
                                 </div>
@@ -101,16 +101,6 @@ $details = $informaion['data'];
                                     <input type="text" name="localPhone" value="{{$details['localPhone']}}"  class="form-control">
                                 </div>
                             </div>
-
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class=" control-label">Local address</label>
-                                    <textarea name="localAddress" class="form-control">
-                                        {{$details['localAddress']}}
-                                    </textarea>
-
-                                </div>
-                            </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label class=" control-label">Overseas Phone No</label>
@@ -118,15 +108,7 @@ $details = $informaion['data'];
                                     <input type="text" name="foreignPhone"  value="{{$details['foreignPhone']}}" class="form-control">
                                 </div>
                             </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class=" control-label">Overseas address</label>
-                                    <textarea name="foreignAddress" class="form-control">
-                                         {{$details['foreignAddress']}}
-                                    </textarea>
 
-                                </div>
-                            </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label class=" control-label">Resident Country</label>
@@ -149,6 +131,25 @@ $details = $informaion['data'];
                                         <option value="">Select ---</option>
 
                                     </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class=" control-label">Local Address</label>
+                                    <textarea name="localAddress" rows="10" class="form-control">
+                                        {{$details['localAddress']}}
+                                    </textarea>
+
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class=" control-label">Overseas Address</label>
+                                    <textarea name="foreignAddress" rows="10" class="form-control">
+                                         {{$details['foreignAddress']}}
+                                    </textarea>
+
                                 </div>
                             </div>
 
@@ -182,6 +183,7 @@ $details = $informaion['data'];
                                     <input type="text" name="expiryDate" value="{{$details['expiryDate']}}" class="form-control datepicker" data-dateformat="yy-mm-dd">
                                 </div>
                             </div>
+
                         </div>
 
                     </div>
@@ -221,31 +223,32 @@ $details = $informaion['data'];
                         <!-- widget content -->
                         <div class="widget-body">
 
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class=" control-label">Reg. Issue Date</label>
 
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label class=" control-label">Reg. Issue Date</label>
+                                        <input type="text" data-dateformat="yy-mm-dd" value="{{$details['regIssueDate']}}" name="regIssueDate" class="form-control datepicker">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class=" control-label">Reg. Expiry Date</label>
 
-                                    <input type="text" data-dateformat="yy-mm-dd" value="{{$details['regIssueDate']}}" name="regIssueDate" class="form-control datepicker">
+                                        <input type="text" data-dateformat="yy-mm-dd" value="{{$details['regExpiryDate']}}" name="regExpiryDate" class="form-control datepicker">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label class=" control-label">Reg. Expiry Date</label>
-
-                                    <input type="text" data-dateformat="yy-mm-dd" value="{{$details['regExpiryDate']}}" name="regExpiryDate" class="form-control datepicker">
-                                </div>
-                            </div>
-
-
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class=" control-label">Remarks</label>
-                                    <textarea name="remarks" class="form-control">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class=" control-label">Remarks</label>
+                                        <textarea name="remarks" rows="10" class="form-control">
                                       {{$details['remarks']}}
 
-                                    </textarea>
+                                        </textarea>
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -272,14 +275,13 @@ $details = $informaion['data'];
                                 foreach ($details['vehicles'] as $value) {
                                     echo '<tr>'
                                     . '<td>'
-                                            .$value['vehicleRegNo']
+                                    . $value['vehicleRegNo']
                                     . '</td>'
                                     . '<td>'
-                                            .$value['residentCountry']
+                                    . $value['residentCountry']
                                     . '</td>'
-                                    . '<td><a  href="../../vehicles/information/'. $value['vehicleRegNo'] .'"   type="button" class=" btn btn-labeled btn-primary btn-sm  col-sm-6" ><i class="glyphicon glyphicon-eye-open"></i> </a> '.
-                                      '<a  href="#"   type="button" class=" btn btn-labeled btn-danger btn-sm  col-sm-6" ><i class="glyphicon glyphicon-trash"></i></a> ' 
-                                
+                                    . '<td><a  href="../../vehicles/information/' . $value['vehicleRegNo'] . '"   type="button" class=" btn btn-labeled btn-primary btn-sm  col-sm-6" ><i class="glyphicon glyphicon-eye-open"></i> </a> ' .
+                                    '<a  href="#"   type="button" class=" btn btn-labeled btn-danger btn-sm  col-sm-6" ><i class="glyphicon glyphicon-trash"></i></a> '
                                     . '</td>'
                                     . '</tr>';
                                 }

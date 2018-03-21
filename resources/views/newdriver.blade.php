@@ -50,7 +50,6 @@
 
                             <header role="heading" class="ui-sortable-handle">
                                 <div class="jarviswidget-ctrls" role="menu">   
-                                    <a href="javascript:void(0);" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Collapse"><i class="fa fa-minus "></i></a>
                                     <a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Fullscreen">
                                         <i class="fa fa-expand "></i></a>
                                 </div>
@@ -105,7 +104,7 @@
 
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label class=" control-label">DOB</label>
+                                            <label class=" control-label">Date Of Birth</label>
 
                                             <input type="text" name="dob" class="form-control datepicker" data-dateformat="yy-mm-dd">
                                         </div>
@@ -125,14 +124,6 @@
                                             <input type="text" name="localPhone" class="form-control">
                                         </div>
                                     </div>
-
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label class=" control-label">Local address</label>
-                                            <textarea name="localAddress" class="form-control"></textarea>
-
-                                        </div>
-                                    </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label class=" control-label">Overseas Phone No</label>
@@ -140,13 +131,7 @@
                                             <input type="text" name="foreignPhone" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label class=" control-label">Overseas address</label>
-                                            <textarea name="foreignAddress" class="form-control"></textarea>
 
-                                        </div>
-                                    </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label class=" control-label">Resident Country</label>
@@ -171,7 +156,21 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class=" control-label">Local Address</label>
+                                            <textarea name="localAddress" rows="10" class="form-control"></textarea>
 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class=" control-label">Overseas Address</label>
+                                            <textarea name="foreignAddress"  rows="10" class="form-control"></textarea>
+
+                                        </div>
+                                    </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label class=" control-label">Nationality ID No</label>
@@ -226,7 +225,6 @@
 
                             <header role="heading" class="ui-sortable-handle">
                                 <div class="jarviswidget-ctrls" role="menu">   
-                                    <a href="javascript:void(0);" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Collapse"><i class="fa fa-minus "></i></a>
                                     <a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Fullscreen">
                                         <i class="fa fa-expand "></i></a>
                                 </div>
@@ -298,7 +296,6 @@
 
                             <header role="heading" class="ui-sortable-handle">
                                 <div class="jarviswidget-ctrls" role="menu">   
-                                    <a href="javascript:void(0);" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Collapse"><i class="fa fa-minus "></i></a>
                                     <a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Fullscreen">
                                         <i class="fa fa-expand "></i></a>
                                 </div>
@@ -322,28 +319,30 @@
                                 <!-- widget content -->
                                 <div class="widget-body">
 
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class=" control-label">Reg. Issue Date</label>
 
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label class=" control-label">Reg. Issue Date</label>
+                                                <input type="text" data-dateformat="yy-mm-dd" name="regIssueDate" class="form-control datepicker">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class=" control-label">Reg. Expiry Date</label>
 
-                                            <input type="text" data-dateformat="yy-mm-dd" name="regIssueDate" class="form-control datepicker">
+                                                <input type="text" data-dateformat="yy-mm-dd" name="regExpiryDate" class="form-control datepicker">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label class=" control-label">Reg. Expiry Date</label>
 
-                                            <input type="text" data-dateformat="yy-mm-dd" name="regExpiryDate" class="form-control datepicker">
-                                        </div>
-                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class=" control-label">Remarks</label>
+                                                <textarea name="remarks" rows="10" class="form-control"></textarea>
 
-
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class=" control-label">Remarks</label>
-                                            <textarea name="remarks" class="form-control"></textarea>
-
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
