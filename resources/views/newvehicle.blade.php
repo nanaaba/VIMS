@@ -143,9 +143,9 @@
                                             <div class="form-group">
                                                 <label class=" control-label">Model</label>
 
-                                                <select class="select2 select2-hidden-accessible models" name="modelId"  tabindex="-1" aria-hidden="true" required>
+                                                <select class="select2 select2-hidden-accessible models" name="model"  tabindex="-1" aria-hidden="true" required>
 
-                                                    <option value="">Select ---</option>
+                                                    <option value="">Select---</option>
 
                                                 </select>
 
@@ -155,11 +155,10 @@
                                             <div class="form-group">
                                                 <label class=" control-label">Color</label>
 
-                                                <select class="select2 select2-hidden-accessible" name="colour"  tabindex="-1" aria-hidden="true" required>
+                                                <select class="select2 select2-hidden-accessible" name="color"  tabindex="-1" aria-hidden="true" required>
 
-                                                    <option value="">Select ---</option>
+                                                    <option value="">Select---</option>
 
-                                                    <option value="White">White</option>
                                                 </select>
 
                                             </div>
@@ -418,19 +417,19 @@ $('#vehicleForm').on('submit', function (e) {
     e.preventDefault();
     var formData = $(this).serialize();
     console.log('server data: ' + formData);
-$('#loaderModal').modal('show');
+    $('#loaderModal').modal('show');
 
     $.ajax({
         url: "{{url('vehicle/new')}}",
         type: "POST",
         data: formData,
-        dataType:"json",
+        dataType: "json",
         success: function (data) {
             $('#loaderModal').modal('hide');
 
             console.log(data);
             var status = data.status;
-            console.log('status is :'+status);
+            console.log('status is :' + status);
 
             if (status == 0) {
                 $('#successmsg').html(data.message);
@@ -439,6 +438,7 @@ $('#loaderModal').modal('show');
                 $('#errormsg').html(data.message);
                 $('#errordiv').show();
             }
+            $(window).scrollTop(0);
 
         },
         error: function (jXHR, textStatus, errorThrown) {

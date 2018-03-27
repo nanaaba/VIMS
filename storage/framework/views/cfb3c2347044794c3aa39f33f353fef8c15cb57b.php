@@ -113,12 +113,12 @@
 
             <!-- START ROW -->
 
-            <div class="row">
+<!--            <div class="row">
 
-                <!-- NEW COL START -->
+                 NEW COL START 
                 <article class="col-sm-12 col-md-12 col-lg-12 ">
 
-                    <!-- Widget ID (each widget will need unique ID)-->
+                     Widget ID (each widget will need unique ID)
                     <div class="jarviswidget jarviswidget-sortable" id="wid-id-1" data-widget-editbutton="false" data-widget-custombutton="false" role="widget">
 
                         <header role="heading" class="ui-sortable-handle">
@@ -134,17 +134,17 @@
 
                             <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span></header>
 
-                        <!-- widget div-->
+                         widget div
                         <div role="content">
 
-                            <!-- widget edit box -->
+                             widget edit box 
                             <div class="jarviswidget-editbox">
-                                <!-- This area used as dropdown edit box -->
+                                 This area used as dropdown edit box 
 
                             </div>
-                            <!-- end widget edit box -->
+                             end widget edit box 
 
-                            <!-- widget content -->
+                             widget content 
                             <div class="widget-body">
 
                                 <table id="vehicleTbl" class="table table-condensed table-hover table-bordered table-striped">
@@ -164,10 +164,10 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <!-- end widget content -->
+                             end widget content 
 
                         </div>
-                        <!-- end widget div -->
+                         end widget div 
 
                     </div>
 
@@ -175,7 +175,7 @@
 
 
 
-            </div>
+            </div>-->
 
 
             <!-- END ROW -->

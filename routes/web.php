@@ -70,10 +70,21 @@ Route::get('drivers/information/{driverid}', 'DriverController@getDriverInformat
 Route::post('driver/new', 'DriverController@saveDriver');
 Route::get('drivers/vehicles', 'DriverController@getDriversVehicles');
 Route::post('driver/assign', 'DriverController@assignVehicles');
+Route::put('driver/update', 'DriverController@updateDriver');
+Route::delete('drivers/{driverno}', 'DriverController@deleteDriver');
+
+
+
+
 
 Route::post('vehicle/new', 'VehicleController@saveVehicle');
 Route::get('vehicles/getall', 'VehicleController@getVehicles');
 Route::get('vehicles/information/{vehicleid}', 'VehicleController@getVehicleInformation');
+Route::delete('vehicles/{vehicleno}', 'VehicleController@deleteVehicle');
+Route::put('vehicle/update', 'VehicleController@updateVehicle');
+
+
+
 Route::post('authenticateuser', 'LoginController@authenticateuser');
 Route::post('users/save', 'UserController@saveUser');
 Route::get('users/all', 'UserController@getUsers');

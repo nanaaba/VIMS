@@ -59,7 +59,7 @@ class VehicleController extends Controller {
     public function getVehicleInformation($vehicleid) {
 
         $information = $this->getVehicleDetail($vehicleid);
-        
+
         return view('vehicleinformation')->with('information', $information);
     }
 
@@ -93,14 +93,14 @@ class VehicleController extends Controller {
             return 'Internal Server Error:' . $e->getMessage();
         }
     }
-    
+
     public function saveVehicle(Request $request) {
-        
+
         $data = $request->all();
-        
-        
-        
-         $url = config('constants.TEST_URL');
+
+
+
+        $url = config('constants.TEST_URL');
 
         $baseurl = $url . 'vehicles';
 
@@ -120,14 +120,38 @@ class VehicleController extends Controller {
             $response = $client->request('POST', $baseurl, ['json' => $data, 'verify' => false]);
 
             $body = $response->getBody();
-            // $bodyObj = json_decode($body);
+            return $body;
+        } catch (RequestException $e) {
+            return 'Http Exception : ' . $e->getMessage();
+        } catch (Exception $e) {
+            return 'Internal Server Error:' . $e->getMessage();
+        }
+    }
+
+    public function deleteVehicle($vehicleno) {
+        
+        $url = config('constants.TEST_URL');
+
+        $baseurl = $url . 'vehicles/' . $vehicleno;
 
 
-            if ($response->getStatusCode() == 200) {
 
-                return $body;
-            }
-            return $response->getStatusCode();
+        $client = new Client([
+            'headers' => [
+                'Accept' => 'application/json',
+            ],
+            'http_errors' => false
+        ]);
+
+
+
+
+        try {
+
+            $response = $client->request('DELETE', $baseurl);
+
+            $body = $response->getBody();
+            return $body;
         } catch (RequestException $e) {
             return 'Http Exception : ' . $e->getMessage();
         } catch (Exception $e) {
@@ -135,6 +159,39 @@ class VehicleController extends Controller {
         }
     }
     
-   
+    public function updateVehicle(Request $request) {
+        
+           $data = $request->all();
+        $vehicle_no = $data['vehicleno'];
+
+return \GuzzleHttp\json_encode($data);
+
+        $url = config('constants.TEST_URL');
+
+        $baseurl = $url . 'vehicles/'.$vehicle_no;
+
+
+
+        $client = new Client([
+            'headers' => [
+                'Accept' => 'application/json',
+                'token' => session('token')
+            ],
+            'http_errors' => false
+        ]);
+
+
+        try {
+
+            $response = $client->request('PUT', $baseurl, ['json' => $data, 'verify' => false]);
+
+            $body = $response->getBody();
+            return $body;
+        } catch (RequestException $e) {
+            return 'Http Exception : ' . $e->getMessage();
+        } catch (Exception $e) {
+            return 'Internal Server Error:' . $e->getMessage();
+        }
+    }
 
 }

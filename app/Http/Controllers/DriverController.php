@@ -226,4 +226,75 @@ class DriverController extends Controller {
         }
     }
 
+    public function updateDriver(Request $request) {
+
+        $data = $request->all();
+
+        $driver_no = $data['driverno'];
+
+
+        $url = config('constants.TEST_URL');
+
+        $baseurl = $url . 'drivers/' . $driver_no;
+
+
+
+        $client = new Client([
+            'headers' => [
+                'Accept' => 'application/json',
+                'token' => session('token')
+            ],
+            'http_errors' => false
+        ]);
+
+
+
+
+        try {
+
+            $response = $client->request('PUT', $baseurl, ['json' => $data, 'verify' => false]);
+
+            $body = $response->getBody();
+            return $body;
+        } catch (RequestException $e) {
+            return 'Http Exception : ' . $e->getMessage();
+        } catch (Exception $e) {
+            return 'Internal Server Error:' . $e->getMessage();
+        }
+    }
+    
+    public function deleteDriver($driverno) {
+        
+        
+       
+
+        $url = config('constants.TEST_URL');
+
+        $baseurl = $url . 'drivers/' . $driverno;
+
+
+
+        $client = new Client([
+            'headers' => [
+                'Accept' => 'application/json',
+            ],
+            'http_errors' => false
+        ]);
+
+
+
+
+        try {
+
+            $response = $client->request('DELETE', $baseurl);
+
+            $body = $response->getBody();
+            return $body;
+        } catch (RequestException $e) {
+            return 'Http Exception : ' . $e->getMessage();
+        } catch (Exception $e) {
+            return 'Internal Server Error:' . $e->getMessage();
+        }
+    }
+
 }

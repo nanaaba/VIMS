@@ -15,7 +15,25 @@
     <div class="main-content container-fluid">
         <section id="widget-grid" class="">
 
+            <div id="sucessdiv" style="display: none">
 
+                <div class="alert alert-success fade in">
+                    <button class="close" data-dismiss="alert">
+                        ×
+                    </button>
+                    <i class="fa-fw fa fa-check"></i>
+                    <strong>Success</strong> <span id="successmsg"> </span>
+                </div>
+            </div>
+            <div id="errordiv" style="display: none">
+                <div class="alert alert-danger fade in">
+                    <button class="close" data-dismiss="alert">
+                        ×
+                    </button>
+                    <i class="fa-fw fa fa-times"></i>
+                    <strong>Error!</strong> <span id="errormsg"> </span>
+                </div>
+            </div>
             <!-- START ROW -->
 
             <div class="row">
@@ -141,7 +159,7 @@
 
                         r[++j] = '<td class="actions">' +
                                 '<a  href="information/' + value.vehicleNo + '"   type="button" class=" btn btn-labeled btn-primary btn-sm  col-sm-6" ><i class="glyphicon glyphicon-eye-open"></i> </a> ' +
-                                '<a  href="#"   type="button" class=" btn btn-labeled btn-danger btn-sm  col-sm-6" ><i class="glyphicon glyphicon-trash"></i></a> ' +
+                                '<a  href="#" onclick="deleteType(\'' + value.vehicleNo + '\',\'' + value.chasisNo + '\')"  type="button" class=" btn btn-labeled btn-danger btn-sm  col-sm-6" ><i class="glyphicon glyphicon-trash"></i></a> ' +
                                 '</td>';
                         rowNode = datatable.row.add(r);
                     });
@@ -154,44 +172,58 @@
         });
     }
 
-    function editUser(id) {
+    function deleteType(code, title) {
+        console.log(code + title);
+        $('#code').val(code);
+        $('#holdername').html(title);
+        $('#confirmModal').modal('show');
+    }
+
+    $('#deleteForm').on('submit', function (e) {
+        e.preventDefault();
+        $('input:submit').attr("disabled", true);
+        var code = $('#code').val();
+        var token = $('#token').val();
+        $('#confirmModal').modal('hide');
+        $('#loaderModal').modal('show');
 
         $.ajax({
-            url: "users/" + id,
-            type: "GET",
-            dataType: 'json',
+            url: code,
+            type: "DELETE",
+            data: {_token: token},
+            dataType: "json",
             success: function (data) {
-                $('#editregiondiv').hide();
-                if (data == "401") {
-                    $('#sessionModal').modal({backdrop: 'static'}, 'show');
+                // $("#loader").hide();
+                $('input:submit').attr("disabled", false);
+
+                document.getElementById("deleteForm").reset();
+                console.log(data);
+                var status = data.status;
+                console.log('status is :' + status);
+                $('#loaderModal').modal('hide');
+
+                if (status == 0) {
+                    getDrivers();
+
+                    $('#successmsg').html(data.message);
+                    $('#sucessdiv').show();
+                } else {
+                    $('#errormsg').html(data.message);
+                    $('#errordiv').show();
                 }
+                $(window).scrollTop(0);
 
-                if (data == "500") {
-                    $('#errorModal').modal('show');
-                }
-                $('.loader').removeClass('be-loading-active');
-                console.log('server data :' + data);
-                var dataArray = data.data;
+            },
+            error: function (jXHR, textStatus, errorThrown) {
+                $('#loaderModal').modal('hide');
 
-                $('#username').val(dataArray[0].name);
-                $('#email').val(dataArray[0].email);
-                $('#contact').val(dataArray[0].contact);
-                $('#editrole').val(dataArray[0].role);
-                $('#userid').val(dataArray[0].id);
-
-                $('#editrole').change();
-
-                $('#edituser').modal('show');
+                alert(errorThrown);
             }
-
         });
-    }
+
+    });
 
 
-    function deleteUser(id) {
-        $('#itemid').val(id);
-        $('#deleteModal').modal('show');
-    }
 
 </script>
 @endsection
