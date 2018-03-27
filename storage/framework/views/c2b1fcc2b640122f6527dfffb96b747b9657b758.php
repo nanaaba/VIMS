@@ -40,203 +40,205 @@ $details = $informaion['data'];
                             <a href="#tabs-e">Trips</a>
                         </li>
                     </ul>
-                    <div id="tabs-a" class="panel-body">
+                    <form id="updateVehicleForm" novalidate>
 
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class=" control-label">Vehicle Type</label>
+                        <div id="tabs-a" class="panel-body">
 
-                                <select class="select2 select2-hidden-accessible" name="sex"  tabindex="-1" aria-hidden="true" required>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class=" control-label">Vehicle Type</label>
 
-                                    <option value="">Select ---</option>
+                                    <select class="select2 select2-hidden-accessible" name="sex"  tabindex="-1" aria-hidden="true" required>
 
-                                </select>
+                                        <option value="">Select ---</option>
 
+                                    </select>
+
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class=" control-label">Hs Code</label>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class=" control-label">Hs Code</label>
 
-                                <input type="text" name="hscode" value="<?php echo e($details['hsCode']); ?>" class="form-control">
+                                    <input type="text" name="hscode" value="<?php echo e($details['hsCode']); ?>" class="form-control">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class=" control-label">Status Code</label>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class=" control-label">Status Code</label>
 
-                                <input type="text" name="statusCode" value="<?php echo e($details['statusCode']); ?>" class="form-control datepicker">
+                                    <input type="text" name="statusCode" value="<?php echo e($details['statusCode']); ?>" class="form-control datepicker">
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class=" control-label">CPC Code</label>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class=" control-label">CPC Code</label>
 
-                                <input type="text" name="cpcCode" value="<?php echo e($details['cpcCode']); ?>" class="form-control">
+                                    <input type="text" name="cpcCode" value="<?php echo e($details['cpcCode']); ?>" class="form-control">
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class=" control-label">Country</label>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class=" control-label">Country</label>
 
-                                <input type="text" name="country" value="<?php echo e($details['country']); ?>" class="form-control">
+                                    <input type="text" name="country" value="<?php echo e($details['country']); ?>" class="form-control">
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class=" control-label">Origin Make</label>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class=" control-label">Origin Make</label>
 
-                                <input type="text" name="make" value="<?php echo e($details['make']); ?>" class="form-control">
+                                    <input type="text" name="make" value="<?php echo e($details['make']); ?>" class="form-control">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class=" control-label">Model</label>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class=" control-label">Model</label>
 
-                                <select class="select2 select2-hidden-accessible" name="model"  tabindex="-1" aria-hidden="true" required>
+                                    <select class="select2 select2-hidden-accessible" name="model"  tabindex="-1" aria-hidden="true" required>
 
-                                    <option value="<?php echo e($details['model']); ?>"><?php echo e($details['model']); ?></option>
+                                        <option value="<?php echo e($details['model']); ?>"><?php echo e($details['model']); ?></option>
 
-                                </select>
+                                    </select>
 
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class=" control-label">Color</label>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class=" control-label">Color</label>
 
-                                <select class="select2 select2-hidden-accessible" name="color"  tabindex="-1" aria-hidden="true" required>
+                                    <select class="select2 select2-hidden-accessible" name="color"  tabindex="-1" aria-hidden="true" required>
 
-                                    <option value="<?php echo e($details['colour']); ?>"><?php echo e($details['colour']); ?></option>
+                                        <option value="<?php echo e($details['colour']); ?>"><?php echo e($details['colour']); ?></option>
 
-                                </select>
+                                    </select>
 
+                                </div>
                             </div>
-                        </div>
 
 
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class=" control-label">Chassis Number</label>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class=" control-label">Chassis Number</label>
 
-                                <input type="text" name="chassisno" value="<?php echo e($details['chasisNo']); ?>" class="form-control">
+                                    <input type="text" name="chassisno" value="<?php echo e($details['chasisNo']); ?>" class="form-control">
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class=" control-label">Engine Number</label>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class=" control-label">Engine Number</label>
 
-                                <input type="text" name="engineNo" value="<?php echo e($details['engineNo']); ?>" class="form-control">
+                                    <input type="text" name="engineNo" value="<?php echo e($details['engineNo']); ?>" class="form-control">
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class=" control-label">Front Plate Number</label>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class=" control-label">Front Plate Number</label>
 
-                                <input type="text" name="plateno" value="<?php echo e($details['frontPlateNo']); ?>" class="form-control">
+                                    <input type="text" name="plateno" value="<?php echo e($details['frontPlateNo']); ?>" class="form-control">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class=" control-label">Back Plate Number</label>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class=" control-label">Back Plate Number</label>
 
-                                <input type="text" name="plateno" value="<?php echo e($details['backPlateNo']); ?>" class="form-control">
+                                    <input type="text" name="plateno" value="<?php echo e($details['backPlateNo']); ?>" class="form-control">
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class=" control-label">Description</label>
-                                <textarea name="description" rows="8" class="form-control">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class=" control-label">Description</label>
+                                    <textarea name="description" rows="8" class="form-control">
                                                     <?php echo e(trim($details['description'])); ?>
 
-                                </textarea>
+                                    </textarea>
 
+                                </div>
+                            </div>
+
+                        </div>
+                        <div id="tabs-b" class="panel-body">
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class=" control-label">Issue Date</label>
+
+                                    <input type="text" name="regIssueDate"  value="<?php echo e($details['regIssueDate']); ?>" class="form-control datepicker">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class=" control-label">Expiry Date</label>
+                                    <input type="text" name="email" value="<?php echo e($details['regExpiryDate']); ?>" class="form-control datepicker">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tabs-c" class="panel-body">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class=" control-label">Permit No </label>
+
+                                    <input type="text" name="permitNo" value="<?php echo e($details['permitNo']); ?>" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class=" control-label">Issue Date</label>
+
+                                    <input type="text" name="permitIssueDate" value="<?php echo e($details['permitIssueDate']); ?>" class="form-control datepicker">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class=" control-label">Expiry Date</label>
+                                    <input type="text" name="permitExpiryDate" value="<?php echo e($details['permitExpiryDate']); ?>" class="form-control datepicker">
+
+                                </div>
                             </div>
                         </div>
 
-                    </div>
-                    <div id="tabs-b" class="panel-body">
+                        <div id="tabs-d" class="panel-body">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class=" control-label">Ecowas No </label>
 
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class=" control-label">Issue Date</label>
-
-                                <input type="text" name="regIssueDate"  value="<?php echo e($details['regIssueDate']); ?>" class="form-control datepicker">
+                                    <input type="text" name="ecowasn" value="<?php echo e($details['ecowasNo']); ?>" class="form-control">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class=" control-label">Expiry Date</label>
-                                <input type="text" name="email" value="<?php echo e($details['regExpiryDate']); ?>" class="form-control datepicker">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class=" control-label">Issue Date</label>
 
+                                    <input type="text" name="ecowasIssueDate" value="<?php echo e($details['ecowasIssueDate']); ?>" class="form-control datepicker">
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div id="tabs-c" class="panel-body">
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class=" control-label">Permit No </label>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class=" control-label">Expiry Date</label>
+                                    <input type="text" name="ecowasExpiryDate" value="<?php echo e($details['ecowasExpiryDate']); ?>" class="form-control datepicker">
 
-                                <input type="text" name="permitNo" value="<?php echo e($details['permitNo']); ?>" class="form-control">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class=" control-label">Issue Date</label>
-
-                                <input type="text" name="permitIssueDate" value="<?php echo e($details['permitIssueDate']); ?>" class="form-control datepicker">
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class=" control-label">Expiry Date</label>
-                                <input type="text" name="permitExpiryDate" value="<?php echo e($details['permitExpiryDate']); ?>" class="form-control datepicker">
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="tabs-d" class="panel-body">
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class=" control-label">Ecowas No </label>
-
-                                <input type="text" name="ecowasn" value="<?php echo e($details['ecowasNo']); ?>" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class=" control-label">Issue Date</label>
-
-                                <input type="text" name="ecowasIssueDate" value="<?php echo e($details['ecowasIssueDate']); ?>" class="form-control datepicker">
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class=" control-label">Expiry Date</label>
-                                <input type="text" name="ecowasExpiryDate" value="<?php echo e($details['ecowasExpiryDate']); ?>" class="form-control datepicker">
-
-                            </div>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="form-group">
-                                <label class=" control-label">Remarks</label>
-                                <textarea name="remarks" rows="8" class="form-control">
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class=" control-label">Remarks</label>
+                                    <textarea name="remarks" rows="8" class="form-control">
                                                     <?php echo e($details['remarks']); ?>
 
 
-                                </textarea>
+                                    </textarea>
 
+                                </div>
                             </div>
-                        </div>
-                    </div>          
-
+                        </div>          
+                    </form>
 
                 </div>
 
@@ -246,7 +248,11 @@ $details = $informaion['data'];
 
         </div>
 
-
+        <footer class="pull-right">
+            <button type="submit" class="btn btn-primary btn-block">
+                Update
+            </button>
+        </footer>
     </div>
 
 </div>
@@ -255,8 +261,78 @@ $details = $informaion['data'];
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('customjs'); ?>
+
 <script type="text/javascript">
     $('#tabs').tabs();
+ getSettings();
+    function getSettings() {
+
+
+        $.ajax({
+            url: "<?php echo e(url('settings/all')); ?>",
+            type: "GET",
+            dataType: 'json',
+            success: function (response) {
+                var data = response.data;
+                var countries = data['countries'];
+                var genders = data['genders'];
+                var statusCodes = data['statusCodes'];
+                var vehicleMakes = data['vehicleMakes'];
+                var vehicleModels = data['vehicleModels'];
+                var vehicleTypes = data['vehicleTypes'];
+
+                console.log(data);
+                $.each(countries, function (i, item) {
+
+                    $('.countries').append($('<option>', {
+                        value: item.code,
+                        text: item.name
+                    }));
+                });
+
+                //vehicleTypes
+                $.each(vehicleTypes, function (i, item) {
+
+                    $('.vehicletypes').append($('<option>', {
+                        value: item.typeId,
+                        text: item.name
+                    }));
+                });
+
+                $.each(vehicleModels, function (i, item) {
+
+                    $('.models').append($('<option>', {
+                        value: item.modelId,
+                        text: item.name
+                    }));
+                });
+                $.each(vehicleMakes, function (i, item) {
+
+                    $('.vehiclemakes').append($('<option>', {
+                        value: item.makeId,
+                        text: item.name
+                    }));
+                });
+
+                $.each(statusCodes, function (i, item) {
+
+                    $('.statuscodes').append($('<option>', {
+                        value: item.code,
+                        text: item.name
+                    }));
+                });
+
+                $.each(genders, function (i, item) {
+
+                    $('.gender').append($('<option>', {
+                        value: item.genderId,
+                        text: item.name
+                    }));
+                });
+            }
+
+        });
+    }
 </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
