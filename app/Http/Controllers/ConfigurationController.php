@@ -51,5 +51,35 @@ class ConfigurationController extends Controller {
     }
 
     
+    public function getTVISettings(){
+        $url = config('constants.TEST_URL');
+
+        $baseurl = $url . 'settings/tvi';
+
+        $client = new Client([
+            'headers' => [
+                'Accept' => 'application/json'
+            ],
+            'http_errors' => false
+        ]);
+        try {
+
+            $response = $client->request('GET', $baseurl);
+
+            $body = $response->getBody();
+            //$bodyObj = json_decode($body);
+
+            if ($response->getStatusCode() == 200) {
+
+                return $body;
+            }
+            return $response->getStatusCode();
+        } catch (RequestException $e) {
+            return 'Http Exception : ' . $e->getMessage();
+        } catch (Exception $e) {
+            return 'Internal Server Error:' . $e->getMessage();
+        }
+    }
+    
     
 }

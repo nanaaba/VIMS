@@ -2,6 +2,8 @@
 <?php
 $informaion = json_decode($information, true);
 $details = $informaion['data'];
+
+$trips = json_decode($trips, true);
 ?>
 <div id="content">
     <div class="page-head">
@@ -270,7 +272,64 @@ $details = $informaion['data'];
 
                                 </div>
                             </div>
-                        </div>          
+                        </div>    
+
+
+                        <div id="tabs-e" class="panel-body">
+                            <div class="row"  >
+                                <div class="col-lg-12">
+                                    <div class="pull-left">
+                                        <button data-toggle="modal" data-target="#newtrip" type="button" class="btn btn-space btn-primary">New Trip</button>
+                                        <!--                    <a  class="btn btn-primary" href="bulk-beneficiary-upload" >New Category</a>-->
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <br>
+                            <table id="tripsTbl" class="table table-condensed table-hover table-bordered table-striped">
+                                <thead>
+                                    <tr>
+
+                                        <th>Trip Type</th>  
+                                        <th>Final Country</th>  
+                                        <th>Vehicle(Front Plate)</th>  
+                                        <th>Driver</th> 
+                                        <th>Check In</th> 
+
+                                        <th>Action</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    foreach ($trips['data'] as $value) {
+                                        echo '<tr>'
+                                        . '<td>'
+                                        . $value['tripType']
+                                        . '</td>'
+                                        . '<td>'
+                                        . $value['finalCountry']
+                                        . '</td>'
+                                        . '<td>'
+                                        . $value['vehicle']['frontPlateNo']
+                                        . '</td>'
+                                        . '<td>'
+                                        . $value['driver']['othernames'] . ' ' . $value['driver']['surname']
+                                        . '</td>'
+                                        . '<td>'
+                                        . $value['checkInOn']
+                                        . '</td>'
+                                        . '<td><a   href="../../trip/' . $value['tripNo'] . '"    type="button" class=" btn btn-labeled btn-primary btn-sm  col-sm-6" ><i class="glyphicon glyphicon-eye-open"></i> </a></td> '
+                                        . '</tr>';
+                                    }
+                                    ?>
+
+
+                                </tbody>
+                            </table>
+                        </div>
 
                     </div>
 
@@ -290,12 +349,228 @@ $details = $informaion['data'];
 
 </div>
 
+<!--Form Modals-->
+<div id="newtrip" tabindex="-1" role="dialog" class="modal fade colored-header colored-header-primary">
+    <div class="modal-dialog custom-width">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-hidden="true" class="close md-close"><span class="mdi mdi-close"></span></button>
+                <h3 class="modal-title">New Trip</h3>
+            </div>
+            <form id="tripForm" novalidate>
+                <!-- START ROW -->
+
+                <?php echo e(csrf_field()); ?>
+
+                <div class="modal-body">
+
+                    <div class="row">
+
+
+                        <input type="hidden" name="vehicleRegNo" value="<?php echo e($details['vehicleNo']); ?>"/>
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Driver Involve </label>
+
+                                <select class="select2 select2-hidden-accessible drivers" name="driverRegNo"  tabindex="-1" aria-hidden="true" required>
+
+                                    <option value="">Select---</option>
+
+                                </select>                                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Trip Type </label>
+                                <select class="select2 select2-hidden-accessible tviTypes" name="tripTypeId"  tabindex="-1" aria-hidden="true" required>
+
+                                    <option value="">Select---</option>
+
+                                </select>    
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Regime</label>
+
+                                <select class="select2 select2-hidden-accessible regimes" name="regime"  tabindex="-1" aria-hidden="true" required>
+
+                                    <option value="">Select---</option>
+
+                                </select>  
+
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Customs Office</label>
+
+
+                                <select class="select2 select2-hidden-accessible offices" name="customsOfficeCode"  tabindex="-1" aria-hidden="true" required>
+
+                                    <option value="">Select---</option>
+
+                                </select>  
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Trade Ref No </label>
+
+                                <input type="text" name="tradeRefNo" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Country of Consignment </label>
+                                <select class="select2 select2-hidden-accessible country" name="consCountryCode"  tabindex="-1" aria-hidden="true" required>
+
+                                    <option value="">Select ---</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Last Country</label>
+                                <select class="select2 select2-hidden-accessible country" name="lastCountryCode"  tabindex="-1" aria-hidden="true" required>
+
+                                    <option value="">Select ---</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Next Country</label>
+                                <select class="select2 select2-hidden-accessible country" name="nextCountryCode"  tabindex="-1" aria-hidden="true" required>
+
+                                    <option value="">Select ---</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Final Country</label>
+                                <select class="select2 select2-hidden-accessible country" name="finalCountryCode"  tabindex="-1" aria-hidden="true" required>
+
+                                    <option value="">Select ---</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Entry Office</label>
+
+                                <input type="text" name="entryOfficeCode" class="form-control">
+                            </div>
+                        </div><div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Exit Office</label>
+
+                                <input type="text" name="exitOfficeCode" class="form-control">
+                            </div>
+                        </div><div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Car NetNo</label>
+
+                                <input type="text" name="carnetNo" class="form-control">
+                            </div>
+                        </div><div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Check In</label>
+
+                                <input type="text" name="checkInDate" data-dateformat="dd-mm-yy" class="form-control datepicker">
+                            </div>
+                        </div><div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Stay Duration</label>
+
+                                <input type="text" name="stayDuration" class="form-control">
+                            </div>
+                        </div><div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Import Duration</label>
+
+                                <input type="text" name="importDuration" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Permit Expiry Date</label>
+
+                                <input type="text" name="permExpiryDate" data-dateformat="dd-mm-yy" class="form-control datepicker">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Purpose</label>
+
+                                <input type="text" name="purpose" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">Remarks</label>
+
+                                <input type="text" name="remarks" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">CheckIn By</label>
+
+                                <input type="text" name="checkInBy" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class=" control-label">CheckIn On</label>
+
+                                <input type="text" name="checkInOn" data-dateformat="dd-mm-yy" class="form-control datepicker">
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default md-close">Cancel</button>
+                    <button type="submit" class="btn btn-info ">Proceed</button>
+                </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+
 
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('customjs'); ?>
+<script type="text/javascript" src="<?php echo e(asset('js/custom.js')); ?>"></script>
 
 <script type="text/javascript">
+    $('#tripsTbl').DataTable();
     $('#tabs').tabs();
     getSettings();
     function getSettings() {
@@ -367,6 +642,9 @@ $details = $informaion['data'];
         });
     }
 
+    function getTripInfo(tripid) {
+        alert(tripid);
+    }
 
     $('#updateVehicleForm').on('submit', function (e) {
         e.preventDefault();

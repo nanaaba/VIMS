@@ -410,6 +410,7 @@ $('#driverForm').on('submit', function (e) {
                 $('#errormsg').html(data.message);
                 $('#errordiv').show();
             }
+    $(window).scrollTop(0);
 
         },
         error: function (jXHR, textStatus, errorThrown) {

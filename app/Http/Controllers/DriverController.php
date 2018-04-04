@@ -13,6 +13,7 @@ use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Controllers\TripController;
 
 class DriverController extends Controller {
 
@@ -63,8 +64,10 @@ class DriverController extends Controller {
     public function getDriverInformation($driverid) {
 
         $information = $this->getDriverDetail($driverid);
+        $trips = new TripController();
+        $alltrips = $trips->getDriverTrips($driverid);
 
-        return view('driverinformation')->with('information', $information);
+        return view('driverinformation')->with('information', $information)->with('trips', $alltrips);
     }
 
     public function getDriverDetail($driverid) {
@@ -262,11 +265,11 @@ class DriverController extends Controller {
             return 'Internal Server Error:' . $e->getMessage();
         }
     }
-    
+
     public function deleteDriver($driverno) {
-        
-        
-       
+
+
+
 
         $url = config('constants.TEST_URL');
 

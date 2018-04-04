@@ -4,6 +4,8 @@
 <?php
 $informaion = json_decode($information, true);
 $details = $informaion['data'];
+$trips = json_decode($trips, true);
+
 ?>
 <div id="content">
     <div class="page-head">
@@ -61,6 +63,9 @@ $details = $informaion['data'];
                             </li>
                             <li>
                                 <a href="#tabs-d">Vehicles</a>
+                            </li>
+                            <li>
+                                <a href="#tabs-e">Trips</a>
                             </li>
 
                         </ul>
@@ -288,7 +293,7 @@ $details = $informaion['data'];
                                     <tr>
 
                                         <th>Registration No</th>  
-                                        <th>Resident Country</th>  
+                                        <th>Assigned At</th>  
 
                                         <th>Action</th>
 
@@ -302,7 +307,7 @@ $details = $informaion['data'];
                                         . $value['vehicleRegNo']
                                         . '</td>'
                                         . '<td>'
-                                        . $value['residentCountry']
+                                        . $value['assignedAt']
                                         . '</td>'
                                         . '<td><a  href="../../vehicles/information/' . $value['vehicleRegNo'] . '"   type="button" class=" btn btn-labeled btn-primary btn-sm  col-sm-6" ><i class="glyphicon glyphicon-eye-open"></i> </a> ' .
                                         '<a  href="#"   type="button" class=" btn btn-labeled btn-danger btn-sm  col-sm-6" ><i class="glyphicon glyphicon-trash"></i></a> '
@@ -315,6 +320,54 @@ $details = $informaion['data'];
                                 </tbody>
                             </table>
                         </div>
+                        
+                        
+                                 <div id="tabs-e" class="panel-body">
+
+                            <table id="tripsTbl" class="table table-condensed table-hover table-bordered table-striped">
+                                <thead>
+                                    <tr>
+
+                                        <th>Trip Type</th>  
+                                        <th>Final Country</th>  
+                                        <th>Vehicle(Front Plate)</th>  
+                                        <th>Driver</th> 
+                                        <th>Check In</th> 
+
+                                        <th>Action</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    foreach ($trips['data'] as $value) {
+                                        echo '<tr>'
+                                        . '<td>'
+                                        . $value['tripType']
+                                        . '</td>'
+                                        . '<td>'
+                                        . $value['finalCountry']
+                                        . '</td>'
+                                        . '<td>'
+                                        . $value['vehicle']['frontPlateNo']
+                                        . '</td>'
+                                        . '<td>'
+                                        . $value['driver']['othernames'].' '.$value['driver']['surname']
+                                        . '</td>'
+                                        . '<td>'
+                                        . $value['checkInOn']
+                                        . '</td>'
+                                        . '<td><a   href="../../trip/' . $value['tripNo'] . '"    type="button" class=" btn btn-labeled btn-primary btn-sm  col-sm-6" ><i class="glyphicon glyphicon-eye-open"></i> </a></td> ' 
+                                         
+                                        . '</tr>';
+                                    }
+                                    ?>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
 
 
@@ -338,6 +391,9 @@ $details = $informaion['data'];
 
 @section('customjs')
 <script type="text/javascript">
+    
+        $('#tripsTbl').DataTable();
+
     var datatable = $('#vehicleTbl').DataTable();
 
     $('#tabs').tabs();

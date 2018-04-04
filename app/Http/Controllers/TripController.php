@@ -13,24 +13,32 @@ use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Controllers\TripController;
 
-class VehicleController extends Controller {
+class TripController extends Controller {
 
-    public function showvehicle() {
+    public function showTripinfo($tripno) {
 
-        return view('newvehicle');
+        $details = $this->getTripInfo($tripno);
+
+        return view('tripinformation')->with('details', $details);
+    }
+    
+     public function showAllTrips() {
+
+        $details = $this->getAllTrips();
+
+        return view('alltrips')->with('details', $details);
+    }
+    
+    public function showNewTrip() {
+                return view('newtrip');
+
     }
 
-    public function showallvehicles() {
-
-        return view('allvehicles');
-    }
-
-    public function getVehicles() {
+    public function getVehicleTrips($vehicleno) {
         $url = config('constants.TEST_URL');
 
-        $baseurl = $url . 'vehicles';
+        $baseurl = $url . 'trips/vehicle/' . $vehicleno;
 
         $client = new Client([
             'headers' => [
@@ -57,21 +65,10 @@ class VehicleController extends Controller {
         }
     }
 
-    public function getVehicleInformation($vehicleid) {
-
-        $information = $this->getVehicleDetail($vehicleid);
-        $trips = new TripController();
-        $alltrips = $trips->getVehicleTrips($vehicleid);
-
-        return view('vehicleinformation')->with('information', $information)
-                ->with('trips',$alltrips);
-    }
-
-    public function getVehicleDetail($vehicleid) {
-
+    public function getDriverTrips($driverno) {
         $url = config('constants.TEST_URL');
 
-        $baseurl = $url . 'vehicles/' . $vehicleid;
+        $baseurl = $url . 'trips/driver/' . $driverno;
 
         $client = new Client([
             'headers' => [
@@ -98,25 +95,85 @@ class VehicleController extends Controller {
         }
     }
 
-    public function saveVehicle(Request $request) {
+    public function getTripInfo($tripno) {
+        $url = config('constants.TEST_URL');
+
+        $baseurl = $url . 'trips/' . $tripno;
+
+        $client = new Client([
+            'headers' => [
+                'Accept' => 'application/json'
+            ],
+            'http_errors' => false
+        ]);
+        try {
+
+            $response = $client->request('GET', $baseurl);
+
+            $body = $response->getBody();
+            //$bodyObj = json_decode($body);
+
+            if ($response->getStatusCode() == 200) {
+
+                return $body;
+            }
+            return $response->getStatusCode();
+        } catch (RequestException $e) {
+            return 'Http Exception : ' . $e->getMessage();
+        } catch (Exception $e) {
+            return 'Internal Server Error:' . $e->getMessage();
+        }
+    }
+
+    public function getAllTrips() {
+
+        $url = config('constants.TEST_URL');
+
+        $baseurl = $url . 'trips';
+
+        $client = new Client([
+            'headers' => [
+                'Accept' => 'application/json'
+            ],
+            'http_errors' => false
+        ]);
+        try {
+
+            $response = $client->request('GET', $baseurl);
+
+            $body = $response->getBody();
+            //$bodyObj = json_decode($body);
+
+            if ($response->getStatusCode() == 200) {
+
+                return $body;
+            }
+            return $response->getStatusCode();
+        } catch (RequestException $e) {
+            return 'Http Exception : ' . $e->getMessage();
+        } catch (Exception $e) {
+            return 'Internal Server Error:' . $e->getMessage();
+        }
+    }
+
+    public function addTrip(Request $request) {
 
         $data = $request->all();
 
 
-
         $url = config('constants.TEST_URL');
 
-        $baseurl = $url . 'vehicles';
+        $baseurl = $url . 'trips';
 
 
 
         $client = new Client([
             'headers' => [
-                'Accept' => 'application/json',
-                'token' => session('token')
+                'Accept' => 'application/json'
             ],
             'http_errors' => false
         ]);
+
 
 
         try {
@@ -131,12 +188,50 @@ class VehicleController extends Controller {
             return 'Internal Server Error:' . $e->getMessage();
         }
     }
+    
+    public function updateTrip(Request $request) {
 
-    public function deleteVehicle($vehicleno) {
-        
+        $data = $request->all();
+
+        $tripno = $data['tripno'];
+
         $url = config('constants.TEST_URL');
 
-        $baseurl = $url . 'vehicles/' . $vehicleno;
+        $baseurl = $url . 'trips/'.$tripno;
+
+
+
+        $client = new Client([
+            'headers' => [
+                'Accept' => 'application/json'
+            ],
+            'http_errors' => false
+        ]);
+
+
+
+
+        try {
+
+            $response = $client->request('PUT', $baseurl, ['json' => $data, 'verify' => false]);
+
+            $body = $response->getBody();
+            return $body;
+        } catch (RequestException $e) {
+            return 'Http Exception : ' . $e->getMessage();
+        } catch (Exception $e) {
+            return 'Internal Server Error:' . $e->getMessage();
+        }
+    }
+
+     public function deleteTrip($tripno) {
+        
+        
+       
+
+        $url = config('constants.TEST_URL');
+
+        $baseurl = $url . 'trips/' . $tripno;
 
 
 
@@ -153,41 +248,6 @@ class VehicleController extends Controller {
         try {
 
             $response = $client->request('DELETE', $baseurl);
-
-            $body = $response->getBody();
-            return $body;
-        } catch (RequestException $e) {
-            return 'Http Exception : ' . $e->getMessage();
-        } catch (Exception $e) {
-            return 'Internal Server Error:' . $e->getMessage();
-        }
-    }
-    
-    public function updateVehicle(Request $request) {
-        
-           $data = $request->all();
-        $vehicle_no = $data['vehicleno'];
-
-return \GuzzleHttp\json_encode($data);
-
-        $url = config('constants.TEST_URL');
-
-        $baseurl = $url . 'vehicles/'.$vehicle_no;
-
-
-
-        $client = new Client([
-            'headers' => [
-                'Accept' => 'application/json',
-                'token' => session('token')
-            ],
-            'http_errors' => false
-        ]);
-
-
-        try {
-
-            $response = $client->request('PUT', $baseurl, ['json' => $data, 'verify' => false]);
 
             $body = $response->getBody();
             return $body;

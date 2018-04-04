@@ -65,6 +65,10 @@ Route::get('vehicles/all', 'VehicleController@showallvehicles');
 //vehicle/new  
 //apis
 Route::get('settings/all', 'ConfigurationController@getSettings');
+Route::get('tvisettings/all', 'ConfigurationController@getTVISettings');
+
+
+
 Route::get('drivers/getall', 'DriverController@getDrivers');
 Route::get('drivers/information/{driverid}', 'DriverController@getDriverInformation');
 Route::post('driver/new', 'DriverController@saveDriver');
@@ -74,14 +78,24 @@ Route::put('driver/update', 'DriverController@updateDriver');
 Route::delete('drivers/{driverno}', 'DriverController@deleteDriver');
 
 
-
-
-
 Route::post('vehicle/new', 'VehicleController@saveVehicle');
 Route::get('vehicles/getall', 'VehicleController@getVehicles');
 Route::get('vehicles/information/{vehicleid}', 'VehicleController@getVehicleInformation');
 Route::delete('vehicles/{vehicleno}', 'VehicleController@deleteVehicle');
 Route::put('vehicle/update', 'VehicleController@updateVehicle');
+
+//trips
+Route::get('trip/{tripno}', 'TripController@showTripinfo');
+Route::get('vehicles/{vehicleno}', 'TripController@getVehicleTrips');
+Route::get('drivers/{driverno}', 'TripController@getDriverTrips');
+Route::get('trips/new', 'TripController@showNewTrip');
+Route::get('trips/all', 'TripController@showAllTrips');
+Route::post('trips/new', 'TripController@addTrip');
+Route::put('trips/updatetrip', 'TripController@updateTrip');
+Route::delete('trips/{tripno}', 'TripController@deleteTrip');
+
+
+
 
 
 
