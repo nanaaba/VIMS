@@ -375,8 +375,10 @@ $trips = json_decode($trips, true);
 
                                     <option value="">Select---</option>
 
-                                </select>                                            </div>
+                                </select>                                    
+                            </div>
                         </div>
+
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label class=" control-label">Trip Type </label>
@@ -392,7 +394,7 @@ $trips = json_decode($trips, true);
                             <div class="form-group">
                                 <label class=" control-label">Regime</label>
 
-                                <select class="select2 select2-hidden-accessible regimes" name="regime"  tabindex="-1" aria-hidden="true" required>
+                                <select class="select2 select2-hidden-accessible regimes" name="regimeId"  tabindex="-1" aria-hidden="true" required>
 
                                     <option value="">Select---</option>
 
@@ -565,12 +567,13 @@ $trips = json_decode($trips, true);
 @endsection
 
 @section('customjs')
-<script type="text/javascript" src="{{ asset('js/custom.js')}}"></script>
 
 <script type="text/javascript">
     $('#tripsTbl').DataTable();
     $('#tabs').tabs();
     getSettings();
+    getTVISettings();
+    getDrivers();
     function getSettings() {
 
 
@@ -682,5 +685,129 @@ $trips = json_decode($trips, true);
 
     });
 
+
+    function getTVISettings() {
+
+
+        $.ajax({
+            url: "{{url('tvisettings/all')}}",
+
+            type: "GET",
+            dataType: 'json',
+            success: function (response) {
+                var data = response.data;
+                var countries = data['countries'];
+                var regimes = data['regimes'];
+                var offices = data['offices'];
+                var tviTypes = data['tviTypes'];
+
+
+                console.log(data);
+                $.each(countries, function (i, item) {
+
+                    $('.country').append($('<option>', {
+                        value: item.code,
+                        text: item.name
+                    }));
+                });
+
+                //vehicleTypes
+                $.each(regimes, function (i, item) {
+
+                    $('.regimes').append($('<option>', {
+                        value: item.regimeId,
+                        text: item.name
+                    }));
+                });
+
+                $.each(offices, function (i, item) {
+
+                    $('.offices').append($('<option>', {
+                        value: item.officeCode,
+                        text: item.name
+                    }));
+                });
+                $.each(tviTypes, function (i, item) {
+
+                    $('.tviTypes').append($('<option>', {
+                        value: item.tviTypeId,
+                        text: item.name
+                    }));
+                });
+
+
+            }
+
+        });
+    }
+
+
+
+    function getDrivers() {
+
+
+        $.ajax({
+            url: "{{url('drivers/getall')}}",
+            type: "GET",
+            dataType: 'json',
+            success: function (response) {
+                var data = response.data;
+
+                $.each(data, function (i, item) {
+
+                    $('.drivers').append($('<option>', {
+                        value: item.driverRegNo,
+                        text: item.othernames + ' ' + item.surname
+                    }));
+                });
+
+
+            }
+
+        });
+    }
+
+
+
+    $('#tripForm').on('submit', function (e) {
+        e.preventDefault();
+        var formData = $(this).serialize();
+        console.log('server data: ' + formData);
+        $('#loaderModal').modal('show');
+
+        $.ajax({
+            url: "{{url('trips/new')}}",
+            type: "POST",
+            data: formData,
+            dataType: "json",
+            success: function (data) {
+                $('#loaderModal').modal('hide');
+                document.getElementById("tripForm").reset();
+                $('#tripForm select').val('').trigger('change');
+                $('#newtrip').modal('hide');
+
+                console.log(data);
+                var status = data.status;
+                console.log('status is :' + status);
+
+                if (status == 0) {
+                    $('#successmsg').html(data.message);
+                    $('#sucessdiv').show();
+                } else {
+                    $('#errormsg').html(data.message);
+                    $('#errordiv').show();
+                }
+                $(window).scrollTop(0);
+
+            },
+            error: function (jXHR, textStatus, errorThrown) {
+                $('input:submit').removeAttr("disabled");
+                $('#errordiv').html('Contact System Administrator');
+                $('#errormsg').show();
+            }
+        });
+
+
+    });
 </script>
 @endsection
