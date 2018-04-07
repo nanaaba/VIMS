@@ -29,14 +29,14 @@
 
             <li  class="<?php echo e(Request::is('dashboard') ? 'active' : ''); ?>">
                 <a href="<?php echo e(url('dashboard')); ?>">
-                    <i class="fa fa-lg fa-fw fa-inbox"></i>
+                    <i class="fa fa-lg fa-fw fas fa-tachometer-alt"></i>
                     <span class="menu-item-parent">Dashboard</span> 
 
                 </a>
             </li>
             <li class="<?php echo e(Request::is('drivers*') ? 'active' : ''); ?>">
                 <a href="#">
-                    <i class="fa fa-lg fa-fw fa-bar-chart-o"></i> 
+                    <i class="fa fa-lg fa-fw fa-user"></i> 
                     <span class="menu-item-parent">Driver</span></a>
                 <ul>
                     <li class="<?php echo e(Request::is('drivers/new') ? 'active' : ''); ?>">
@@ -57,13 +57,13 @@
             <li class="<?php echo e(Request::is('agentcases*') ? 'active' : ''); ?>">
                 <a href="<?php echo e(url('agentcases')); ?>">
 
-                    <i class="fa fa-lg fa-fw fa-inbox"></i>
+                    <i class="fa fa-lg fa-fw fa-suitcase"></i>
                     <span class="menu-item-parent">Reported Cases</span> 
                 </a>
             </li>
 
             <li class="  <?php echo e(Request::is('vehicles*') ? 'active' : ''); ?>">
-                <a href="#"> <i class="fa fa-lg fa-fw fa-bar-chart-o"></i> 
+                <a href="#"> <i class="fa fa-lg fa-fw fa-car"></i> 
                     <span class="menu-item-parent">Vehicle</span></a>
                 <ul class="sub-menu">
 
@@ -83,7 +83,7 @@
 
 
 <li class="  <?php echo e(Request::is('trips*') ? 'active' : ''); ?>">
-                <a href="#"> <i class="fa fa-lg fa-fw fa-bar-chart-o"></i> 
+                <a href="#"> <i class="fa fa-lg fa-fw fa-plane"></i> 
                     <span class="menu-item-parent">Trips</span></a>
                 <ul class="sub-menu">
 
@@ -106,20 +106,20 @@
             <li class="<?php echo e(Request::is('users*') ? 'active' : ''); ?>">
                 <a href="<?php echo e(url('users')); ?>">
 
-                    <i class="fa fa-lg fa-fw fa-inbox"></i>
+                    <i class="fa fa-lg fa-fw fa-users"></i>
                     <span class="menu-item-parent">User Management</span> 
 
                 </a>
             </li>
             <li class="<?php echo e(Request::is('reports*') ? 'active' : ''); ?>">
                 <a href="<?php echo e(url('reports')); ?>">
-                    <i class="fa fa-lg fa-fw fa-inbox"></i>
+                    <i class="fa fa-lg fa-fw fa-file"></i>
                     <span class="menu-item-parent"> Report</span> 
                 </a>
             </li>
             <li class="<?php echo e(Request::is('audits*') ? 'active' : ''); ?>">
                 <a href="<?php echo e(url('audits')); ?>">
-                    <i class="fa fa-lg fa-fw fa-inbox"></i>
+                    <i class="fa fa-lg fa-fw fa-clipboard"></i>
                     <span class="menu-item-parent">Audit Logs</span>
                 </a>
             </li>

@@ -6,7 +6,7 @@
 <div id="content" class="container">
 
     <div class="row">
-    <div id="errordiv" style="display: none">
+        <div id="errordiv" style="display: none">
             <div class="alert alert-danger fade in">
                 <button class="close" data-dismiss="alert">
                     ×
@@ -15,7 +15,10 @@
                 <strong>Error!</strong> <span id="errormsg"> </span>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
+        <div id="centeredDiv">
+            <div >
+            <img src="{{ asset('img/logo.png')}}" alt="GRA" height="100" width="100" >
+            </div>
             <div class="well no-padding">
                 <form  id="loginForm" class="smart-form client-form">
                     {{csrf_field()}}

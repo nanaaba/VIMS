@@ -34,7 +34,12 @@
         <!-- #GOOGLE FONT -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
 
-
+        <style type="text/css">
+            #centeredDiv { margin-right: auto; margin-left: auto; width: 400px;margin-top: 80px }
+            img{
+                margin-right: auto; margin-left: 150px;
+            }
+        </style>
     </head>
 
     <body class="animated fadeInDown">
