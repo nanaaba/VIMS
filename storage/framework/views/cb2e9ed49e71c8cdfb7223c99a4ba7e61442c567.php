@@ -8,7 +8,8 @@
 
             <a href="#">
                 <span>
-                    Welcome, john.doe 
+                    Welcome, <?php echo e(Session::get('username')); ?>
+
                 </span>
             </a> 
 

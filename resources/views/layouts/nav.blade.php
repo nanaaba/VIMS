@@ -8,7 +8,7 @@
 
             <a href="#">
                 <span>
-                    Welcome, john.doe 
+                    Welcome, {{ Session::get('username')}}
                 </span>
             </a> 
 

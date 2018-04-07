@@ -53,9 +53,8 @@
 
                                     <th>Name</th>  
                                     <th>Email</th>  
-                                    <th>Contact</th>  
                                     <th>Role</th>  
-                                    <th>Date Created</th>
+                                    <th>Active</th>
                                     <th>Action</th>
 
                                 </tr>
@@ -86,9 +85,19 @@
                 <div class="modal-body">
                     <?php echo e(csrf_field()); ?>
 
+
+
                     <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" name="name" class="form-control " required>
+                        <label>Surname</label>
+                        <input type="text" name="surname" class="form-control " required>
+                    </div>
+                    <div class="form-group">
+                        <label>OtherNames</label>
+                        <input type="text" name="othernames" class="form-control " required>
+                    </div>
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" name="username" class="form-control " required>
                     </div>
 
                     <div class="form-group">
@@ -100,12 +109,20 @@
                         <label>Contact</label>
                         <input type="text" name="contact" class="form-control" required>
                     </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" id="password" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" name="confirmpassword" id="confirm_password" class="form-control" required>
+                    </div>
 
                     <div class="form-group">
                         <label>Role</label>
                         <select class="select2" name="role" id="roles" required>
                             <option value="">Select ---</option>
-                            <option value="Administrator">Administrator</option>
+                            <option value="Admin">Administrator</option>
                             <option value="Supervisor">Supervisor</option>
 
                         </select>
@@ -137,8 +154,16 @@
 
                     <input type="hidden" id="userid" name="userid"/>
                     <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" name="name"id="username" class="form-control" required>
+                        <label>Surname</label>
+                        <input type="text" name="surname" id="surname" class="form-control " required>
+                    </div>
+                    <div class="form-group">
+                        <label>OtherNames</label>
+                        <input type="text" name="othernames" id="othernames" class="form-control " required>
+                    </div>
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" name="username" id="username" class="form-control " required>
                     </div>
 
                     <div class="form-group">
@@ -146,16 +171,13 @@
                         <input type="email" name="email" id="email" class="form-control" required>
                     </div>
 
-                    <div class="form-group">
-                        <label>Contact</label>
-                        <input type="text" name="contact" id="contact" class="form-control" required>
-                    </div>
+
 
                     <div class="form-group">
                         <label>Role</label>
                         <select class="form-control select2" name="role" id="editrole" required>
                             <option value="">Select ---</option>
-                            <option value="Administrator">Administrator</option>
+                            <option value="Admin">Administrator</option>
                             <option value="Supervisor">Supervisor</option>
 
                         </select>
@@ -209,37 +231,46 @@
         var formData = $(this).serialize();
         console.log(formData);
 
-        $('.loader').addClass('be-loading-active');
-        $.ajax({
-            url: "<?php echo e(url('users/save')); ?>",
-            type: "POST",
-            data: formData,
-            dataType: 'json',
-            success: function (data) {
+        var password = $('#password').val();
+        var confirm_password = $('#confirm_password').val();
+        if (password == confirm_password) {
+            $.ajax({
+                url: "<?php echo e(url('users/save')); ?>",
+                type: "POST",
+                data: formData,
+                dataType: 'json',
+                success: function (data) {
 
 
-                $('.loader').removeClass('be-loading-active');
-                console.log('server data :' + data);
-                var status = data.status;
-                if (status == 0) {
-                    $('#newuser').modal('hide');
-                    document.getElementById("userForm").reset();
+                    $('#loaderModal').modal('hide');
+                    console.log('server data :' + data);
+                    var status = data.status;
+                    if (status == 0) {
+                        $('#newuser').modal('hide');
+                        document.getElementById("userForm").reset();
 
-                    $('.feedback').html(data.message);
-                    $('#successdiv').show();
-                    $('#errordiv').hide();
-                    getUsers();
+                        $('.feedback').html(data.message);
+                        $('#successdiv').show();
+                        $('#errordiv').hide();
+                        getUsers();
+
+                    }
+                    if (status == 1) {
+                        $('.feedback').html(data.message);
+                        $('#errordiv').show();
+                        $('#successdiv').hide();
+                    }
 
                 }
-                if (status == 1) {
-                    $('.feedback').html(data.message);
-                    $('#errordiv').show();
-                    $('#successdiv').hide();
-                }
 
-            }
+            });
+        } else {
+            $('.feedback').html('Password do not match');
+            $('#errordiv').show();
+            $('#successdiv').hide();
+        }
+        $('#loaderModal').modal('show');
 
-        });
     });
 
 
@@ -257,8 +288,9 @@
             data: formData,
             dataType: 'json',
             success: function (data) {
+                $('#edituser').modal('hide');
 
-              
+
                 $('.loader').removeClass('be-loading-active');
                 console.log('server data :' + data);
                 var status = data.status;
@@ -289,7 +321,7 @@
     $('#deleteForm').on('submit', function (e) {
 
         e.preventDefault();
-        var itemid = $('#itemid').val();
+        var itemid = $('#code').val();
         var token = $('#token').val();
         $('#deleteModal').modal('hide');
         $('.loader').addClass('be-loading-active');
@@ -300,9 +332,9 @@
             dataType: 'json',
             success: function (data) {
 
-            
+                $('#confirmModal').modal('hide');
 
-                $('.loader').removeClass('be-loading-active');
+
                 console.log('server data :' + data);
                 var status = data.status;
                 if (status == 0) {
@@ -375,7 +407,7 @@
             dataType: 'json',
             success: function (data) {
 
-               
+
                 console.log('server data :' + data.data);
                 var dataSet = data.data;
                 console.log(dataSet);
@@ -390,16 +422,15 @@
                         var j = -1;
                         var r = new Array();
                         // represent columns as array
-                        r[++j] = '<td class="subject"> ' + value.name + '</td>';
+                        r[++j] = '<td class="subject"> ' + value.othernames + ' ' + value.surname + '</td>';
                         r[++j] = '<td class="subject">' + value.email + '</td>';
-                        r[++j] = '<td class="subject">' + value.contact + '</td>';
                         r[++j] = '<td class="subject">' + value.role + '</td>';
 
-                        r[++j] = '<td class="subject">' + value.datecreated + '</td>';
+                        r[++j] = '<td class="subject">' + value.isActive + '</td>';
+
                         r[++j] = '<td class="actions">' +
-                                '<a  href="#"  onclick="editUser(' + value.id + ')"  type="button" class="icon btn btn-outline-info btn-sm  col-sm-6 btn-edit editBtn" ><i title="View" class="mdi mdi-eye""></i><span class="hidden-md hidden-sm hidden-xs"> </span></a>' +
-                                '<a  href="#" onclick="deleteUser(' + value.id + ')" type="button" class="icon btn btn-outline-info btn-sm  col-sm-6 btn-edit editBtn" ><i title ="Delete" class="mdi mdi-delete""></i><span class="hidden-md hidden-sm hidden-xs"> </span></a>' +
-                                '<a  href="#" onclick="resetPassword(' + value.id + ')" type="button" class="icon btn btn-outline-info btn-sm  col-sm-6 btn-edit editBtn" ><i title ="Reset" class="mdi mdi-refresh""></i><span class="hidden-md hidden-sm hidden-xs"> </span></a>' +
+                                '<a   href="#"  onclick="editUser(\'' + value.userId + '\')"   type="button" class=" btn btn-labeled btn-primary btn-sm  col-sm-6" ><i class="glyphicon glyphicon-eye-open"></i> </a> ' +
+                                '<a  href="#" onclick="deleteUser(\'' + value.id +  '\')"  type="button" class=" btn btn-labeled btn-danger btn-sm  col-sm-6" ><i class="glyphicon glyphicon-trash"></i></a> ' +
                                 '</td>';
                         rowNode = datatable.row.add(r);
                     });
@@ -431,11 +462,12 @@
                 console.log('server data :' + data);
                 var dataArray = data.data;
 
-                $('#username').val(dataArray[0].name);
-                $('#email').val(dataArray[0].email);
-                $('#contact').val(dataArray[0].contact);
-                $('#editrole').val(dataArray[0].role);
-                $('#userid').val(dataArray[0].id);
+                $('#othernames').val(dataArray.othernames);
+                $('#surname').val(dataArray.surname);
+                $('#email').val(dataArray.email);
+                $('#editrole').val(dataArray.role);
+                $('#userid').val(dataArray.userId);
+                $('#username').val(dataArray.username);
 
                 $('#editrole').change();
 
@@ -447,10 +479,15 @@
 
 
     function deleteUser(id) {
-        $('#itemid').val(id);
-        $('#deleteModal').modal('show');
+
+        $('#code').val(id);
+        $('#confirmModal').modal('show');
+
     }
 
+    function resetPassword(id) {
+        alert('reset: ' + id);
+    }
 </script>
 <?php $__env->stopSection(); ?>
 

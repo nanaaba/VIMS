@@ -39,15 +39,7 @@
 
     <body class="animated fadeInDown">
 
-        <header id="header">
 
-            <div id="logo-group">
-                <span id="logo"> <img src="img/logo.png" alt="SmartAdmin"> </span>
-            </div>
-
-            <span id="extr-page-header-space"> <span class="hidden-mobile hiddex-xs">Need an account?</span> <a href="register.html" class="btn btn-danger">Create account</a> </span>
-
-        </header>
 
         <div id="main" role="main">
 
@@ -57,41 +49,19 @@
         </div>
 
         <!--================================================== -->	
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
         <!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
         <script src="{{ asset('js/plugin/pace/pace.min.js')}}"></script>
-
-        <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script> if (!window.jQuery) {
-    document.write('<script src="{{ asset('js / libs / jquery - 3.2.1.min.js')}}"><\/script>');}</script>
-
-        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-        <script> if (!window.jQuery.ui) {
-    document.write('<script src="js/libs/jquery-ui.min.js"><\/script>');}</script>
-
-        <!-- IMPORTANT: APP CONFIG -->
-        <script src="{{ asset('js/app.config.js')}}"></script>
-
-        <!-- JS TOUCH : include this plugin for mobile drag / drop touch events 		
-        <script src="js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> -->
-
-        <!-- BOOTSTRAP JS -->		
+        <script src="{{ asset('js/app.config.js')}}"></script>	
         <script src="{{ asset('js/bootstrap/bootstrap.min.js')}}"></script>
 
-        <!-- JQUERY VALIDATE -->
         <script src="{{ asset('js/plugin/jquery-validate/jquery.validate.min.js')}}"></script>
 
-        <!-- JQUERY MASKED INPUT -->
         <script src="{{ asset('js/plugin/masked-input/jquery.maskedinput.min.js')}}"></script>
 
-        <!--[if IE 8]>
-                
-                <h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
-                
-        <![endif]-->
-
-        <!-- MAIN APP JS FILE -->
         <script src="{{ asset('js/app.min.js')}}"></script>
 
         <script>
@@ -130,6 +100,39 @@ $(function () {
         }
     });
 });
+
+    $('#loginForm').submit(function (e) {
+        e.preventDefault();
+        var formData = $(this).serialize();
+
+        console.log(formData);
+
+        $('input:submit').attr("disabled", true);
+
+        $.ajax({
+            url: "{{url('authenticateuser')}}",
+            type: "POST",
+            data: formData,
+            dataType:"json",
+            success: function (data) {
+                console.log('data : '+data.status);
+                if (data.status == 0) {
+                    window.location = "dashboard";
+                } else {
+                    $('#errordiv').show();
+                    $('#errormsg').html(data.message);
+                }
+
+            },
+            error: function (jXHR, textStatus, errorThrown) {
+                console.log(errorThrown);
+            }
+        });
+
+
+
+    });
+
         </script>
 
     </body>

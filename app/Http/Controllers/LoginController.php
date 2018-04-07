@@ -14,14 +14,14 @@ use App\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller {
 
-    
-     public function authenticateuser(Request $request) {
+    public function authenticateuser(Request $request) {
 
         // $data = $request->all(); // This will get all the request data.
-        $username = $request['email'];
+        $username = $request['username'];
         $password = $request['password'];
 
 
@@ -30,58 +30,50 @@ class LoginController extends Controller {
 
     public function userAuthentication($username, $password) {
 
-  return 'success';
+
+
+
         $url = config('constants.TEST_URL');
 
-        $baseurl = $url . '/authenticate';
+        $baseurl = $url . 'account/token';
 
 
 
-        $client = new Client([
-            'headers' => [
-                'Accept' => 'application/json'
-            ],
-        ]);
+        $client = new Client();
 
-        $dataArray = array(
-            'email' => $username,
-            'password' => $password
-        );
-        
-      
+
+
+
         try {
 
-            $response = $client->request('POST', $baseurl, ['json' => $dataArray, 'verify' => false]);
 
+
+            $response = $client->post($baseurl, [
+                'form_params' => [
+                    'grant_type' => 'password',
+                    'username' => $username,
+                    'password' => $password
+                ]
+            ]);
             $body = $response->getBody();
             $bodyObj = json_decode($body);
 
 
             if ($response->getStatusCode() == 200) {
 
-                $status = $bodyObj->status;
 
-                if ($status == 0) {
-//
-                    session(['email' => $username]);
-                    session(['name' => $bodyObj->details->name]);
-                    session(['userid' => $bodyObj->details->userid]);
-                    session(['lastlogin' => $bodyObj->details->lastlogin]);
-                    session(['token' => $bodyObj->details->token]);
-                    session(['role' => $bodyObj->details->role]);
-                    return 'success';
-                } else {
-                    //   return Redirect::back()->withErrors(['msg',  $bodyObj->message]);
-                    return $bodyObj->message;
-                    //return redirect('login')->with('message', $bodyObj->message);
-                }
+                session(['username' => $bodyObj->userName]);
+                session(['token' => $bodyObj->access_token]);
+                $data = array('status' => 0, 'message' => 'success' . $bodyObj->userName);
+                return json_encode($data);
             }
-        } catch (RequestException $e) {
-            return 'Http Exception : ' . $e->getMessage();
-        } catch (Exception $e) {
-            return 'Internal Server Error:' . $e->getMessage();
+        } catch (\GuzzleHttp\Exception\RequestException $e) {
+            $data = array('status' => 1, 'message' => "Username and password mismatch");
+            return json_encode($data);
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            $data = array('status' => 1, 'message' => "Username and password mismatch");
+            return json_encode($data);
         }
     }
 
-  
 }

@@ -395,7 +395,6 @@ $trips = json_decode($trips, true);
 
 </div>
 
-<!--Form Modals-->
 <div id="newtrip" tabindex="-1" role="dialog" class="modal fade colored-header colored-header-primary">
     <div class="modal-dialog custom-width">
         <div class="modal-content">
@@ -403,7 +402,7 @@ $trips = json_decode($trips, true);
                 <button type="button" data-dismiss="modal" aria-hidden="true" class="close md-close"><span class="mdi mdi-close"></span></button>
                 <h3 class="modal-title">New Trip</h3>
             </div>
-            <form id="tripForm" novalidate>
+            <form id="tripForm"  novalidate>
                 <!-- START ROW -->
 
                 {{csrf_field()}}
@@ -416,7 +415,7 @@ $trips = json_decode($trips, true);
 
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class=" control-label">Vehicles Involve </label>
+                                <label class=" control-label">Vehicle Involve </label>
 
                                 <select class="select2 select2-hidden-accessible vehicles" name="vehicleRegNo"  tabindex="-1" aria-hidden="true" required>
 
@@ -607,6 +606,9 @@ $trips = json_decode($trips, true);
         </div>
     </div>
 </div>
+
+
+
 
 
 @endsection
@@ -808,47 +810,50 @@ $trips = json_decode($trips, true);
 
         });
     }
-
-
     $('#tripForm').on('submit', function (e) {
-        e.preventDefault();
-        var formData = $(this).serialize();
-        console.log('server data: ' + formData);
-        $('#loaderModal').modal('show');
 
-        $.ajax({
-            url: "{{url('trips/new')}}",
-            type: "POST",
-            data: formData,
-            dataType: "json",
-            success: function (data) {
-                $('#loaderModal').modal('hide');
-                document.getElementById("tripForm").reset();
-                $('#tripForm select').val('').trigger('change');
-                $('#newtrip').modal('hide');
-
-                console.log(data);
-                var status = data.status;
-                console.log('status is :' + status);
-
-                if (status == 0) {
-                    $('#successmsg').html(data.message);
-                    $('#sucessdiv').show();
-                } else {
-                    $('#errormsg').html(data.message);
-                    $('#errordiv').show();
-                }
-                $(window).scrollTop(0);
-
-            },
-            error: function (jXHR, textStatus, errorThrown) {
-                $('input:submit').removeAttr("disabled");
-                $('#errordiv').html('Contact System Administrator');
-                $('#errormsg').show();
-            }
-        });
-
-
+        alert('dfffffffffffffff');
     });
+
+//    $('#newtripForm').on('submit', function (e) {
+//        e.preventDefault();
+//        var formData = $(this).serialize();
+//        console.log('server data: ' + formData);
+//        $('#loaderModal').modal('show');
+//
+//        $.ajax({
+//            url: "{{url('trips/new')}}",
+//            type: "POST",
+//            data: formData,
+//            dataType: "json",
+//            success: function (data) {
+//                $('#loaderModal').modal('hide');
+//                document.getElementById("newtripForm").reset();
+//                $('#newtripForm select').val('').trigger('change');
+//                $('#newtrip').modal('hide');
+//
+//                console.log(data);
+//                var status = data.status;
+//                console.log('status is :' + status);
+//
+//                if (status == 0) {
+//                    $('#successmsg').html(data.message);
+//                    $('#sucessdiv').show();
+//                } else {
+//                    $('#errormsg').html(data.message);
+//                    $('#errordiv').show();
+//                }
+//                $(window).scrollTop(0);
+//
+//            },
+//            error: function (jXHR, textStatus, errorThrown) {
+//                $('input:submit').removeAttr("disabled");
+//                $('#errordiv').html('Contact System Administrator');
+//                $('#errormsg').show();
+//            }
+//        });
+//
+//
+//    });
 </script>
 @endsection

@@ -7,7 +7,7 @@
  */
 
 function checkifuserisauthentcated() {
-    if (Session::has('userid')) {
+    if (Session::has('token')) {
         return true;
     } else {
         return false;
