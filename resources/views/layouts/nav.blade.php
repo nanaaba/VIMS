@@ -82,7 +82,7 @@
 
 
 <li class="  {{ Request::is('trips*') ? 'active' : '' }}">
-                <a href="#"> <i class="fa fa-lg fa-fw fa-plane"></i> 
+                <a href="#"> <i class="fa fa-lg fas fa-bus"></i> 
                     <span class="menu-item-parent">Trips</span></a>
                 <ul class="sub-menu">
 

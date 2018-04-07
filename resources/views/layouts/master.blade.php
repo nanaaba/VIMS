@@ -27,8 +27,9 @@
         <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('css/your_style.css')}}"> -->
 
         <!-- Demo purpose only: goes with demo.js')}}, you can delete this css when designing your own WebApp -->
-        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('css/demo.min.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-datepicker.min.css')}}"/>
 
+        
         <!-- FAVICONS -->
         <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
         <link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
@@ -88,7 +89,14 @@
             <div class="modal-dialog" role="document">
 
 
-                <div  id="loader" style="margin-top:30% ">
+                <div  id="loader" style="position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; width: 100px;
+  height: 100px;
+  margin-top: 150px;">
                     <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
                     <span class="loader-text">Wait...</span>
                 </div>

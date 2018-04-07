@@ -58,7 +58,8 @@
                                     <i class="fa fa-edit"></i> </span>
                                 <h2>Driver Personal Details</h2>				
 
-                                <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span></header>
+
+                            </header>
 
                             <!-- widget div-->
                             <div role="content">
@@ -75,7 +76,7 @@
 
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label class=" control-label">SurName</label>
+                                            <label class=" control-label">Surname</label>
 
                                             <input type="text" name="surname" class="form-control">
                                         </div>
@@ -119,14 +120,14 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label class=" control-label">Local Phone No</label>
+                                            <label class=" control-label">Local Phone Number</label>
 
                                             <input type="text" name="localPhone" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label class=" control-label">Overseas Phone No</label>
+                                            <label class=" control-label">Overseas Phone Number</label>
 
                                             <input type="text" name="foreignPhone" class="form-control">
                                         </div>
@@ -173,7 +174,19 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label class=" control-label">Nationality ID No</label>
+                                            <label class=" control-label">National ID Types</label>
+
+
+                                            <select class="select2 select2-hidden-accessible idtypes" name="idtypes"  tabindex="-1" aria-hidden="true" required>
+
+                                                <option value="">Select ---</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label class=" control-label">Nationality ID Number</label>
 
                                             <input type="text" name="nationalId" class="form-control">
                                         </div>
@@ -182,21 +195,21 @@
 
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label class=" control-label">License No</label>
+                                            <label class=" control-label">Driver License Number</label>
 
                                             <input type="text" name="licenceNo" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label class=" control-label">Issue Date</label>
+                                            <label class=" control-label"> Date of Issue</label>
 
                                             <input type="text" name="issueDate" class="form-control datepicker" data-dateformat="yy-mm-dd">
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label class=" control-label">Expiry Date</label>
+                                            <label class=" control-label"> Date of Expiry</label>
 
                                             <input type="text" name="expiryDate" class="form-control datepicker" data-dateformat="yy-mm-dd">
                                         </div>
@@ -256,14 +269,14 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label class=" control-label">Issue Date</label>
+                                            <label class=" control-label">Date of Issue</label>
 
                                             <input type="text" data-dateformat="yy-mm-dd" name="passportIssueDate" class="form-control datepicker">
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label class=" control-label">Expiry Date</label>
+                                            <label class=" control-label">Date of Expiry </label>
 
                                             <input type="text" data-dateformat="yy-mm-dd" name="passportExpiryDate" class="form-control datepicker">
                                         </div>
@@ -319,32 +332,37 @@
                                 <!-- widget content -->
                                 <div class="widget-body">
 
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label class=" control-label">Reg. Issue Date</label>
+                                    <div class="row col-lg-12">
 
-                                                <input type="text" data-dateformat="yy-mm-dd" name="regIssueDate" class="form-control datepicker">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label class=" control-label">Reg. Expiry Date</label>
+                                                <label class=" control-label">Reg. Date of Issue </label>
+
+                                                <input type="text" " name="regIssueDate" class="form-control datepicker">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class=" control-label">Reg. Date of  Expiry </label>
 
                                                 <input type="text" data-dateformat="yy-mm-dd" name="regExpiryDate" class="form-control datepicker">
                                             </div>
-                                        </div>
-                                    </div>
 
-                                    <div class="row">
+
+                                        </div>
                                         <div class="col-sm-6">
+
+
                                             <div class="form-group">
                                                 <label class=" control-label">Remarks</label>
                                                 <textarea name="remarks" rows="10" class="form-control"></textarea>
 
+
                                             </div>
                                         </div>
+
+
                                     </div>
+
+
                                 </div>
                                 <!-- end widget content -->
 
@@ -386,6 +404,9 @@
 
 <script type="text/javascript">
 
+$('.datepicker').datepicker({
+    format: 'yyyy-mm-dd'
+});
 
 $('#driverForm').on('submit', function (e) {
     e.preventDefault();
@@ -411,7 +432,7 @@ $('#driverForm').on('submit', function (e) {
                 $('#errormsg').html(data.message);
                 $('#errordiv').show();
             }
-    $(window).scrollTop(0);
+            $(window).scrollTop(0);
 
         },
         error: function (jXHR, textStatus, errorThrown) {
