@@ -2,7 +2,7 @@
 <html lang="en-us" id="extr-page">
     <head>
         <meta charset="utf-8">
-        <title> SmartAdmin</title>
+        <title> VIMS</title>
         <meta name="description" content="">
         <meta name="author" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -25,14 +25,8 @@
         <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('css/your_style.css')}}"> -->
 
         <!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
-        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('css/demo.min.css')}}">
-
-        <!-- #FAVICONS -->
-        <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
-        <link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
-
-        <!-- #GOOGLE FONT -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+        
+        <link rel="shortcut icon" href="{{ asset('img/favicon.ico')}}">
 
         <style type="text/css">
             #centeredDiv { margin-right: auto; margin-left: auto; width: 400px;margin-top: 80px }
