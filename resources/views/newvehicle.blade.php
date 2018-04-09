@@ -257,14 +257,14 @@
 
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label class=" control-label">Issue Date</label>
+                                                <label class=" control-label">Date of Issue </label>
 
                                                 <input type="text" name="regIssueDate" data-dateformat="yy-mm-dd" class="form-control datepicker">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label class=" control-label">Expiry Date</label>
+                                                <label class=" control-label">Date of Expiry </label>
                                                 <input type="text" name="regExpiryDate" data-dateformat="yy-mm-dd" class="form-control datepicker">
 
                                             </div>
@@ -286,14 +286,14 @@
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label class=" control-label">Issue Date</label>
+                                                    <label class=" control-label">Date of Issue </label>
 
                                                     <input type="text" name="permitIssueDate" class="form-control datepicker" data-dateformat="yy-mm-dd">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label class=" control-label">Expiry Date</label>
+                                                    <label class=" control-label">Date of Expiry </label>
                                                     <input type="text" name="permitExpiryDate" class="form-control datepicker" data-dateformat="yy-mm-dd">
 
                                                 </div>
@@ -353,14 +353,14 @@
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label class=" control-label">Issue Date</label>
+                                                <label class=" control-label">Date of Issue </label>
 
                                                 <input type="text" name="ecowasIssueDate" data-dateformat="yy-mm-dd" class="form-control datepicker">
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label class=" control-label">Expiry Date</label>
+                                                <label class=" control-label">Date of Expiry </label>
                                                 <input type="text" name="ecowasExpiryDate" data-dateformat="yy-mm-dd" class="form-control datepicker">
 
                                             </div>
@@ -412,7 +412,9 @@
 <script type="text/javascript" src="{{ asset('js/custom.js')}}"></script>
 <script type="text/javascript">
 
-
+$('.datepicker').datepicker({
+    format: 'dd-mm-yyyy'
+});
 $('#vehicleForm').on('submit', function (e) {
     e.preventDefault();
     var formData = $(this).serialize();

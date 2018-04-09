@@ -95,6 +95,53 @@
 
 <script>
 $(document).ready(function () {
+    
+    
+    
+    
+     $('#searchForm').on('submit', function (e) {
+        e.preventDefault();
+        $('input:submit').attr("disabled", true);
+       
+        $('#confirmModal').modal('hide');
+        $('#loaderModal').modal('show');
+
+        $.ajax({
+            url: "<?php echo e(url('')); ?>",
+            type: "GET",
+            data: {_token: token},
+            dataType: "json",
+            success: function (data) {
+                // $("#loader").hide();
+                $('input:submit').attr("disabled", false);
+
+                document.getElementById("deleteForm").reset();
+                console.log(data);
+                var status = data.status;
+                console.log('status is :' + status);
+                $('#loaderModal').modal('hide');
+
+                if (status == 0) {
+                    getDrivers();
+
+                    $('#successmsg').html(data.message);
+                    $('#sucessdiv').show();
+                } else {
+                    $('#errormsg').html(data.message);
+                    $('#errordiv').show();
+                }
+                $(window).scrollTop(0);
+
+            },
+            error: function (jXHR, textStatus, errorThrown) {
+                $('#loaderModal').modal('hide');
+
+                alert(errorThrown);
+            }
+        });
+
+    });
+
 
 // DO NOT REMOVE : GLOBAL FUNCTIONS!
     pageSetUp();

@@ -405,7 +405,7 @@
 <script type="text/javascript">
 
 $('.datepicker').datepicker({
-    format: 'yyyy-mm-dd'
+    format: 'dd-mm-yyyy'
 });
 
 $('#driverForm').on('submit', function (e) {

@@ -28,9 +28,9 @@
         <div id="hide-menu" class="btn-header pull-right">
             <span> <a href="javascript:void(0);" data-action="toggleMenu" title="Collapse Menu"><i class="fas fa-bars"></i></a> </span>
         </div>
-     
+
         <div id="logout" class="btn-header transparent pull-right">
-            <span> <a href="login.html" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fas fa-sign-out-alt"></i></a> </span>
+            <span> <a href="<?php echo e(url('logout')); ?>" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fas fa-sign-out-alt"></i></a> </span>
         </div>
         <!-- end logout button -->
 
@@ -44,7 +44,14 @@
         <!-- fullscreen button -->
 
         <!-- end fullscreen button -->
-
+        <form  action="<?php echo e(url('search')); ?>" method="get"  class="header-search pull-right">
+            <input id="search-fld" type="text" name="searchparam" placeholder="Find reports and more" 
+                  >
+            <button type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+            <a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
+        </form>
     </div>
     <!-- end pulled right: nav area -->
 

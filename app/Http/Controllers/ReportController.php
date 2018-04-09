@@ -134,7 +134,7 @@ class ReportController extends Controller {
 
     public function agentReport(Request $request) {
 
-           return ' {
+        return ' {
     "status": 0,
     "message": "success",
     "data": [
@@ -191,8 +191,8 @@ class ReportController extends Controller {
         }    
     ]
 }';
-        
-        
+
+
         $url = config('constants.TEST_URL');
 
         $baseurl = $url . '/generalreport';
@@ -294,6 +294,39 @@ class ReportController extends Controller {
                 return $body;
             }
             return $response->getStatusCode();
+        } catch (RequestException $e) {
+            return 'Http Exception : ' . $e->getMessage();
+        } catch (Exception $e) {
+            return 'Internal Server Error:' . $e->getMessage();
+        }
+    }
+
+    public function search(Request $request) {
+        $param = $request->input('searchparam');
+        $results = $this->searchQuery($param);
+
+        return view('searchresults')
+                        ->with('searchparam', $param)
+                        ->with('results', $results);
+    }
+
+    public function searchQuery($searchparam) {
+        $url = config('constants.TEST_URL');
+
+        $baseurl = $url . 'vehicles';
+
+        $client = new Client([
+            'headers' => [
+                'Accept' => 'application/json'
+            ],
+            'http_errors' => false
+        ]);
+        try {
+
+            $response = $client->request('GET', $baseurl);
+
+            $body = $response->getBody();
+            return $body;
         } catch (RequestException $e) {
             return 'Http Exception : ' . $e->getMessage();
         } catch (Exception $e) {

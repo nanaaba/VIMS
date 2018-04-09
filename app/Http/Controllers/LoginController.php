@@ -24,7 +24,6 @@ class LoginController extends Controller {
         $username = $request['username'];
         $password = $request['password'];
 
-
         return $this->userAuthentication($username, $password);
     }
 

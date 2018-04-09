@@ -143,7 +143,7 @@
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label class=" control-label">Country of Consignment </label>
-   <select class="select2 select2-hidden-accessible country" name="consCountryCode"  tabindex="-1" aria-hidden="true" required>
+                                                <select class="select2 select2-hidden-accessible country" name="consCountryCode"  tabindex="-1" aria-hidden="true" required>
 
                                                     <option value="">Select ---</option>
 
@@ -154,7 +154,7 @@
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label class=" control-label">Last Country</label>
-<select class="select2 select2-hidden-accessible country" name="lastCountryCode"  tabindex="-1" aria-hidden="true" required>
+                                                <select class="select2 select2-hidden-accessible country" name="lastCountryCode"  tabindex="-1" aria-hidden="true" required>
 
                                                     <option value="">Select ---</option>
 
@@ -164,7 +164,7 @@
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label class=" control-label">Next Country</label>
-<select class="select2 select2-hidden-accessible country" name="nextCountryCode"  tabindex="-1" aria-hidden="true" required>
+                                                <select class="select2 select2-hidden-accessible country" name="nextCountryCode"  tabindex="-1" aria-hidden="true" required>
 
                                                     <option value="">Select ---</option>
 
@@ -176,7 +176,7 @@
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label class=" control-label">Final Country</label>
- <select class="select2 select2-hidden-accessible country" name="finalCountryCode"  tabindex="-1" aria-hidden="true" required>
+                                                <select class="select2 select2-hidden-accessible country" name="finalCountryCode"  tabindex="-1" aria-hidden="true" required>
 
                                                     <option value="">Select ---</option>
 
@@ -295,7 +295,9 @@
 <script type="text/javascript" src="{{ asset('js/custom.js')}}"></script>
 <script type="text/javascript">
 
-
+$('.datepicker').datepicker({
+    format: 'dd-mm-yyyy'
+});
 $('#tripForm').on('submit', function (e) {
     e.preventDefault();
     var formData = $(this).serialize();
