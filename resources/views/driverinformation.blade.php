@@ -80,7 +80,7 @@ $trips = json_decode($trips, true);
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class=" control-label">SurName</label>
+                                        <label class=" control-label">Surname</label>
 
                                         <input type="text" name="surname" value="{{$details['surname']}}" class="form-control">
                                     </div>
@@ -180,10 +180,21 @@ $trips = json_decode($trips, true);
 
                                     </div>
                                 </div>
+     <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class=" control-label">National ID Type</label>
 
+                                        <select class="select2 select2-hidden-accessible idtypes" name="nationalIdType"  tabindex="-1" aria-hidden="true" required>
+
+                                            <option value="{{$details['nationalIdType']}}">{{$details['nationalIdType']}}</option>
+
+                                        </select>
+
+                                    </div>
+                                </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class=" control-label">Nationality ID No</label>
+                                        <label class=" control-label">Nationality ID Number</label>
 
                                         <input type="text" value="{{$details['nationalId']}}"  name="nationalId" class="form-control">
                                     </div>
@@ -192,21 +203,21 @@ $trips = json_decode($trips, true);
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class=" control-label">License No</label>
+                                        <label class=" control-label">License Number</label>
 
                                         <input type="text" name="licenceNo" value="{{$details['licenceNo']}}"  class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class=" control-label">Issue Date</label>
+                                        <label class=" control-label">Date of Issue </label>
 
                                         <input type="text" name="issueDate" value="{{$details['issueDate']}}" class="form-control datepicker" data-dateformat="yy-mm-dd">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class=" control-label">Expiry Date</label>
+                                        <label class=" control-label">Date of Expiry </label>
 
                                         <input type="text" name="expiryDate" value="{{$details['expiryDate']}}" class="form-control datepicker" data-dateformat="yy-mm-dd">
                                     </div>
@@ -222,21 +233,21 @@ $trips = json_decode($trips, true);
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class=" control-label">Passport No</label>
+                                        <label class=" control-label">Passport Number</label>
 
                                         <input type="text" name="passportNo" value="{{$details['passportNo']}}"  class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class=" control-label">Issue Date</label>
+                                        <label class=" control-label">Date of Issue </label>
 
                                         <input type="text" data-dateformat="yy-mm-dd" value="{{$details['passportIssueDate']}}" name="passportIssueDate" class="form-control datepicker">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class=" control-label">Expiry Date</label>
+                                        <label class=" control-label">Date of Expiry </label>
 
                                         <input type="text" data-dateformat="yy-mm-dd" value="{{$details['passportExpiryDate']}}" name="passportExpiryDate" class="form-control datepicker">
                                     </div>
@@ -254,14 +265,14 @@ $trips = json_decode($trips, true);
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label class=" control-label">Reg. Issue Date</label>
+                                            <label class=" control-label">Reg. Date of Issue </label>
 
                                             <input type="text" data-dateformat="yy-mm-dd" value="{{$details['regIssueDate']}}" name="regIssueDate" class="form-control datepicker">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label class=" control-label">Reg. Expiry Date</label>
+                                            <label class=" control-label">Reg. Date of Expiry </label>
 
                                             <input type="text" data-dateformat="yy-mm-dd" value="{{$details['regExpiryDate']}}" name="regExpiryDate" class="form-control datepicker">
                                         </div>

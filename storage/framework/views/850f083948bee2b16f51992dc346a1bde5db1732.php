@@ -39,11 +39,11 @@
 
         <!-- Specifying a Webpage Icon for Web Clip 
                  Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
-        <link rel="apple-touch-icon" href="img/splash/sptouch-icon-iphone.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="img/splash/touch-icon-ipad.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="img/splash/touch-icon-iphone-retina.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="img/splash/touch-icon-ipad-retina.png">
+     
+        <link rel="shortcut icon" href="<?php echo e(asset('img/favicon.ico')); ?>">
 
+
+<meta name="theme-color" content="#ffffff">
         <style type="text/css">
             textarea {
                 resize: none;

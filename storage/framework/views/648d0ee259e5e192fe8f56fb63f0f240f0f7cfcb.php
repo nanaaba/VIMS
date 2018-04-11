@@ -45,13 +45,10 @@
                     <article class="col-sm-12 col-md-12 col-lg-12 ">
 
                         <!-- Widget ID (each widget will need unique ID)-->
-                        <div class="jarviswidget jarviswidget-sortable" id="wid-id-1" data-widget-editbutton="false" data-widget-custombutton="false" role="widget">
+                        <div class="jarviswidget jarviswidget-sortable"  data-widget-editbutton="false" data-widget-custombutton="false" role="widget">
 
                             <header role="heading" class="ui-sortable-handle">
-                                <div class="jarviswidget-ctrls" role="menu">   
-                                    <a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Fullscreen">
-                                        <i class="fa fa-expand "></i></a>
-                                </div>
+                                
 
                                 <span class="widget-icon"> 
                                     <i class="fa fa-edit"></i> </span>
@@ -173,10 +170,10 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label class=" control-label">National ID Types</label>
+                                            <label class=" control-label">National ID Type</label>
 
 
-                                            <select class="select2 select2-hidden-accessible idtypes" name="idtypes"  tabindex="-1" aria-hidden="true" required>
+                                            <select class="select2 select2-hidden-accessible idtypes" name="nationalIdType"  tabindex="-1" aria-hidden="true" required>
 
                                                 <option value="">Select ---</option>
 
@@ -233,13 +230,10 @@
                     <article class="col-sm-12 col-md-12 col-lg-12 ">
 
                         <!-- Widget ID (each widget will need unique ID)-->
-                        <div class="jarviswidget jarviswidget-sortable" id="wid-id-1" data-widget-editbutton="false" data-widget-custombutton="false" role="widget">
+                        <div class="jarviswidget jarviswidget-sortable"  data-widget-editbutton="false" data-widget-custombutton="false" role="widget">
 
                             <header role="heading" class="ui-sortable-handle">
-                                <div class="jarviswidget-ctrls" role="menu">   
-                                    <a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Fullscreen">
-                                        <i class="fa fa-expand "></i></a>
-                                </div>
+                               
 
                                 <span class="widget-icon"> 
                                     <i class="fa fa-edit"></i> </span>
@@ -304,13 +298,10 @@
                     <article class="col-sm-12 col-md-12 col-lg-12 ">
 
                         <!-- Widget ID (each widget will need unique ID)-->
-                        <div class="jarviswidget jarviswidget-sortable" id="wid-id-1" data-widget-editbutton="false" data-widget-custombutton="false" role="widget">
+                        <div class="jarviswidget jarviswidget-sortable" data-widget-editbutton="false" data-widget-custombutton="false" role="widget">
 
                             <header role="heading" class="ui-sortable-handle">
-                                <div class="jarviswidget-ctrls" role="menu">   
-                                    <a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Fullscreen">
-                                        <i class="fa fa-expand "></i></a>
-                                </div>
+                               
 
                                 <span class="widget-icon"> 
                                     <i class="fa fa-edit"></i> </span>

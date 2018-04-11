@@ -45,7 +45,7 @@
 
         <!-- end fullscreen button -->
         <form  action="{{url('search')}}" method="get"  class="header-search pull-right">
-            <input id="search-fld" type="text" name="searchparam" placeholder="Number Plate, Chasis Number etc" 
+            <input id="search-fld"  class="form-control input-lg"  type="text" name="searchparam" placeholder="Number Plate, Chasis Number etc" 
                   >
             <button type="submit">
                 <i class="fa fa-search"></i>

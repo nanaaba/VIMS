@@ -42,18 +42,14 @@
                     <article class="col-sm-12 col-md-12 col-lg-12 ">
 
                         <!-- Widget ID (each widget will need unique ID)-->
-                        <div class="jarviswidget jarviswidget-sortable" id="wid-id-1" data-widget-editbutton="false" data-widget-custombutton="false" role="widget">
+                        <div class="jarviswidget jarviswidget-sortable" data-widget-editbutton="false" data-widget-custombutton="false" role="widget">
 
                             <header role="heading" class="ui-sortable-handle">
-                                <div class="jarviswidget-ctrls" role="menu">   
-                                    <a href="javascript:void(0);" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Collapse"><i class="fa fa-minus "></i></a>
-                                    <a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Fullscreen">
-                                        <i class="fa fa-expand "></i></a>
-                                </div>
+                                
 
                                 <span class="widget-icon"> 
                                     <i class="fa fa-edit"></i> </span>
-                                <h2>Vehicle Data </h2>				
+                                <h2>Trip Data </h2>				
 
                                 <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span></header>
 
