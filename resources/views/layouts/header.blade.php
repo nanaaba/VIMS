@@ -3,23 +3,41 @@
     <div id="logo-group"  style="display: inline-block;">
 
         <!--             PLACE YOUR LOGO HERE style="margin-top: 3px;"-->
-        <span id="logo"> 
+<!--        <span id="logo"> 
             <img src="{{ asset('img/logo.png')}}" height="20" alt="GRA">
-<!--                                                                     <img src="{{ asset('img/text.png')}}" style="height: 38px;" alt="GRA">-->
+                                                                     <img src="{{ asset('img/text.png')}}" style="height: 38px;" alt="GRA">
 
-        </span>
+        </span>-->
+         <div class="column">
+             <img src="{{ asset('img/logo.png')}}" alt="GRA" style="width:50px;height: 48px;">
+            </div>
+            <div class="column">
+                <p style="font-weight: bold;font-size: 24px; padding-top: 5px;">VIMS</p>
+<!--                <img src="{{ asset('img/text.png')}}" alt="VIMS" style="width:50px;height: 48px;">-->
+            </div>
 
     </div>
 
-    <!--    <div class="row" >
-            <div class="column">
-                <img src="{{ asset('img/logo.png')}}" alt="Fjords" style="width:100%">
-            </div>
-            <div class="column">
-                <img src="{{ asset('img/text.png')}}" alt="Forest" style="width:100%">
-            </div>
+    <div class="row col-md-8" style="padding-top: 3px;">
+            <form  action="{{url('search')}}" method="get" >
+
+                    <div class="input-group input-group-lg">
+                        <input class="form-control input-lg" type="text" required name="searchparam" placeholder="Number Plate, Chasis Number etc"  id="search-user">
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn btn-default">
+                                <i class="fa fa-fw fa-search fa-lg"></i>
+                            </button>
+                        </div>
+                        <!--                    </form>-->
+
+
+                    </div>
+
+                </form>
     
-        </div>-->
+        </div>
+    
+   
     <!-- pulled right: nav area -->
     <div class="pull-right">
 
@@ -44,14 +62,7 @@
         <!-- fullscreen button -->
 
         <!-- end fullscreen button -->
-        <form  action="{{url('search')}}" method="get"  class="header-search pull-right">
-            <input id="search-fld"  class="form-control input-lg"  type="text" name="searchparam" placeholder="Number Plate, Chasis Number etc" 
-                  >
-            <button type="submit">
-                <i class="fa fa-search"></i>
-            </button>
-            <a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
-        </form>
+       
     </div>
     <!-- end pulled right: nav area -->
 

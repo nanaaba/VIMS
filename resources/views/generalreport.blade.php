@@ -191,8 +191,8 @@
     });
 
 
-    datatable.buttons().container()
-            .appendTo('#transactionTbl_wrapper .col-sm-6:eq(0)');
+//    datatable.buttons().container()
+//            .appendTo('#transactionTbl_wrapper .col-sm-6:eq(0)');
     $('#reportForm').on('submit', function (e) {
         $('.loader').addClass('be-loading-active');
         e.preventDefault();

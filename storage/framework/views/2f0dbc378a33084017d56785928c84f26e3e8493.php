@@ -4,7 +4,6 @@
 
 <div id="content">
     <div class="page-head">
-        <h2 class="page-head-title">Search Results for -  <span class="semi-bold"><?php echo e($searchparam); ?></span></h2>
         <ol class="breadcrumb page-head-nav">
             <li><a href="#">Home</a></li>
             <li class="active">Search</li>

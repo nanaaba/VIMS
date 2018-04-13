@@ -39,7 +39,7 @@ class UserController extends Controller {
         $client = new Client([
             'headers' => [
                 'Accept' => 'application/json',
-                'token' => session('token')
+                'Authorization' => 'Bearer '.session('token')
             ],
             'http_errors' => false
         ]);

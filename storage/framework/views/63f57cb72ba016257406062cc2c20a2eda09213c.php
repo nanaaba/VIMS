@@ -129,7 +129,7 @@
 
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label class=" control-label">Trade Ref No </label>
+                                                <label class=" control-label">Trade Ref Number </label>
 
                                                 <input type="text" name="tradeRefNo" class="form-control">
                                             </div>
@@ -192,7 +192,7 @@
                                             </div>
                                         </div><div class="col-sm-4">
                                             <div class="form-group">
-                                                <label class=" control-label">Car NetNo</label>
+                                                <label class=" control-label">Car NetNumber</label>
 
                                                 <input type="text" name="carnetNo" class="form-control">
                                             </div>
