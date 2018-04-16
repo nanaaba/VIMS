@@ -49,7 +49,7 @@
                         <div class="jarviswidget jarviswidget-sortable"  data-widget-editbutton="false" data-widget-custombutton="false" role="widget">
 
                             <header role="heading" class="ui-sortable-handle">
-                                
+
 
                                 <span class="widget-icon"> 
                                     <i class="fa fa-edit"></i> </span>
@@ -234,7 +234,7 @@
                         <div class="jarviswidget jarviswidget-sortable"  data-widget-editbutton="false" data-widget-custombutton="false" role="widget">
 
                             <header role="heading" class="ui-sortable-handle">
-                               
+
 
                                 <span class="widget-icon"> 
                                     <i class="fa fa-edit"></i> </span>
@@ -302,7 +302,7 @@
                         <div class="jarviswidget jarviswidget-sortable" data-widget-editbutton="false" data-widget-custombutton="false" role="widget">
 
                             <header role="heading" class="ui-sortable-handle">
-                               
+
 
                                 <span class="widget-icon"> 
                                     <i class="fa fa-edit"></i> </span>

@@ -26,6 +26,14 @@
             textarea {
                 resize: none;
             }
+                    .rcorners {
+    border-radius: 25px;
+    background: #73AD21;
+    padding: 20px; 
+    width: 200px;
+    height: 150px; 
+}
+
 /*            fieldset {
                 font-family: sans-serif;
                 border: 5px solid #1F497D;

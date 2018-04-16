@@ -22,17 +22,16 @@ class TripController extends Controller {
 
         return view('tripinformation')->with('details', $details);
     }
-    
-     public function showAllTrips() {
+
+    public function showAllTrips() {
 
         $details = $this->getAllTrips();
 
         return view('alltrips')->with('details', $details);
     }
-    
-    public function showNewTrip() {
-                return view('newtrip');
 
+    public function showNewTrip() {
+        return view('newtrip');
     }
 
     public function getVehicleTrips($vehicleno) {
@@ -42,7 +41,8 @@ class TripController extends Controller {
 
         $client = new Client([
             'headers' => [
-                'Accept' => 'application/json'
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer ' . session('token')
             ],
             'http_errors' => false
         ]);
@@ -72,7 +72,8 @@ class TripController extends Controller {
 
         $client = new Client([
             'headers' => [
-                'Accept' => 'application/json'
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer ' . session('token')
             ],
             'http_errors' => false
         ]);
@@ -102,7 +103,8 @@ class TripController extends Controller {
 
         $client = new Client([
             'headers' => [
-                'Accept' => 'application/json'
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer ' . session('token')
             ],
             'http_errors' => false
         ]);
@@ -133,7 +135,8 @@ class TripController extends Controller {
 
         $client = new Client([
             'headers' => [
-                'Accept' => 'application/json'
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer ' . session('token')
             ],
             'http_errors' => false
         ]);
@@ -169,7 +172,8 @@ class TripController extends Controller {
 
         $client = new Client([
             'headers' => [
-                'Accept' => 'application/json'
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer ' . session('token')
             ],
             'http_errors' => false
         ]);
@@ -188,7 +192,7 @@ class TripController extends Controller {
             return 'Internal Server Error:' . $e->getMessage();
         }
     }
-    
+
     public function updateTrip(Request $request) {
 
         $data = $request->all();
@@ -197,13 +201,14 @@ class TripController extends Controller {
 
         $url = config('constants.TEST_URL');
 
-        $baseurl = $url . 'trips/'.$tripno;
+        $baseurl = $url . 'trips/' . $tripno;
 
 
 
         $client = new Client([
             'headers' => [
-                'Accept' => 'application/json'
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer ' . session('token')
             ],
             'http_errors' => false
         ]);
@@ -224,10 +229,10 @@ class TripController extends Controller {
         }
     }
 
-     public function deleteTrip($tripno) {
-        
-        
-       
+    public function deleteTrip($tripno) {
+
+
+
 
         $url = config('constants.TEST_URL');
 
@@ -238,6 +243,7 @@ class TripController extends Controller {
         $client = new Client([
             'headers' => [
                 'Accept' => 'application/json',
+                'Authorization' => 'Bearer ' . session('token')
             ],
             'http_errors' => false
         ]);

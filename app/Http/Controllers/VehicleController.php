@@ -34,7 +34,8 @@ class VehicleController extends Controller {
 
         $client = new Client([
             'headers' => [
-                'Accept' => 'application/json'
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer ' . session('token')
             ],
             'http_errors' => false
         ]);
@@ -64,7 +65,7 @@ class VehicleController extends Controller {
         $alltrips = $trips->getVehicleTrips($vehicleid);
 
         return view('vehicleinformation')->with('information', $information)
-                ->with('trips',$alltrips);
+                        ->with('trips', $alltrips);
     }
 
     public function getVehicleDetail($vehicleid) {
@@ -75,7 +76,8 @@ class VehicleController extends Controller {
 
         $client = new Client([
             'headers' => [
-                'Accept' => 'application/json'
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer ' . session('token')
             ],
             'http_errors' => false
         ]);
@@ -113,7 +115,7 @@ class VehicleController extends Controller {
         $client = new Client([
             'headers' => [
                 'Accept' => 'application/json',
-                'token' => session('token')
+                'Authorization' => 'Bearer ' . session('token')
             ],
             'http_errors' => false
         ]);
@@ -133,7 +135,7 @@ class VehicleController extends Controller {
     }
 
     public function deleteVehicle($vehicleno) {
-        
+
         $url = config('constants.TEST_URL');
 
         $baseurl = $url . 'vehicles/' . $vehicleno;
@@ -143,6 +145,7 @@ class VehicleController extends Controller {
         $client = new Client([
             'headers' => [
                 'Accept' => 'application/json',
+                'Authorization' => 'Bearer ' . session('token')
             ],
             'http_errors' => false
         ]);
@@ -162,24 +165,24 @@ class VehicleController extends Controller {
             return 'Internal Server Error:' . $e->getMessage();
         }
     }
-    
+
     public function updateVehicle(Request $request) {
-        
-           $data = $request->all();
+
+        $data = $request->all();
         $vehicle_no = $data['vehicleno'];
 
-return \GuzzleHttp\json_encode($data);
+        return \GuzzleHttp\json_encode($data);
 
         $url = config('constants.TEST_URL');
 
-        $baseurl = $url . 'vehicles/'.$vehicle_no;
+        $baseurl = $url . 'vehicles/' . $vehicle_no;
 
 
 
         $client = new Client([
             'headers' => [
                 'Accept' => 'application/json',
-                'token' => session('token')
+                'Authorization' => 'Bearer ' . session('token')
             ],
             'http_errors' => false
         ]);

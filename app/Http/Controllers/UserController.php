@@ -39,7 +39,7 @@ class UserController extends Controller {
         $client = new Client([
             'headers' => [
                 'Accept' => 'application/json',
-                'Authorization' => 'Bearer '.session('token')
+                'Authorization' => 'Bearer ' . session('token')
             ],
             'http_errors' => false
         ]);
@@ -74,7 +74,7 @@ class UserController extends Controller {
         $client = new Client([
             'headers' => [
                 'Accept' => 'application/json',
-                'token' => session('token')
+                'Authorization' => 'Bearer ' . session('token')
             ],
             'http_errors' => false
         ]);
@@ -116,7 +116,7 @@ class UserController extends Controller {
         $client = new Client([
             'headers' => [
                 'Accept' => 'application/json',
-                'token' => session('token')
+                'Authorization' => 'Bearer ' . session('token')
             ],
             'http_errors' => false
         ]);
@@ -155,7 +155,7 @@ class UserController extends Controller {
 
     public function deleteUser($userid) {
 
-   
+
         $url = config('constants.TEST_URL');
 
         $baseurl = $url . '/account/users/' . $userid;
@@ -163,7 +163,7 @@ class UserController extends Controller {
         $client = new Client([
             'headers' => [
                 'Accept' => 'application/json',
-                'token' => session('token')
+                'Authorization' => 'Bearer ' . session('token')
             ],
             'http_errors' => false
         ]);
@@ -196,7 +196,7 @@ class UserController extends Controller {
         $client = new Client([
             'headers' => [
                 'Accept' => 'application/json',
-                'token' => session('token')
+                'Authorization' => 'Bearer ' . session('token')
             ],
             'http_errors' => false
         ]);
@@ -231,7 +231,7 @@ class UserController extends Controller {
         $client = new Client([
             'headers' => [
                 'Accept' => 'application/json',
-                'token' => session('token'),
+                'Authorization' => 'Bearer ' . session('token'),
                 'code' => $password
             ],
             'http_errors' => false
@@ -275,7 +275,7 @@ class UserController extends Controller {
         $client = new Client([
             'headers' => [
                 'Accept' => 'application/json',
-                'token' => session('token')
+                'Authorization' => 'Bearer ' . session('token')
             ],
             'http_errors' => false
         ]);

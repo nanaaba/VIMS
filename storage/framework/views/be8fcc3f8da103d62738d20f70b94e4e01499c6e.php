@@ -22,7 +22,7 @@
             <form  action="<?php echo e(url('search')); ?>" method="get" >
 
                     <div class="input-group input-group-lg">
-                        <input class="form-control input-lg" type="text" required name="searchparam" placeholder="Number Plate, Chasis Number etc"  id="search-user">
+                        <input class="form-control input-lg " style="border-radius: 25px;" type="text" required name="searchparam" placeholder="Number Plate, Chasis Number etc"  id="search-user">
                         <div class="input-group-btn">
                             <button type="submit" class="btn btn-default">
                                 <i class="fa fa-fw fa-search fa-lg"></i>

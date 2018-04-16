@@ -46,7 +46,27 @@
             <?php echo $__env->yieldContent('content'); ?>
 
         </div>
+<div class="modal fade " id="loaderModal" data-keyboard="false" data-backdrop="static" role="dialog" >
+            <div class="modal-dialog" role="document">
 
+
+                <div  id="loader" style="position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; width: 100px;
+  height: 100px;
+  margin-top: 150px;">
+                    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+                    <span class="loader-text">Wait...</span>
+                </div>
+
+
+            </div>
+
+        </div>
+        
         <!--================================================== -->	
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -105,6 +125,7 @@ $(function () {
         var formData = $(this).serialize();
 
         console.log(formData);
+    $('#loaderModal').modal('show');
 
         $('input:submit').attr("disabled", true);
 
@@ -114,6 +135,8 @@ $(function () {
             data: formData,
             dataType:"json",
             success: function (data) {
+                    $('#loaderModal').modal('hide');
+
                 console.log('data : '+data.status);
                 if (data.status == 0) {
                     window.location = "dashboard";

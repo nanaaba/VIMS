@@ -38,7 +38,8 @@ class DriverController extends Controller {
 
         $client = new Client([
             'headers' => [
-                'Accept' => 'application/json'
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer ' . session('token')
             ],
             'http_errors' => false
         ]);
@@ -78,7 +79,8 @@ class DriverController extends Controller {
 
         $client = new Client([
             'headers' => [
-                'Accept' => 'application/json'
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer ' . session('token')
             ],
             'http_errors' => false
         ]);
@@ -117,7 +119,7 @@ class DriverController extends Controller {
         $client = new Client([
             'headers' => [
                 'Accept' => 'application/json',
-                'token' => session('token')
+                'Authorization' => 'Bearer ' . session('token')
             ],
             'http_errors' => false
         ]);
@@ -152,7 +154,8 @@ class DriverController extends Controller {
 
         $client = new Client([
             'headers' => [
-                'Accept' => 'application/json'
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer ' . session('token')
             ],
             'http_errors' => false
         ]);
@@ -207,7 +210,8 @@ class DriverController extends Controller {
 
         $client = new Client([
             'headers' => [
-                'Accept' => 'application/json'
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer ' . session('token')
             ],
             'http_errors' => false
         ]);
@@ -240,12 +244,16 @@ class DriverController extends Controller {
 
         $baseurl = $url . 'drivers/' . $driver_no;
 
+        
+        print_r(json_encode($data));
+        
+        return;
 
 
         $client = new Client([
             'headers' => [
                 'Accept' => 'application/json',
-                'token' => session('token')
+                'Authorization' => 'Bearer ' . session('token')
             ],
             'http_errors' => false
         ]);
@@ -280,6 +288,7 @@ class DriverController extends Controller {
         $client = new Client([
             'headers' => [
                 'Accept' => 'application/json',
+                'Authorization' => 'Bearer ' . session('token')
             ],
             'http_errors' => false
         ]);

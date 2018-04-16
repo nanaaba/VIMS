@@ -45,6 +45,13 @@
 
 <meta name="theme-color" content="#ffffff">
         <style type="text/css">
+            .rcorners{
+    border-radius: 25px;
+    padding: 20px; 
+    width: 200px;
+    height: 150px; 
+}
+
             textarea {
                 resize: none;
             }

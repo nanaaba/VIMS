@@ -8,7 +8,7 @@ $trips = json_decode($trips, true);
 ?>
 <div id="content">
     <div class="page-head">
-        <h2 class="page-head-title">{{$details['othernames'] .' '.$details['surname']}} information</h2>
+        <h2 class="page-head-title">{{$details['othernames'] .' '.$details['surname']}}'s information</h2>
         <ol class="breadcrumb page-head-nav">
             <li><a href="#">Home</a></li>
             <li><a href="#">Drivers</a></li>
@@ -42,7 +42,7 @@ $trips = json_decode($trips, true);
             <div class="row">
 
                 <div class="well well-sm well-light">
-                    <h3>{{$details['othernames'] .' '.$details['surname']}} information
+                    <h3>{{$details['othernames'] .' '.$details['surname']}}'s  information
                         <br>
     <!--                    <<small>Simple Tabs</small>
                         -->
@@ -180,11 +180,11 @@ $trips = json_decode($trips, true);
 
                                     </div>
                                 </div>
-     <div class="col-sm-4">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label class=" control-label">National ID Type</label>
 
-                                        <select class="select2 select2-hidden-accessible idtypes" name="nationalIdType"  tabindex="-1" aria-hidden="true" required>
+                                        <select class="select2 select2-hidden-accessible idtypes" name="nationalIdType"  required>
 
                                             <option value="{{$details['nationalIdType']}}">{{$details['nationalIdType']}}</option>
 
@@ -261,35 +261,43 @@ $trips = json_decode($trips, true);
                         <div id="tabs-c" class="panel-body">
                             <!-- widget content -->
                             <div class="widget-body">
+                                <div class="row col-lg-12">
 
-                                <div class="row">
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class=" control-label">Reg. Date of Issue </label>
 
-                                            <input type="text" data-dateformat="yy-mm-dd" value="{{$details['regIssueDate']}}" name="regIssueDate" class="form-control datepicker">
+                                            <input type="text"  name="regIssueDate"  value="{{$details['regIssueDate']}}" class="form-control datepicker">
                                         </div>
-                                    </div>
-                                    <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label class=" control-label">Reg. Date of Expiry </label>
+                                            <label class=" control-label">Reg. Date of  Expiry </label>
 
-                                            <input type="text" data-dateformat="yy-mm-dd" value="{{$details['regExpiryDate']}}" name="regExpiryDate" class="form-control datepicker">
+                                            <input type="text" data-dateformat="yyyy-mm-dd" value="{{$details['regExpiryDate']}}" name="regExpiryDate" class="form-control datepicker">
                                         </div>
+
+
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="col-sm-6">
+
+
                                         <div class="form-group">
                                             <label class=" control-label">Remarks</label>
                                             <textarea name="remarks" rows="10" class="form-control">
-                                      {{$details['remarks']}}
+                                                 
+                                             {{$details['remarks']}}
+
 
                                             </textarea>
 
+
                                         </div>
                                     </div>
+
+
                                 </div>
+
+
+
                             </div>
                             <!-- end widget content -->
 
@@ -413,18 +421,39 @@ $trips = json_decode($trips, true);
                 <button type="button" data-dismiss="modal" aria-hidden="true" class="close md-close"><span class="mdi mdi-close"></span></button>
                 <h3 class="modal-title">New Trip</h3>
             </div>
+
+            <div id="tripsucessdiv" style="display: none">
+
+                <div class="alert alert-success fade in">
+                    <button class="close" data-dismiss="alert">
+                        ×
+                    </button>
+                    <i class="fa-fw fa fa-check"></i>
+                    <strong>Success</strong> <span id="successmsg"> </span>
+                </div>
+            </div>
+            <div id="triperrordiv" style="display: none">
+                <div class="alert alert-danger fade in">
+                    <button class="close" data-dismiss="alert">
+                        ×
+                    </button>
+                    <i class="fa-fw fa fa-times"></i>
+                    <strong>Error!</strong> <span id="errormsg"> </span>
+                </div>
+            </div>
             <form id="tripForm"  novalidate>
                 <!-- START ROW -->
 
                 {{csrf_field()}}
                 <div class="modal-body">
 
+
                     <div class="row">
 
 
                         <input type="hidden" name="driverRegNo" value="{{$details['driverRegNo']}}"/>
 
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label class=" control-label">Vehicle Involve </label>
 
@@ -436,7 +465,7 @@ $trips = json_decode($trips, true);
                             </div>
                         </div>
 
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label class=" control-label">Trip Type </label>
                                 <select class="select2 select2-hidden-accessible tviTypes" name="tripTypeId"  tabindex="-1" aria-hidden="true" required>
@@ -447,7 +476,7 @@ $trips = json_decode($trips, true);
                             </div>
                         </div>
 
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label class=" control-label">Regime</label>
 
@@ -460,7 +489,7 @@ $trips = json_decode($trips, true);
                             </div>
                         </div>
 
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label class=" control-label">Customs Office</label>
 
@@ -476,7 +505,7 @@ $trips = json_decode($trips, true);
 
 
 
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label class=" control-label">Trade Ref No </label>
 
@@ -484,10 +513,10 @@ $trips = json_decode($trips, true);
                             </div>
                         </div>
 
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label class=" control-label">Country of Consignment </label>
-                                <select class="select2 select2-hidden-accessible country" name="consCountryCode"  tabindex="-1" aria-hidden="true" required>
+                                <select class="select2 select2-hidden-accessible countries" name="consCountryCode"  tabindex="-1" aria-hidden="true" required>
 
                                     <option value="">Select ---</option>
 
@@ -495,20 +524,20 @@ $trips = json_decode($trips, true);
                             </div>
                         </div>
 
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label class=" control-label">Last Country</label>
-                                <select class="select2 select2-hidden-accessible country" name="lastCountryCode"  tabindex="-1" aria-hidden="true" required>
+                                <select class="select2 select2-hidden-accessible countries" name="lastCountryCode"  tabindex="-1" aria-hidden="true" required>
 
                                     <option value="">Select ---</option>
 
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label class=" control-label">Next Country</label>
-                                <select class="select2 select2-hidden-accessible country" name="nextCountryCode"  tabindex="-1" aria-hidden="true" required>
+                                <select class="select2 select2-hidden-accessible countries" name="nextCountryCode"  tabindex="-1" aria-hidden="true" required>
 
                                     <option value="">Select ---</option>
 
@@ -517,82 +546,82 @@ $trips = json_decode($trips, true);
                         </div>
 
 
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label class=" control-label">Final Country</label>
-                                <select class="select2 select2-hidden-accessible country" name="finalCountryCode"  tabindex="-1" aria-hidden="true" required>
+                                <select class="select2 select2-hidden-accessible countries" name="finalCountryCode"  tabindex="-1" aria-hidden="true" required>
 
                                     <option value="">Select ---</option>
 
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label class=" control-label">Entry Office</label>
 
                                 <input type="text" name="entryOfficeCode" class="form-control">
                             </div>
-                        </div><div class="col-sm-4">
+                        </div><div class="col-sm-6">
                             <div class="form-group">
                                 <label class=" control-label">Exit Office</label>
 
                                 <input type="text" name="exitOfficeCode" class="form-control">
                             </div>
-                        </div><div class="col-sm-4">
+                        </div><div class="col-sm-6">
                             <div class="form-group">
                                 <label class=" control-label">Car NetNo</label>
 
                                 <input type="text" name="carnetNo" class="form-control">
                             </div>
-                        </div><div class="col-sm-4">
+                        </div><div class="col-sm-6">
                             <div class="form-group">
                                 <label class=" control-label">Check In</label>
 
                                 <input type="text" name="checkInDate" data-dateformat="dd-mm-yy" class="form-control datepicker">
                             </div>
-                        </div><div class="col-sm-4">
+                        </div><div class="col-sm-6">
                             <div class="form-group">
                                 <label class=" control-label">Stay Duration</label>
 
                                 <input type="text" name="stayDuration" class="form-control">
                             </div>
-                        </div><div class="col-sm-4">
+                        </div><div class="col-sm-6">
                             <div class="form-group">
                                 <label class=" control-label">Import Duration</label>
 
                                 <input type="text" name="importDuration" class="form-control">
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label class=" control-label">Permit Expiry Date</label>
 
                                 <input type="text" name="permExpiryDate" data-dateformat="dd-mm-yy" class="form-control datepicker">
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label class=" control-label">Purpose</label>
 
                                 <input type="text" name="purpose" class="form-control">
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label class=" control-label">Remarks</label>
 
                                 <input type="text" name="remarks" class="form-control">
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label class=" control-label">CheckIn By</label>
 
                                 <input type="text" name="checkInBy" class="form-control">
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label class=" control-label">CheckIn On</label>
 
@@ -603,6 +632,9 @@ $trips = json_decode($trips, true);
 
 
                     </div>
+
+
+
 
 
                 </div>
@@ -626,6 +658,47 @@ $trips = json_decode($trips, true);
 
 @section('customjs')
 <script type="text/javascript">
+
+    $('#tripForm').on('submit', function (e) {
+        e.preventDefault();
+        var formData = $(this).serialize();
+        $.ajax({
+            url: "{{url('trips/new')}}",
+            type: "POST",
+            data: formData,
+            dataType: "json",
+            success: function (data) {
+                $('#loaderModal').modal('hide');
+                document.getElementById("tripForm").reset();
+//                $('#newtripForm select').val('').trigger('change');
+//                $('#newtrip').modal('hide');
+
+                console.log(data);
+                var status = data.status;
+                console.log('status is :' + status);
+
+                if (status == 0) {
+                    $('#tripsuccessmsg').html(data.message);
+                    $('#tripsucessdiv').show();
+                } else {
+                    $('#triperrormsg').html(data.message);
+                    $('#triperrordiv').show();
+                }
+                $(window).scrollTop(0);
+
+            },
+            error: function (jXHR, textStatus, errorThrown) {
+                $('#loaderModal').modal('hide');
+
+                $('input:submit').removeAttr("disabled");
+                $('#triperrormsg').html('Contact System Administrator');
+                $('#triperrordiv').show();
+            }
+        });
+    });
+    $('.datepicker').datepicker({
+        format: 'dd-mm-yyyy'
+    });
 
     $('#tripsTbl').DataTable();
 
@@ -676,72 +749,40 @@ $trips = json_decode($trips, true);
 
 
         $.ajax({
+
             url: "{{url('settings/all')}}",
             type: "GET",
             dataType: 'json',
             success: function (response) {
-                var data = response.data;
-                var countries = data['countries'];
-                var genders = data['genders'];
-                var statusCodes = data['statusCodes'];
-                var vehicleMakes = data['vehicleMakes'];
-                var vehicleModels = data['vehicleModels'];
-                var vehicleTypes = data['vehicleTypes'];
+                //var data = response.data;
+                var countries = response.countries;
+                var idtypes = response.idtypes;
+                var vehicleModels = response.models;
+                var vehicleTypes = response.vehicletypes;
+                var vehicleMakes = response.vehiclemakes;
+                var statusCodes = response.status;
+                var gender = response.gender;
+                var tvi = response.tvi;
+                var office = response.office;
+                var regime = response.regime;
 
-                console.log(data);
-                $.each(countries, function (i, item) {
+                $('.countries').append(countries);
+                $('.vehicletypes').append(vehicleTypes);
+                $('.models').append(vehicleModels);
+                $('.vehiclemakes').append(vehicleMakes);
+                $('.statuscodes').append(statusCodes);
+                $('.gender').append(gender);
+                $('.idtypes').append(idtypes);
+                $('.regimes').append(tvi);
+                $('.offices').append(office);
+                $('.tviTypes').append(regime);
 
-                    $('.countries').append($('<option>', {
-                        value: item.code,
-                        text: item.name
-                    }));
-                });
-
-                //vehicleTypes
-                $.each(vehicleTypes, function (i, item) {
-
-                    $('.vehicletypes').append($('<option>', {
-                        value: item.typeId,
-                        text: item.name
-                    }));
-                });
-
-                $.each(vehicleModels, function (i, item) {
-
-                    $('.models').append($('<option>', {
-                        value: item.modelId,
-                        text: item.name
-                    }));
-                });
-                $.each(vehicleMakes, function (i, item) {
-
-                    $('.vehiclemakes').append($('<option>', {
-                        value: item.makeId,
-                        text: item.name
-                    }));
-                });
-
-                $.each(statusCodes, function (i, item) {
-
-                    $('.statuscodes').append($('<option>', {
-                        value: item.code,
-                        text: item.name
-                    }));
-                });
-
-                $.each(genders, function (i, item) {
-
-                    $('.gender').append($('<option>', {
-                        value: item.genderId,
-                        text: item.name
-                    }));
-                });
             }
 
         });
     }
 
-    getDrivers();
+    getVehicles();
     function getVehicles() {
 
 
@@ -765,66 +806,7 @@ $trips = json_decode($trips, true);
 
         });
     }
-    getTVISettings();
 
-    function getTVISettings() {
-
-
-        $.ajax({
-            url: "{{url('tvisettings/all')}}",
-
-            type: "GET",
-            dataType: 'json',
-            success: function (response) {
-                var data = response.data;
-                var countries = data['countries'];
-                var regimes = data['regimes'];
-                var offices = data['offices'];
-                var tviTypes = data['tviTypes'];
-
-
-                console.log(data);
-                $.each(countries, function (i, item) {
-
-                    $('.country').append($('<option>', {
-                        value: item.code,
-                        text: item.name
-                    }));
-                });
-
-                //vehicleTypes
-                $.each(regimes, function (i, item) {
-
-                    $('.regimes').append($('<option>', {
-                        value: item.regimeId,
-                        text: item.name
-                    }));
-                });
-
-                $.each(offices, function (i, item) {
-
-                    $('.offices').append($('<option>', {
-                        value: item.officeCode,
-                        text: item.name
-                    }));
-                });
-                $.each(tviTypes, function (i, item) {
-
-                    $('.tviTypes').append($('<option>', {
-                        value: item.tviTypeId,
-                        text: item.name
-                    }));
-                });
-
-
-            }
-
-        });
-    }
-    $('#tripForm').on('submit', function (e) {
-
-        alert('dfffffffffffffff');
-    });
 
 //    $('#newtripForm').on('submit', function (e) {
 //        e.preventDefault();

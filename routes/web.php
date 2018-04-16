@@ -67,7 +67,7 @@ Route::group(['middleware' => 'check-userauth'], function () {
 //agentcases
 //vehicle/new  
 //apis
-    Route::get('settings/all', 'ConfigurationController@getSettings');
+    Route::get('settings/all', 'ConfigurationController@settingsSession');
     Route::get('tvisettings/all', 'ConfigurationController@getTVISettings');
 
 
