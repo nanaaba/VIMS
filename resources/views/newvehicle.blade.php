@@ -46,7 +46,7 @@
                              data-widget-editbutton="false" data-widget-custombutton="false" role="widget">
 
                             <header role="heading" class="ui-sortable-handle">
-                               
+
 
                                 <span class="widget-icon"> 
                                     <i class="fa fa-edit"></i> </span>
@@ -151,13 +151,9 @@
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label class=" control-label">Color</label>
+                                                <input type="text" name="color" class="form-control">
 
-                                                <select class="select2 select2-hidden-accessible" name="color"  tabindex="-1" aria-hidden="true" required>
-
-                                                    <option value="">Select---</option>
-
-                                                </select>
-
+                                     
                                             </div>
                                         </div>
 
@@ -222,7 +218,7 @@
 
                             <header role="heading" class="ui-sortable-handle">
 
-                                             
+
 
                                 <span class="widget-icon"> 
                                     <i class="fa fa-edit"></i> </span>
@@ -310,7 +306,7 @@
                         <div class="jarviswidget jarviswidget-sortable"  data-widget-editbutton="false" data-widget-custombutton="false" role="widget">
 
                             <header role="heading" class="ui-sortable-handle">
-                               
+
                                 <span class="widget-icon"> 
                                     <i class="fa fa-edit"></i> </span>
                                 <h2>Ecowas Data</h2>				

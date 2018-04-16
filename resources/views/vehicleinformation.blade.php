@@ -145,12 +145,9 @@ $trips = json_decode($trips, true);
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label class=" control-label">Color</label>
+                                    <input type="text" name="color" value="{{$details['colour']}}" class="form-control">
 
-                                    <select class="select2 select2-hidden-accessible" name="color"  tabindex="-1" aria-hidden="true" required>
 
-                                        <option value="{{$details['colour']}}">{{$details['colour']}}</option>
-
-                                    </select>
 
                                 </div>
                             </div>
@@ -581,7 +578,7 @@ $trips = json_decode($trips, true);
             url: "{{url('settings/all')}}",
             type: "GET",
             dataType: 'json',
-           success: function (response) {
+            success: function (response) {
                 //var data = response.data;
                 var countries = response.countries;
                 var idtypes = response.idtypes;
@@ -653,7 +650,7 @@ $trips = json_decode($trips, true);
     });
 
 
-   
+
 
 
     function getDrivers() {
