@@ -83,10 +83,12 @@
                                     </div>
 
                                     <div class="col-sm-6">
-                                        <div class="form-group">
                                             <label class=" control-label">Date Range</label>
 
-                                            <input type="text" name="daterange" value="" class="form-control daterange">
+                                        <div class="input-group input-daterange" data-provide="datepicker" data-date-autoclose="true" data-date-format="dd-mm-yyyy">
+                                            <input class="form-control"  type="text">
+                                            <span class="input-group-addon">to</span>
+                                            <input class="form-control" type="text">
                                         </div>
                                     </div>
                                 </div>

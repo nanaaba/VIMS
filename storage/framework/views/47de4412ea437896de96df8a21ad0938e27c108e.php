@@ -64,7 +64,7 @@
                             <!-- widget content -->
                             <div class="widget-body">
 
-                                <table id="vehicleTbl" class="table table-condensed table-hover table-bordered table-striped">
+                                <table id="driverTbl" class="table table-condensed table-hover table-bordered table-striped">
                                     <thead>
                                         <tr>
 
@@ -115,7 +115,10 @@
 
 
 
-    var datatable = $('#vehicleTbl').DataTable();
+    var datatable = $('#driverTbl').DataTable({
+          "pageLength": 20
+
+    });
 
 
 
