@@ -313,7 +313,7 @@ class ReportController extends Controller {
     public function searchQuery($searchparam) {
         $url = config('constants.TEST_URL');
 
-        $baseurl = $url . 'vehicles';
+        $baseurl = $url . 'vehicles/search/'.$searchparam;
 
         $client = new Client([
             'headers' => [
